@@ -38,8 +38,8 @@
 // Include files.
 #include <SPI.h>                  // Ethernet shield uses SPI-interface
 #include <Ethernet.h>             // Ethernet library (use Ethernet2.h for new ethernet shield v2)
-//#include <NewRemoteTransmitter.h> // Remote Control, Gamma, APA3
-//#include <RemoteTransmitter.h>    // Remote Control, Action, old model
+#include <NewRemoteTransmitter.h> // Remote Control, Gamma, APA3
+#include <RemoteTransmitter.h>    // Remote Control, Action, old model
 //#include <RCSwitch.h>           // Remote Control, Action, new model
 
 // Set Ethernet Shield MAC address  (check yours)
@@ -55,8 +55,8 @@ int ethPort = 3300;                                  // Take a free port (check 
 #define analogPin    0  // sensor value
 
 EthernetServer server(ethPort);              // EthernetServer instance (listening on port <ethPort>).
-//NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin> 
-//ActionTransmitter actionTransmitter(RFPin);  // Remote Control, Action, old model (Impulse), use pin <RFPin>
+NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin> 
+ActionTransmitter actionTransmitter(RFPin);  // Remote Control, Action, old model (Impulse), use pin <RFPin>
 //RCSwitch mySwitch = RCSwitch();            // Remote Control, Action, new model (on-off), use pin <RFPin>
 
 char actionDevice = 'A';                 // Variable to store Action Device id ('A', 'B', 'C')
@@ -153,9 +153,9 @@ void loop()
 // Choose and switch your Kaku device, state is true/false (HIGH/LOW)
 void switchDefault(bool state)
 {   
-   //apa3Transmitter.sendUnit(0, state);          // APA3 Kaku (Gamma)                
+   apa3Transmitter.sendUnit(0, state);          // APA3 Kaku (Gamma)                
    delay(100);
-   //actionTransmitter.sendSignal(unitCodeActionOld, actionDevice, state);  // Action Kaku, old model
+   actionTransmitter.sendSignal(unitCodeActionOld, actionDevice, state);  // Action Kaku, old model
    delay(100);
    //mySwitch.send(2210410 + state, 24);  // tricky, false = 0, true = 1  // Action Kaku, new model
    //delay(100);
