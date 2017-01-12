@@ -60,8 +60,8 @@ namespace Domotica
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060012
-			public const int abort = 2131099666;
+			// aapt resource value: 0x7f060018
+			public const int abort = 2131099672;
 			
 			// aapt resource value: 0x7f06000a
 			public const int buttonChangePinState = 2131099658;
@@ -75,11 +75,20 @@ namespace Domotica
 			// aapt resource value: 0x7f060008
 			public const int editTextIPPort = 2131099656;
 			
-			// aapt resource value: 0x7f060011
-			public const int exit = 2131099665;
+			// aapt resource value: 0x7f060017
+			public const int exit = 2131099671;
 			
 			// aapt resource value: 0x7f060000
 			public const int relativeLayout1 = 2131099648;
+			
+			// aapt resource value: 0x7f060011
+			public const int textView1 = 2131099665;
+			
+			// aapt resource value: 0x7f060013
+			public const int textView2 = 2131099667;
+			
+			// aapt resource value: 0x7f060015
+			public const int textView3 = 2131099669;
 			
 			// aapt resource value: 0x7f06000b
 			public const int textViewChangePinState = 2131099659;
@@ -116,6 +125,15 @@ namespace Domotica
 			
 			// aapt resource value: 0x7f060002
 			public const int textViewTimerStateValue = 2131099650;
+			
+			// aapt resource value: 0x7f060012
+			public const int toggleButton1 = 2131099666;
+			
+			// aapt resource value: 0x7f060014
+			public const int toggleButton2 = 2131099668;
+			
+			// aapt resource value: 0x7f060016
+			public const int toggleButton3 = 2131099670;
 			
 			static Id()
 			{
@@ -206,6 +224,15 @@ namespace Domotica
 			
 			// aapt resource value: 0x7f04000b
 			public const int pin_state_text = 2130968587;
+			
+			// aapt resource value: 0x7f040013
+			public const int schk1 = 2130968595;
+			
+			// aapt resource value: 0x7f040014
+			public const int schk2 = 2130968596;
+			
+			// aapt resource value: 0x7f040015
+			public const int schk3 = 2130968597;
 			
 			// aapt resource value: 0x7f04000d
 			public const int sensor_text = 2130968589;

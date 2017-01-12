@@ -67,4 +67,43 @@ C:\Users\renda\Desktop\Drive\Periode 2\Domotica\Domotica\Domotica\obj\Debug\andr
 C:\Users\renda\Desktop\Drive\Periode 2\Domotica\Domotica\Domotica\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\renda\Desktop\Drive\Periode 2\Domotica\Domotica\Domotica\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\renda\Desktop\Drive\Periode 2\Domotica\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
-C:\Users\renda\Desktop\Drive\Periode 2\Domotica\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.pdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.Domotica.apk
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.Domotica-Signed.apk
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.csprojResolveAssemblyReference.cache
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.pdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\bin\Domotica.Domotica.apk
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\layout\main.xml
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\values\strings.xml
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\icon.png
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\menu\menu.xml
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\R.cs.flag
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\uploadflags.txt
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Java.Interop.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Mono.Android.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\mscorlib.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\System.ComponentModel.Composition.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\System.Core.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\System.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\System.Net.Http.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\System.Runtime.Serialization.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\System.ServiceModel.Internals.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\System.Xml.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\System.Xml.Linq.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\Java.Interop.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\Mono.Android.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\mscorlib.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.ComponentModel.Composition.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Core.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Net.Http.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Runtime.Serialization.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
