@@ -6,7 +6,7 @@
   <string name="arduino_server_text">Arduino server</string>
   <string name="arduino_server_connect">Not connected</string>
   <string name="ip_address_text">IP Address</string>
-  <string name="ip_address_value">192.168.0.102</string>
+  <string name="ip_address_value">192.168.0.101</string>
   <string name="ip_port_text">IP Port</string>
   <string name="ip_port_value">3300</string>
   <string name="button_connect_text">Connect</string>

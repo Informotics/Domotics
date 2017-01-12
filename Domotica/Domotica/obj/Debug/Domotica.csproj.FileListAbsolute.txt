@@ -71,7 +71,6 @@ C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.pdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.Domotica.apk
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.Domotica-Signed.apk
-C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.csprojResolveAssemblyReference.cache
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.pdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\bin\Domotica.Domotica.apk

@@ -127,13 +127,13 @@ namespace Domotica
 			public const int textViewTimerStateValue = 2131099650;
 			
 			// aapt resource value: 0x7f060012
-			public const int toggleButton1 = 2131099666;
+			public const int toggleButton0 = 2131099666;
 			
 			// aapt resource value: 0x7f060014
-			public const int toggleButton2 = 2131099668;
+			public const int toggleButton1 = 2131099668;
 			
 			// aapt resource value: 0x7f060016
-			public const int toggleButton3 = 2131099670;
+			public const int toggleButton2 = 2131099670;
 			
 			static Id()
 			{

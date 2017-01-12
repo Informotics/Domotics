@@ -51,7 +51,7 @@ namespace Domotica
     {
         // Variables (components/controls)
         // Controls on GUI
-        ToggleButton toggleSchakelaar1, toggleSchakelaar2, toggleSchakelaar3;
+        ToggleButton toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
         Button buttonConnect;
         Button buttonChangePinState;
         TextView textViewServerConnect, textViewTimerStateValue;
@@ -73,9 +73,9 @@ namespace Domotica
             // find and set the controls, so it can be used in the code
             buttonConnect = FindViewById<Button>(Resource.Id.buttonConnect);
             buttonChangePinState = FindViewById<Button>(Resource.Id.buttonChangePinState);
+            toggleSchakelaar0 = FindViewById<ToggleButton>(Resource.Id.toggleButton0);
             toggleSchakelaar1 = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
             toggleSchakelaar2 = FindViewById<ToggleButton>(Resource.Id.toggleButton2);
-            toggleSchakelaar3 = FindViewById<ToggleButton>(Resource.Id.toggleButton3);
             textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
             textViewServerConnect = FindViewById<TextView>(Resource.Id.textViewServerConnect);
             textViewChangePinStateValue = FindViewById<TextView>(Resource.Id.textViewChangePinStateValue);
@@ -140,25 +140,25 @@ namespace Domotica
             }
 
             //Code voor schakelaar 1
-            if(toggleSchakelaar1 != null)
+            if(toggleSchakelaar0 != null)
+            {
+                toggleSchakelaar0.Click += (sender, e) =>
+                {
+                    socket.Send(Encoding.ASCII.GetBytes("x"));
+                };
+            }
+
+            if (toggleSchakelaar1 != null)
             {
                 toggleSchakelaar1.Click += (sender, e) =>
                 {
-                    socket.Send(Encoding.ASCII.GetBytes("x"));
+                    socket.Send(Encoding.ASCII.GetBytes("y"));
                 };
             }
 
             if (toggleSchakelaar2 != null)
             {
                 toggleSchakelaar2.Click += (sender, e) =>
-                {
-                    socket.Send(Encoding.ASCII.GetBytes("y"));
-                };
-            }
-
-            if (toggleSchakelaar3 != null)
-            {
-                toggleSchakelaar3.Click += (sender, e) =>
                 {
                     socket.Send(Encoding.ASCII.GetBytes("z"));
                 };

@@ -36,9 +36,9 @@ public final class R {
         public static final int textViewServerConnect=0x7f060004;
         public static final int textViewTimerState=0x7f060001;
         public static final int textViewTimerStateValue=0x7f060002;
-        public static final int toggleButton1=0x7f060012;
-        public static final int toggleButton2=0x7f060014;
-        public static final int toggleButton3=0x7f060016;
+        public static final int toggleButton0=0x7f060012;
+        public static final int toggleButton1=0x7f060014;
+        public static final int toggleButton2=0x7f060016;
     }
     public static final class layout {
         public static final int main=0x7f030000;
