@@ -31,16 +31,12 @@
 // 3 Addr 21177114 unit 2 on/off, period: 270us
 
 // Supported KaKu devices -> find, download en install corresponding libraries
-#define unitCodeApa3      21177114  // replace with your own code
-#define unitCodeActionOld 31        // replace with your own code
-#define unitCodeActionNew 2210406   // replace with your own code
+#define unitCodeApa3      21195726  // replace with your own code
 
 // Include files.
 #include <SPI.h>                  // Ethernet shield uses SPI-interface
 #include <Ethernet.h>             // Ethernet library (use Ethernet2.h for new ethernet shield v2)
 #include <NewRemoteTransmitter.h> // Remote Control, Gamma, APA3
-#include <RemoteTransmitter.h>    // Remote Control, Action, old model
-//#include <RCSwitch.h>           // Remote Control, Action, new model
 
 // Set Ethernet Shield MAC address  (check yours)
 byte mac[] = { 0x40, 0x6c, 0x8f, 0x36, 0x84, 0x8a }; // Ethernet adapter shield S. Oosterhaven
@@ -56,8 +52,6 @@ int ethPort = 3300;                                  // Take a free port (check 
 
 EthernetServer server(ethPort);              // EthernetServer instance (listening on port <ethPort>).
 NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin> 
-ActionTransmitter actionTransmitter(RFPin);  // Remote Control, Action, old model (Impulse), use pin <RFPin>
-//RCSwitch mySwitch = RCSwitch();            // Remote Control, Action, new model (on-off), use pin <RFPin>
 
 char actionDevice = 'A';                 // Variable to store Action Device id ('A', 'B', 'C')
 bool pinState = false;                   // Variable to store actual pin state
@@ -155,10 +149,10 @@ void switchDefault(bool state)
 {   
    apa3Transmitter.sendUnit(0, state);          // APA3 Kaku (Gamma)                
    delay(100);
-   actionTransmitter.sendSignal(unitCodeActionOld, actionDevice, state);  // Action Kaku, old model
+   apa3Transmitter.sendUnit(1, state);          // APA3 Kaku (Gamma)                
    delay(100);
-   //mySwitch.send(2210410 + state, 24);  // tricky, false = 0, true = 1  // Action Kaku, new model
-   //delay(100);
+   apa3Transmitter.sendUnit(2, state);          // APA3 Kaku (Gamma)                
+   delay(100);
 }
 
 // Implementation of (simple) protocol between app and Arduino
@@ -187,6 +181,9 @@ void executeCommand(char cmd)
             break;
          case 'i':    
             digitalWrite(infoPin, HIGH);
+            break;
+         case 'x':
+            digitalWrite(RFPin, HIGH);
             break;
          default:
             digitalWrite(infoPin, LOW);

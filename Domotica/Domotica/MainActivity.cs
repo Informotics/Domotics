@@ -51,6 +51,7 @@ namespace Domotica
     {
         // Variables (components/controls)
         // Controls on GUI
+        ToggleButton toggleSchakelaar1, toggleSchakelaar2, toggleSchakelaar3;
         Button buttonConnect;
         Button buttonChangePinState;
         TextView textViewServerConnect, textViewTimerStateValue;
@@ -72,6 +73,9 @@ namespace Domotica
             // find and set the controls, so it can be used in the code
             buttonConnect = FindViewById<Button>(Resource.Id.buttonConnect);
             buttonChangePinState = FindViewById<Button>(Resource.Id.buttonChangePinState);
+            toggleSchakelaar1 = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
+            toggleSchakelaar2 = FindViewById<ToggleButton>(Resource.Id.toggleButton2);
+            toggleSchakelaar3 = FindViewById<ToggleButton>(Resource.Id.toggleButton3);
             textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
             textViewServerConnect = FindViewById<TextView>(Resource.Id.textViewServerConnect);
             textViewChangePinStateValue = FindViewById<TextView>(Resource.Id.textViewChangePinStateValue);
@@ -132,6 +136,14 @@ namespace Domotica
                 buttonChangePinState.Click += (sender, e) =>
                 {
                     socket.Send(Encoding.ASCII.GetBytes("t"));                 // Send toggle-command to the Arduino
+                };
+            }
+
+            if(toggleSchakelaar1 != null)
+            {
+                toggleSchakelaar1.Click += (sender, e) =>
+                {
+                    socket.Send(Encoding.ASCII.GetBytes("x"));
                 };
             }
         }
