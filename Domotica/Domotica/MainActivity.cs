@@ -139,11 +139,28 @@ namespace Domotica
                 };
             }
 
+            //Code voor schakelaar 1
             if(toggleSchakelaar1 != null)
             {
                 toggleSchakelaar1.Click += (sender, e) =>
                 {
                     socket.Send(Encoding.ASCII.GetBytes("x"));
+                };
+            }
+
+            if (toggleSchakelaar2 != null)
+            {
+                toggleSchakelaar2.Click += (sender, e) =>
+                {
+                    socket.Send(Encoding.ASCII.GetBytes("y"));
+                };
+            }
+
+            if (toggleSchakelaar3 != null)
+            {
+                toggleSchakelaar3.Click += (sender, e) =>
+                {
+                    socket.Send(Encoding.ASCII.GetBytes("z"));
                 };
             }
         }

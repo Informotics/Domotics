@@ -55,6 +55,7 @@ NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gam
 
 char actionDevice = 'A';                 // Variable to store Action Device id ('A', 'B', 'C')
 bool pinState = false;                   // Variable to store actual pin state
+bool pinState2 = false;
 bool pinChange = false;                  // Variable to store actual pin change
 int  sensorValue = 0;                    // Variable to store actual sensor value
 
@@ -182,8 +183,20 @@ void executeCommand(char cmd)
          case 'i':    
             digitalWrite(infoPin, HIGH);
             break;
-         case 'x':
-            digitalWrite(RFPin, HIGH);
+         case 'x': // Toggle state; If state is already ON then turn it OFF
+            if (pinState) { pinState = false; Serial.println("Set schakelaar 1 state to \"OFF\""); }
+            else { pinState = true; Serial.println("Set schakelaar 1 state to \"ON\""); }  
+            pinChange = true; 
+            break;
+         case 'y': // Toggle state; If state is already ON then turn it OFF
+            if (state) { state = false; Serial.println("Set schakelaar 2 state to \"OFF\""); }
+            else { state = true; Serial.println("Set schakelaar 2 state to \"ON\""); }  
+            state = true; 
+            break;
+         case 'z': // Toggle state; If state is already ON then turn it OFF
+            if (pinState) { pinState = false; Serial.println("Set schakelaar 3 state to \"OFF\""); }
+            else { pinState = true; Serial.println("Set schakelaar 3 state to \"ON\""); }  
+            pinChange = true; 
             break;
          default:
             digitalWrite(infoPin, LOW);
