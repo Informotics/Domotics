@@ -1,5 +1,11 @@
 
-# Created by https://www.gitignore.io/api/visualstudio
+# Created by https://www.gitignore.io/api/visualstudio,xamarinstudio
+
+### XamarinStudio ###
+bin/
+obj/
+*.userprefs
+
 
 ### VisualStudio ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -15,7 +21,6 @@
 *.vcxproj.filters
 
 # User-specific files (MonoDevelop/Xamarin Studio)
-*.userprefs
 
 # Build results
 [Dd]ebug/
@@ -281,4 +286,4 @@ __pycache__/
 ### VisualStudio Patch ###
 build/
 
-# End of https://www.gitignore.io/api/visualstudio
+# End of https://www.gitignore.io/api/visualstudio,xamarinstudio
