@@ -55,7 +55,9 @@ NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gam
 
 char actionDevice = 'A';                 // Variable to store Action Device id ('A', 'B', 'C')
 bool pinState = false;                   // Variable to store actual pin state
-bool pinState2 = false;
+bool stop0 = false;
+bool stop1 = false;
+bool stop2 = false;
 bool pinChange = false;                  // Variable to store actual pin change
 int  sensorValue = 0;                    // Variable to store actual sensor value
 
@@ -129,8 +131,8 @@ void loop()
         
       // Activate pin based op pinState
       if (pinChange) {
-         if (pinState) { digitalWrite(ledPin, HIGH); switchDefault(true); }
-         else { switchDefault(false); digitalWrite(ledPin, LOW); }
+         if (pinState) { digitalWrite(ledPin, HIGH); }
+         else { digitalWrite(ledPin, LOW); }
          pinChange = false;
       }
    
@@ -146,13 +148,9 @@ void loop()
 }
 
 // Choose and switch your Kaku device, state is true/false (HIGH/LOW)
-void switchDefault(bool state)
+void switchDefault(int stopcontact, bool state)
 {   
-   apa3Transmitter.sendUnit(0, state);          // APA3 Kaku (Gamma)                
-   delay(100);
-   apa3Transmitter.sendUnit(1, state);          // APA3 Kaku (Gamma)                
-   delay(100);
-   apa3Transmitter.sendUnit(2, state);          // APA3 Kaku (Gamma)                
+   apa3Transmitter.sendUnit(stopcontact, state);          // APA3 Kaku (Gamma)                
    delay(100);
 }
 
@@ -184,19 +182,16 @@ void executeCommand(char cmd)
             digitalWrite(infoPin, HIGH);
             break;
          case 'x': // Toggle state; If state is already ON then turn it OFF
-            if (pinState) { pinState = false; Serial.println("Set schakelaar 1 state to \"OFF\""); }
-            else { pinState = true; Serial.println("Set schakelaar 1 state to \"ON\""); }  
-            pinChange = true; 
+            if (stop0) { stop0 = false; Serial.println("Set schakelaar 1 state to \"OFF\""); switchDefault(0, false); }
+            else { stop0 = true; Serial.println("Set schakelaar 1 state to \"ON\""); switchDefault(0, true);}  
             break;
          case 'y': // Toggle state; If state is already ON then turn it OFF
-            if (state) { state = false; Serial.println("Set schakelaar 2 state to \"OFF\""); }
-            else { state = true; Serial.println("Set schakelaar 2 state to \"ON\""); }  
-            state = true; 
+            if (stop1) { stop1 = false; Serial.println("Set schakelaar 2 state to \"OFF\""); switchDefault(1, false); }
+            else { stop1 = true; Serial.println("Set schakelaar 2 state to \"ON\""); switchDefault(1, true); }  
             break;
          case 'z': // Toggle state; If state is already ON then turn it OFF
-            if (pinState) { pinState = false; Serial.println("Set schakelaar 3 state to \"OFF\""); }
-            else { pinState = true; Serial.println("Set schakelaar 3 state to \"ON\""); }  
-            pinChange = true; 
+            if (stop2) { stop2 = false; Serial.println("Set schakelaar 3 state to \"OFF\""); switchDefault(2, false); }
+            else { stop2 = true; Serial.println("Set schakelaar 3 state to \"ON\""); switchDefault(2, true); }  
             break;
          default:
             digitalWrite(infoPin, LOW);
