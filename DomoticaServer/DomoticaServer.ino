@@ -56,8 +56,11 @@ NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gam
 char actionDevice = 'A';                 // Variable to store Action Device id ('A', 'B', 'C')
 bool pinState = false;                   // Variable to store actual pin state
 bool stop0 = false;
+bool change0 = false;
 bool stop1 = false;
+bool change1 = false;
 bool stop2 = false;
+bool change2 = false;
 bool pinChange = false;                  // Variable to store actual pin change
 int  sensorValue = 0;                    // Variable to store actual sensor value
 
@@ -135,6 +138,24 @@ void loop()
          else { digitalWrite(ledPin, LOW); }
          pinChange = false;
       }
+
+      if (change0){
+        if (stop0){switchDefault(0, true); server.write('x');}
+        else {switchDefault(0, false);}
+        change0 = false;
+        }
+        
+      if (change1){
+        if (stop1){switchDefault(1, true); server.write('y');}
+        else {switchDefault(1, false);}
+        change1 = false;
+        }
+        
+      if (change2){
+        if (stop2){switchDefault(2, true); server.write('z');}
+        else {switchDefault(2, false);}
+        change2 = false;
+        }
    
       // Execute when byte is received.
       while (ethernetClient.available())

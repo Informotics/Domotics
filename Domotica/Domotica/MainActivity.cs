@@ -250,6 +250,16 @@ namespace Domotica
             });
         }
 
+        public void UpdateStop(char incoming, ToggleButton button)
+        {
+            RunOnUiThread(() =>
+                {
+                    if (incoming == 'x') toggleSchakelaar0.Click;
+                    else if (incoming == 'y') toggleSchakelaar1.Click;
+                    else if (incoming == 'z') toggleSchakelaar2.Click;
+             });
+        }
+
         // Connect to socket ip/prt (simple sockets)
         public void ConnectSocket(string ip, string prt)
         {
