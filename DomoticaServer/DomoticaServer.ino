@@ -37,6 +37,7 @@
 #include <SPI.h>                  // Ethernet shield uses SPI-interface
 #include <Ethernet.h>             // Ethernet library (use Ethernet2.h for new ethernet shield v2)
 #include <NewRemoteTransmitter.h> // Remote Control, Gamma, APA3
+#include <Servo.h>
 
 // Set Ethernet Shield MAC address  (check yours)
 byte mac[] = { 0x40, 0x6c, 0x8f, 0x36, 0x84, 0x8a }; // Ethernet adapter shield S. Oosterhaven
@@ -56,11 +57,8 @@ NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gam
 char actionDevice = 'A';                 // Variable to store Action Device id ('A', 'B', 'C')
 bool pinState = false;                   // Variable to store actual pin state
 bool stop0 = false;
-bool change0 = false;
 bool stop1 = false;
-bool change1 = false;
 bool stop2 = false;
-bool change2 = false;
 bool pinChange = false;                  // Variable to store actual pin change
 int  sensorValue = 0;                    // Variable to store actual sensor value
 
@@ -138,24 +136,6 @@ void loop()
          else { digitalWrite(ledPin, LOW); }
          pinChange = false;
       }
-
-      if (change0){
-        if (stop0){switchDefault(0, true); server.write('x');}
-        else {switchDefault(0, false);}
-        change0 = false;
-        }
-        
-      if (change1){
-        if (stop1){switchDefault(1, true); server.write('y');}
-        else {switchDefault(1, false);}
-        change1 = false;
-        }
-        
-      if (change2){
-        if (stop2){switchDefault(2, true); server.write('z');}
-        else {switchDefault(2, false);}
-        change2 = false;
-        }
    
       // Execute when byte is received.
       while (ethernetClient.available())
@@ -204,16 +184,19 @@ void executeCommand(char cmd)
             break;
          case 'x': // Toggle state; If state is already ON then turn it OFF
             if (stop0) { stop0 = false; Serial.println("Set schakelaar 1 state to \"OFF\""); switchDefault(0, false); }
-            else { stop0 = true; Serial.println("Set schakelaar 1 state to \"ON\""); switchDefault(0, true);}  
+            else { stop0 = true; Serial.println("Set schakelaar 1 state to \"ON\""); switchDefault(0, true);}
+            server.write(stop0);
             break;
          case 'y': // Toggle state; If state is already ON then turn it OFF
             if (stop1) { stop1 = false; Serial.println("Set schakelaar 2 state to \"OFF\""); switchDefault(1, false); }
-            else { stop1 = true; Serial.println("Set schakelaar 2 state to \"ON\""); switchDefault(1, true); }  
+            else { stop1 = true; Serial.println("Set schakelaar 2 state to \"ON\""); switchDefault(1, true); } 
+            server.write(stop1); 
             break;
          case 'z': // Toggle state; If state is already ON then turn it OFF
             if (stop2) { stop2 = false; Serial.println("Set schakelaar 3 state to \"OFF\""); switchDefault(2, false); }
-            else { stop2 = true; Serial.println("Set schakelaar 3 state to \"ON\""); switchDefault(2, true); }  
+            else { stop2 = true; Serial.println("Set schakelaar 3 state to \"ON\""); switchDefault(2, true); } 
             break;
+            server.write(stop2);
          default:
             digitalWrite(infoPin, LOW);
          }

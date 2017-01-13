@@ -89,7 +89,9 @@ namespace Domotica
             // Init commandlist, scheduled by socket timer
             commandList.Add(new Tuple<string, TextView>("s", textViewChangePinStateValue));
             commandList.Add(new Tuple<string, TextView>("a", textViewSensorValue));
-
+            //commandList.Add(new Tuple<string, TextView>("x", toggleSchakelaar0));
+            //commandList.Add(new Tuple<string, TextView>("y", toggleSchakelaar1));
+            //commandList.Add(new Tuple<string, TextView>("z", toggleSchakelaar2));
             this.Title = this.Title + " (timer sockets)";
 
             // timer object, running clock
@@ -250,14 +252,14 @@ namespace Domotica
             });
         }
 
-        public void UpdateStop(char incoming, ToggleButton button)
+        public void UpdateStop(char incoming)
         {
             RunOnUiThread(() =>
                 {
-                    if (incoming == 'x') toggleSchakelaar0.Click;
-                    else if (incoming == 'y') toggleSchakelaar1.Click;
-                    else if (incoming == 'z') toggleSchakelaar2.Click;
-             });
+                    if (incoming == 'x') toggleSchakelaar0.PerformClick();
+                    else if (incoming == 'y') toggleSchakelaar1.PerformClick();
+                    else if (incoming == 'z') toggleSchakelaar2.PerformClick();
+                });
         }
 
         // Connect to socket ip/prt (simple sockets)

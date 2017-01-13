@@ -13,7 +13,7 @@
   <string name="button_pin_state_text">Change State</string>
   <string name="pin_state_text">Arduino Pin state</string>
   <string name="change_pin_state_value">OFF</string>
-  <string name="sensor_text">Sensor value</string>
+  <string name="sensor_text">Lichtinval</string>
   <string name="sensor_value">-</string>
   <string name="debug_text">Debug</string>
   <string name="debug_value">-</string>
