@@ -89,9 +89,6 @@ namespace Domotica
             // Init commandlist, scheduled by socket timer
             commandList.Add(new Tuple<string, TextView>("s", textViewChangePinStateValue));
             commandList.Add(new Tuple<string, TextView>("a", textViewSensorValue));
-            //commandList.Add(new Tuple<string, TextView>("x", toggleSchakelaar0));
-            //commandList.Add(new Tuple<string, TextView>("y", toggleSchakelaar1));
-            //commandList.Add(new Tuple<string, TextView>("z", toggleSchakelaar2));
             this.Title = this.Title + " (timer sockets)";
 
             // timer object, running clock
