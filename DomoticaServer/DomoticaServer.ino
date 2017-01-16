@@ -209,7 +209,14 @@ void executeCommand(char cmd)
             digitalWrite(infoPin, LOW);
          }
 }
+// do something with kaku
 
+void setSensor(int stopcontact, bool state) {
+  if (state) { stop2 = false; Serial.println("Set schakelaar {0{ state to \"OFF\"", stopcontact); switchDefault(stopcontact, false); }
+  else { state = true; Serial.println("Set schakelaar {0} state to \"ON\"", stopcontact); switchDefault(stopcontact, true);}
+}
+
+}
 // read value from pin pn, return value is mapped between 0 and mx-1
 int readSensor(int pn, int mx)
 {
