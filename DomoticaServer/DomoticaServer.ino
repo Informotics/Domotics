@@ -223,10 +223,8 @@ void executeCommand(char cmd)
 // do something with kaku
 
 void setSensor(int stopcontact, bool state) {
-  if (state) { stop2 = false; Serial.println("Set schakelaar {0{ state to \"OFF\"", stopcontact); switchDefault(stopcontact, false); }
-  else { state = true; Serial.println("Set schakelaar {0} state to \"ON\"", stopcontact); switchDefault(stopcontact, true);}
-}
-
+  if (state) { state = false; Serial.println("Set schakelaar state to \"OFF\""); switchDefault(stopcontact, false); }
+  else { state = true; Serial.println("Set schakelaar state to \"ON\""); switchDefault(stopcontact, true);}
 }
 // read value from pin pn, return value is mapped between 0 and mx-1
 int readSensor(int pn, int mx)
