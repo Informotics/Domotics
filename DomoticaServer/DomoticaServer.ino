@@ -51,6 +51,7 @@ int ethPort = 3300;                                  // Take a free port (check 
 #define infoPin      9  // output, more information
 #define analogPin    0  // sensor value
 
+
 EthernetServer server(ethPort);              // EthernetServer instance (listening on port <ethPort>).
 NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin> 
 
@@ -60,6 +61,7 @@ bool stop1 = false;
 bool stop2 = false;
 bool pinChange = false;                  // Variable to store actual pin change
 int  sensorValue = 0;                    // Variable to store actual sensor value
+int  sensorValue2 = 0;
 
 void setup()
 {
@@ -128,6 +130,7 @@ void loop()
    {
       checkEvent(switchPin, pinState);          // update pin state
       sensorValue = readSensor(0, 100);         // update sensor value
+      sensorValue2 = analogRead(1);
         
       // Activate pin based op pinState
       if (pinChange) {
@@ -160,7 +163,10 @@ void switchDefault(int stopcontact, bool state)
 void executeCommand(char cmd)
 {     
          char buf[4] = {'\0', '\0', '\0', '\0'};
-
+         double Temp;
+         Temp = log(10000.0*((1024.0/sensorValue2-1))); 
+         Temp = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * Temp * Temp ))* Temp );
+         Temp = (Temp - 273.15) / 10;          
          // Command protocol
          Serial.print("["); Serial.print(cmd); Serial.print("] -> ");
          switch (cmd) {
@@ -169,6 +175,11 @@ void executeCommand(char cmd)
             server.write(buf, 4);                             // response is always 4 chars (\n included)
             Serial.print("Sensor: "); Serial.println(buf);
             break;
+         case 'b': // Report sensor 2 value to the app  
+            intToCharBuf(Temp, buf, 4);                // convert to charbuffer
+            server.write(buf, 4);                             // response is always 4 chars (\n included)
+            Serial.print("Sensor 2: "); Serial.println(buf);
+            break;            
          case 's': // Report switch state to the app
             if (pinState) { server.write(" ON\n"); Serial.println("Pin state is ON"); }  // always send 4 chars
             else { server.write("OFF\n"); Serial.println("Pin state is OFF"); }

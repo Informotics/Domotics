@@ -55,7 +55,7 @@ namespace Domotica
         Button buttonConnect;
         Button buttonChangePinState;
         TextView textViewServerConnect, textViewTimerStateValue;
-        public TextView textViewChangePinStateValue, textViewSensorValue, textViewDebugValue;
+        public TextView textViewChangePinStateValue, textViewSensorValue, textViewSensorValue2;
         EditText editTextIPAddress, editTextIPPort;
 
         Timer timerClock, timerSockets;             // Timers   
@@ -79,8 +79,8 @@ namespace Domotica
             textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
             textViewServerConnect = FindViewById<TextView>(Resource.Id.textViewServerConnect);
             textViewChangePinStateValue = FindViewById<TextView>(Resource.Id.textViewChangePinStateValue);
+            textViewSensorValue2 = FindViewById<TextView>(Resource.Id.sensorValue2);
             textViewSensorValue = FindViewById<TextView>(Resource.Id.textViewSensorValue);
-            textViewDebugValue = FindViewById<TextView>(Resource.Id.textViewDebugValue);
             editTextIPAddress = FindViewById<EditText>(Resource.Id.editTextIPAddress);
             editTextIPPort = FindViewById<EditText>(Resource.Id.editTextIPPort);
 
@@ -89,10 +89,10 @@ namespace Domotica
             // Init commandlist, scheduled by socket timer
             commandList.Add(new Tuple<string, TextView>("s", textViewChangePinStateValue));
             commandList.Add(new Tuple<string, TextView>("a", textViewSensorValue));
+            commandList.Add(new Tuple<string, TextView>("b", textViewSensorValue2));
             commandList.Add(new Tuple<string, TextView>("d", toggleSchakelaar0));
             commandList.Add(new Tuple<string, TextView>("e", toggleSchakelaar1));
             commandList.Add(new Tuple<string, TextView>("f", toggleSchakelaar2));
-            this.Title = this.Title + " (timer sockets)";
 
             // timer object, running clock
             timerClock = new System.Timers.Timer() { Interval = 2000, Enabled = true }; // Interval >= 1000

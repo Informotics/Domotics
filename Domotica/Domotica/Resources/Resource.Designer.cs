@@ -81,6 +81,9 @@ namespace Domotica
 			// aapt resource value: 0x7f060000
 			public const int relativeLayout1 = 2131099648;
 			
+			// aapt resource value: 0x7f060010
+			public const int sensorValue2 = 2131099664;
+			
 			// aapt resource value: 0x7f060011
 			public const int textView1 = 2131099665;
 			
@@ -98,9 +101,6 @@ namespace Domotica
 			
 			// aapt resource value: 0x7f06000f
 			public const int textViewDebug = 2131099663;
-			
-			// aapt resource value: 0x7f060010
-			public const int textViewDebugValue = 2131099664;
 			
 			// aapt resource value: 0x7f060005
 			public const int textViewIPAddress = 2131099653;
@@ -180,6 +180,12 @@ namespace Domotica
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f04000f
+			public const int Sensor2_text = 2130968591;
+			
+			// aapt resource value: 0x7f040010
+			public const int Sensor2_value = 2130968592;
+			
 			// aapt resource value: 0x7f040012
 			public const int abort = 2130968594;
 			
@@ -200,12 +206,6 @@ namespace Domotica
 			
 			// aapt resource value: 0x7f04000c
 			public const int change_pin_state_value = 2130968588;
-			
-			// aapt resource value: 0x7f04000f
-			public const int debug_text = 2130968591;
-			
-			// aapt resource value: 0x7f040010
-			public const int debug_value = 2130968592;
 			
 			// aapt resource value: 0x7f040011
 			public const int exit = 2130968593;

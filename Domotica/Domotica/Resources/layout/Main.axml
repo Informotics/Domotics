@@ -130,7 +130,7 @@
             android:layout_below="@id/textViewChangePinStateValue"
             android:textAppearance="?android:attr/textAppearanceMedium" />
         <TextView
-            android:text="@string/debug_text"
+            android:text="@string/Sensor2_text"
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:id="@+id/textViewDebug"
@@ -138,10 +138,10 @@
             android:layout_below="@id/textViewSensor"
             android:textAppearance="?android:attr/textAppearanceMedium" />
         <TextView
-            android:text="@string/debug_value"
+            android:text="@string/Sensor2_value"
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:id="@+id/textViewDebugValue"
+            android:id="@+id/sensorValue2"
             android:layout_alignParentRight="true"
             android:layout_below="@id/textViewSensorValue"
             android:textAppearance="?android:attr/textAppearanceMedium" />

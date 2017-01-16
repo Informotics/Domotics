@@ -2,7 +2,7 @@
 <xs:schema xmlns:android="http://schemas.android.com/apk/res/android" attributeFormDefault="qualified" elementFormDefault="unqualified" targetNamespace="http://schemas.android.com/apk/res/android" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v23</xs:documentation>
-    <xs:documentation>16-1-2017 11:01:06</xs:documentation>
+    <xs:documentation>16-1-2017 12:34:49</xs:documentation>
   </xs:annotation>
   <xs:attribute name="accessibilityLiveRegion">
     <xs:annotation>
@@ -3612,8 +3612,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -3625,6 +3623,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -3673,8 +3673,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -3686,6 +3684,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -4300,8 +4300,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -4313,6 +4311,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -4847,8 +4847,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -4860,6 +4858,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -5944,8 +5944,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -5957,6 +5955,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -6255,8 +6255,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -6268,6 +6266,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -10976,8 +10976,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -10989,6 +10987,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -11037,8 +11037,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -11050,6 +11048,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -11625,8 +11625,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -11638,6 +11636,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -11686,8 +11686,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -11699,6 +11697,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -11747,8 +11747,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -11760,6 +11758,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -16804,8 +16804,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -16817,6 +16815,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -16963,13 +16963,13 @@
             <xs:enumeration value="@id/editTextIPPort" />
             <xs:enumeration value="@id/exit" />
             <xs:enumeration value="@id/relativeLayout1" />
+            <xs:enumeration value="@id/sensorValue2" />
             <xs:enumeration value="@id/textView1" />
             <xs:enumeration value="@id/textView2" />
             <xs:enumeration value="@id/textView3" />
             <xs:enumeration value="@id/textViewChangePinState" />
             <xs:enumeration value="@id/textViewChangePinStateValue" />
             <xs:enumeration value="@id/textViewDebug" />
-            <xs:enumeration value="@id/textViewDebugValue" />
             <xs:enumeration value="@id/textViewIPAddress" />
             <xs:enumeration value="@id/textViewIPPort" />
             <xs:enumeration value="@id/textViewSensor" />
@@ -17314,8 +17314,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -17327,6 +17325,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -18551,8 +18551,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -18564,6 +18562,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -21030,8 +21030,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -21043,6 +21041,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -21248,8 +21248,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -21261,6 +21259,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -21523,8 +21523,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -21536,6 +21534,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -22236,8 +22236,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -22249,6 +22247,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -24158,8 +24158,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -24171,6 +24169,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -26100,8 +26100,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -26113,6 +26111,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -27101,8 +27101,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -27114,6 +27112,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -30519,8 +30519,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -30532,6 +30530,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -31803,8 +31803,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -31816,6 +31814,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -32996,8 +32996,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -33009,6 +33007,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -34672,8 +34672,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -34685,6 +34683,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -34733,8 +34733,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -34746,6 +34744,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -37851,8 +37851,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -37864,6 +37862,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -37912,8 +37912,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -37925,6 +37923,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -40063,8 +40063,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -40076,6 +40074,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -40227,8 +40227,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -40240,6 +40238,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
@@ -41373,8 +41373,6 @@
             <xs:enumeration value="@string/button_connect_text" />
             <xs:enumeration value="@string/button_pin_state_text" />
             <xs:enumeration value="@string/change_pin_state_value" />
-            <xs:enumeration value="@string/debug_text" />
-            <xs:enumeration value="@string/debug_value" />
             <xs:enumeration value="@string/exit" />
             <xs:enumeration value="@string/ip_address_text" />
             <xs:enumeration value="@string/ip_address_value" />
@@ -41386,6 +41384,8 @@
             <xs:enumeration value="@string/schk3" />
             <xs:enumeration value="@string/sensor_text" />
             <xs:enumeration value="@string/sensor_value" />
+            <xs:enumeration value="@string/Sensor2_text" />
+            <xs:enumeration value="@string/Sensor2_value" />
             <xs:enumeration value="@string/timer_state_text" />
             <xs:enumeration value="@string/timer_state_value" />
             <xs:enumeration value="@android:string/cancel" />
