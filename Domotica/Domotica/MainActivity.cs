@@ -45,7 +45,7 @@ using System.Threading.Tasks;
 
 namespace Domotica
 {
-    [Activity(Label = "@string/application_name", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+    [Activity(Label = "@string/application_name", MainLauncher = true, Icon = "@drawable/icon", Theme ="@style/Theme.Custom", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
 
     public class MainActivity : Activity
     {
@@ -66,6 +66,10 @@ namespace Domotica
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            //statusbar settings
+            this.Title = "Domotica App";
+            this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             // Set our view from the "main" layout resource (strings are loaded from Recources -> values -> Strings.xml)
             SetContentView(Resource.Layout.Main);
@@ -92,7 +96,6 @@ namespace Domotica
             commandList.Add(new Tuple<string, TextView>("d", toggleSchakelaar0));
             commandList.Add(new Tuple<string, TextView>("e", toggleSchakelaar1));
             commandList.Add(new Tuple<string, TextView>("f", toggleSchakelaar2));
-            this.Title = this.Title + " (timer sockets)";
 
             // timer object, running clock
             timerClock = new System.Timers.Timer() { Interval = 2000, Enabled = true }; // Interval >= 1000

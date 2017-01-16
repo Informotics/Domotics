@@ -146,39 +146,75 @@
             android:layout_below="@id/textViewSensorValue"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </RelativeLayout>
+    <Toolbar
+        android:minHeight="1px"
+        android:background="?android:attr/colorPrimary"
+        android:minWidth="1px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar1" />
     <TextView
-        android:text="@string/schk1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Stopcontacten"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
-    <Button
-        android:text="LOADING"
+        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20px"
+        android:layout_marginBottom="10px" />
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toggleButton0"
-        android:layout_marginRight="0.0dp" />
-    <TextView
-        android:text="@string/schk2"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/relativeLayout3"
+        android:gravity="center_horizontal">
+        <TextView
+            android:text="@string/schk1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="@string/schk2"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textView1"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px" />
+        <TextView
+            android:text="@string/schk3"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textView2" />
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-    <Button
-        android:text="LOADING"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleButton1" />
-    <TextView
-        android:text="@string/schk3"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
-    <Button
-        android:text="LOADING"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleButton2"
-        android:layout_marginRight="0.0dp" />
+        android:id="@+id/relativeLayout2"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+        <Button
+            android:text="LOADING"
+            android:id="@+id/toggleButton0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:text="LOADING"
+            android:id="@+id/toggleButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/toggleButton0"
+            android:layout_marginLeft="60px"
+            android:layout_marginRight="60px" />
+        <Button
+            android:text="LOADING"
+            android:id="@+id/toggleButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/toggleButton1" />
+    </RelativeLayout>
 </LinearLayout>
