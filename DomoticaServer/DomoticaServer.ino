@@ -187,11 +187,23 @@ void executeCommand(char cmd)
             break;
          case 'y': // Toggle state; If state is already ON then turn it OFF
             if (stop1) { stop1 = false; Serial.println("Set schakelaar 2 state to \"OFF\""); switchDefault(1, false); }
-            else { stop1 = true; Serial.println("Set schakelaar 2 state to \"ON\""); switchDefault(1, true); } 
+            else { stop1 = true; Serial.println("Set schakelaar 2 state to \"ON\""); switchDefault(1, true);} 
             break;
          case 'z': // Toggle state; If state is already ON then turn it OFF
             if (stop2) { stop2 = false; Serial.println("Set schakelaar 3 state to \"OFF\""); switchDefault(2, false); }
-            else { stop2 = true; Serial.println("Set schakelaar 3 state to \"ON\""); switchDefault(2, true); } 
+            else { stop2 = true; Serial.println("Set schakelaar 3 state to \"ON\""); switchDefault(2, true);} 
+            break;
+         case 'd':
+            if (stop0){server.write(" ON\n");}
+            else {server.write("OFF\n");}
+            break;
+         case 'e':
+            if (stop1){server.write(" ON\n");}
+            else {server.write("OFF\n");}
+            break;
+         case 'f':
+            if (stop2){server.write(" ON\n");}
+            else {server.write("OFF\n");}            
             break;
          default:
             digitalWrite(infoPin, LOW);
