@@ -51,7 +51,7 @@ namespace Domotica
     {
         // Variables (components/controls)
         // Controls on GUI
-        ToggleButton toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
+        Button toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
         Button buttonConnect;
         Button buttonChangePinState;
         TextView textViewServerConnect, textViewTimerStateValue;
@@ -73,9 +73,9 @@ namespace Domotica
             // find and set the controls, so it can be used in the code
             buttonConnect = FindViewById<Button>(Resource.Id.buttonConnect);
             buttonChangePinState = FindViewById<Button>(Resource.Id.buttonChangePinState);
-            toggleSchakelaar0 = FindViewById<ToggleButton>(Resource.Id.toggleButton0);
-            toggleSchakelaar1 = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
-            toggleSchakelaar2 = FindViewById<ToggleButton>(Resource.Id.toggleButton2);
+            toggleSchakelaar0 = FindViewById<Button>(Resource.Id.toggleButton0);
+            toggleSchakelaar1 = FindViewById<Button>(Resource.Id.toggleButton1);
+            toggleSchakelaar2 = FindViewById<Button>(Resource.Id.toggleButton2);
             textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
             textViewServerConnect = FindViewById<TextView>(Resource.Id.textViewServerConnect);
             textViewChangePinStateValue = FindViewById<TextView>(Resource.Id.textViewChangePinStateValue);
@@ -89,6 +89,9 @@ namespace Domotica
             // Init commandlist, scheduled by socket timer
             commandList.Add(new Tuple<string, TextView>("s", textViewChangePinStateValue));
             commandList.Add(new Tuple<string, TextView>("a", textViewSensorValue));
+            commandList.Add(new Tuple<string, TextView>("d", toggleSchakelaar0));
+            commandList.Add(new Tuple<string, TextView>("e", toggleSchakelaar1));
+            commandList.Add(new Tuple<string, TextView>("f", toggleSchakelaar2));
             this.Title = this.Title + " (timer sockets)";
 
             // timer object, running clock
