@@ -193,16 +193,13 @@ void executeCommand(char cmd)
             digitalWrite(infoPin, HIGH);
             break;
          case 'x': // Toggle state; If state is already ON then turn it OFF
-            if (stop0) { stop0 = false; Serial.println("Set schakelaar 1 state to \"OFF\""); switchDefault(0, false); }
-            else { stop0 = true; Serial.println("Set schakelaar 1 state to \"ON\""); switchDefault(0, true);}
+            setSensor(0, stop0);
             break;
          case 'y': // Toggle state; If state is already ON then turn it OFF
-            if (stop1) { stop1 = false; Serial.println("Set schakelaar 2 state to \"OFF\""); switchDefault(1, false); }
-            else { stop1 = true; Serial.println("Set schakelaar 2 state to \"ON\""); switchDefault(1, true);} 
+            setSensor(1, stop1); 
             break;
          case 'z': // Toggle state; If state is already ON then turn it OFF
-            if (stop2) { stop2 = false; Serial.println("Set schakelaar 3 state to \"OFF\""); switchDefault(2, false); }
-            else { stop2 = true; Serial.println("Set schakelaar 3 state to \"ON\""); switchDefault(2, true);} 
+            setSensor(2, stop2); 
             break;
          case 'd':
             if (stop0){server.write(" ON\n");}
@@ -220,7 +217,12 @@ void executeCommand(char cmd)
             digitalWrite(infoPin, LOW);
          }
 }
+// do something with kaku
 
+void setSensor(int stopcontact, bool &state) {
+  if (state) { state = false; Serial.println("Set schakelaar state to \"OFF\""); switchDefault(stopcontact, false); }
+  else { state = true; Serial.println("Set schakelaar state to \"ON\""); switchDefault(stopcontact, true);}
+}
 // read value from pin pn, return value is mapped between 0 and mx-1
 int readSensor(int pn, int mx)
 {
