@@ -45,12 +45,13 @@ using System.Threading.Tasks;
 
 namespace Domotica
 {
-    [Activity(Label = "@string/application_name", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+    [Activity(Label = "@string/application_name", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.Custom" ,ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
 
     public class MainActivity : Activity
     {
         // Variables (components/controls)
         // Controls on GUI
+
         ToggleButton toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
         Button buttonConnect;
         Button buttonChangePinState;
@@ -63,9 +64,15 @@ namespace Domotica
         List<Tuple<string, TextView>> commandList = new List<Tuple<string, TextView>>();  // List for commands and response places on UI
         int listIndex = 0;
 
+
         protected override void OnCreate(Bundle bundle)
         {
+            this.Title = "Domotics";
             base.OnCreate(bundle);
+
+            //Laad statusbar thema
+            this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+
 
             // Set our view from the "main" layout resource (strings are loaded from Recources -> values -> Strings.xml)
             SetContentView(Resource.Layout.Main);
@@ -89,7 +96,6 @@ namespace Domotica
             // Init commandlist, scheduled by socket timer
             commandList.Add(new Tuple<string, TextView>("s", textViewChangePinStateValue));
             commandList.Add(new Tuple<string, TextView>("a", textViewSensorValue));
-            this.Title = this.Title + " (timer sockets)";
 
             // timer object, running clock
             timerClock = new System.Timers.Timer() { Interval = 2000, Enabled = true }; // Interval >= 1000
