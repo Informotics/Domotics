@@ -192,9 +192,7 @@ void executeCommand(char cmd)
             else { server.write("OFF\n"); Serial.println("Pin state is OFF"); }
             break;
          case 't': // Toggle state; If state is already ON then turn it OFF
-            if (pinState) { pinState = false; Serial.println("Set pin state to \"OFF\""); }
-            else { pinState = true; Serial.println("Set pin state to \"ON\""); }  
-            pinChange = true; 
+            photoCell();
             break;
          case 'i':    
             digitalWrite(infoPin, HIGH);
@@ -225,11 +223,18 @@ void executeCommand(char cmd)
          }
 }
 // do something with kaku
-
 void setSensor(int stopcontact, bool &state) {
   if (state) { state = false; Serial.println("Set schakelaar state to \"OFF\""); switchDefault(stopcontact, false); }
   else { state = true; Serial.println("Set schakelaar state to \"ON\""); switchDefault(stopcontact, true);}
 }
+
+//photocell
+void photoCell() {
+  int value = readSensor(0, 100);
+  if(value < 050) { switchDefault(2, false); }
+  else {  switchDefault(2, true); }
+}
+
 // read value from pin pn, return value is mapped between 0 and mx-1
 int readSensor(int pn, int mx)
 {
