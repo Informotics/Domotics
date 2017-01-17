@@ -86,6 +86,13 @@ void setup()
    digitalWrite(ledPin, LOW);
    digitalWrite(infoPin, LOW);
 
+   //Set all kaku's to default state(off)
+   Serial.println("KAKU default(off)");
+   for(int i = 0; i <= 2; i++) {
+    switchDefault(i, false);
+   }
+   
+
    //Try to get an IP address from the DHCP server.
    if (Ethernet.begin(mac) == 0)
    {
