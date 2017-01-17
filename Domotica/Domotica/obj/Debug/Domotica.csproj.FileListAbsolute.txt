@@ -37,7 +37,6 @@ D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.ServiceModel.I
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.dll.mdb
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\values\theme.xml
-D:\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.csprojResolveAssemblyReference.cache
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.pdb
@@ -78,4 +77,7 @@ C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\S
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
-C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\splash_screen.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\test.png
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
+D:\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb

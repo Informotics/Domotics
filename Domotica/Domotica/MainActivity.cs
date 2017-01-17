@@ -45,7 +45,35 @@ using System.Threading.Tasks;
 
 namespace Domotica
 {
-    [Activity(Label = "@string/application_name", MainLauncher = true, Icon = "@drawable/icon", Theme ="@style/Theme.Custom", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+    //BEGIN SPLASHSCREEN
+    [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
+    public class SplashActivity : Activity
+    {
+        static readonly string TAG = "X:" + typeof(SplashActivity).Name;
+
+        public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+        {
+            base.OnCreate(savedInstanceState, persistentState);
+            Window.RequestFeature(WindowFeatures.NoTitle);
+
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            Task startupWork = new Task(() => {
+                Task.Delay(5000);  // Simulate a bit of startup work.
+            });
+
+            startupWork.ContinueWith(t => {
+                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+
+            startupWork.Start();
+        }
+    }
+    //EIND SPLASHSCREEN
+    [Activity(Label = "@string/application_name", MainLauncher = false, Icon = "@drawable/icon", Theme ="@style/Theme.Custom", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
 
     public class MainActivity : Activity
     {
@@ -251,7 +279,7 @@ namespace Domotica
             {
                 if (result == "OFF") textview.SetTextColor(Color.Red);
                 else if (result == " ON") textview.SetTextColor(Color.Green);
-                else textview.SetTextColor(Color.White);  
+                else textview.SetTextColor(Color.Gray);  
                 textview.Text = result;
             });
         }

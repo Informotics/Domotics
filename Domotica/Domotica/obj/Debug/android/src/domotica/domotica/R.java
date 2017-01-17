@@ -12,6 +12,8 @@ public final class R {
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
+        public static final int splash_screen=0x7f020001;
+        public static final int test=0x7f020002;
     }
     public static final class id {
         public static final int abort=0x7f07001c;
@@ -75,6 +77,7 @@ public final class R {
         public static final int timer_state_value=0x7f040002;
     }
     public static final class style {
+        public static final int MyTheme_Splash=0x7f050001;
         public static final int Theme_Custom=0x7f050000;
     }
 }
