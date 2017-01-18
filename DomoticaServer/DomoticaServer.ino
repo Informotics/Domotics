@@ -144,7 +144,7 @@ void loop()
    while (ethernetClient.connected()) 
    {
       checkEvent(switchPin, pinState);          // update pin state
-      sensorValue = readSensor(0, 100);         // update sensor value
+      sensorValue = analogRead(0);         // update sensor value
       sensorValue2 = analogRead(1);
 
       if (!start){
@@ -161,6 +161,9 @@ void loop()
       else {
       //Serial.println("Unknown entity detected");
       myservo.write(90);}}
+
+      //lichtsensor
+      //photoCell();
       
       // Activate pin based op pinState
       if (pinChange) {
@@ -215,7 +218,6 @@ void executeCommand(char cmd)
             else { server.write("OFF\n"); Serial.println("Pin state is OFF"); }
             break;
          case 't': // Toggle state; If state is already ON then turn it OFF
-            photoCell();
             break;
          case 'i':    
             digitalWrite(infoPin, HIGH);
@@ -257,8 +259,8 @@ void setSensor(int stopcontact, bool &state) {
 //photocell
 void photoCell() {
   int value = readSensor(0, 100);
-  if(value < 050) { switchDefault(2, false); }
-  else {  switchDefault(2, true); }
+  if(value < 050) { switchDefault(2, false); stop2 = false; }
+  else {  switchDefault(2, true); stop2 = true; }
 }
 
 // read value from pin pn, return value is mapped between 0 and mx-1
