@@ -64,6 +64,7 @@ bool stop2 = false;
 bool pinChange = false;                  // Variable to store actual pin change
 int  sensorValue = 0;                    // Variable to store actual sensor value
 int  sensorValue2 = 0;
+bool start = false;
 
 void setup()
 {
@@ -139,6 +140,7 @@ void loop()
       sensorValue = readSensor(0, 100);         // update sensor value
       sensorValue2 = analogRead(1);
 
+      if (!start){
        //Opdracht C
       int duration, distance;
       digitalWrite(trigPin, HIGH);
@@ -151,7 +153,7 @@ void loop()
       myservo.write(180);}
       else {
       //Serial.println("Unknown entity detected");
-      myservo.write(90);}  
+      myservo.write(90);}}
       
       // Activate pin based op pinState
       if (pinChange) {
@@ -234,6 +236,9 @@ void executeCommand(char cmd)
             if (stop2){server.write(" ON\n");}
             else {server.write("OFF\n");}            
             break;
+         case 'g':
+            if (!start){start = true; myservo.write(90);}
+            else {start = false;}
          default:
             digitalWrite(infoPin, LOW);
          }
