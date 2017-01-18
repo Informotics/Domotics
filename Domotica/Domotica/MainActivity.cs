@@ -81,6 +81,7 @@ namespace Domotica
         // Controls on GUI
         Button toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
         Button buttonConnect;
+        Button cknop;
         Button buttonChangePinState;
         TextView textViewServerConnect, textViewTimerStateValue;
         public TextView textViewChangePinStateValue, textViewSensorValue, textViewSensorValue2;
@@ -108,6 +109,7 @@ namespace Domotica
             toggleSchakelaar0 = FindViewById<Button>(Resource.Id.toggleButton0);
             toggleSchakelaar1 = FindViewById<Button>(Resource.Id.toggleButton1);
             toggleSchakelaar2 = FindViewById<Button>(Resource.Id.toggleButton2);
+            cknop = FindViewById<Button>(Resource.Id.cknop);
             textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
             textViewServerConnect = FindViewById<TextView>(Resource.Id.textViewServerConnect);
             textViewChangePinStateValue = FindViewById<TextView>(Resource.Id.textViewChangePinStateValue);
@@ -127,7 +129,7 @@ namespace Domotica
             commandList.Add(new Tuple<string, TextView>("f", toggleSchakelaar2));
 
             // timer object, running clock
-            timerClock = new System.Timers.Timer() { Interval = 2000, Enabled = true }; // Interval >= 1000
+            timerClock = new System.Timers.Timer() { Interval = 1000, Enabled = true }; // Interval >= 1000
             timerClock.Elapsed += (obj, args) =>
             {
                 RunOnUiThread(() => { textViewTimerStateValue.Text = DateTime.Now.ToString("HH:mm:ss"); }); 
@@ -195,6 +197,14 @@ namespace Domotica
                 toggleSchakelaar2.Click += (sender, e) =>
                 {
                     socket.Send(Encoding.ASCII.GetBytes("z"));
+                };
+            }
+
+            if (cknop != null)
+            {
+                cknop.Click += (sender, e) =>
+                {
+                    socket.Send(Encoding.ASCII.GetBytes("g"));
                 };
             }
         }
