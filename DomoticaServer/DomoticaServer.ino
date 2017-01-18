@@ -98,7 +98,23 @@ void setup()
    if (Ethernet.begin(mac) == 0)
    {
       Serial.println("Could not obtain IP-address from DHCP -> do nothing");
-      while (true){     // no point in carrying on, so do nothing forevermore; check your router
+      while (true){         
+
+      //While not connected C
+      if (!start){
+       //Opdracht C
+      int duration, distance;
+      digitalWrite(trigPin, HIGH);
+      delayMicroseconds(1000);
+      digitalWrite(trigPin, LOW);
+      duration = pulseIn(echoPin, HIGH);
+      distance = (duration/2) / 29.1;
+      if (distance > 10) {
+      Serial.println("All clear");
+      myservo.write(180);}
+      else {
+      Serial.println("Unknown entity detected");
+      myservo.write(90);}}   // no point in carrying on, so do nothing forevermore; check your router
       }
    }
    
@@ -122,8 +138,8 @@ void setup()
 }
 
 void loop()
-{
-   // Listen for incomming connection (app)
+{      
+  // Listen for incomming connection (app)
    EthernetClient ethernetClient = server.available();
    if (!ethernetClient) {
       blink(ledPin);
@@ -140,7 +156,8 @@ void loop()
       sensorValue = readSensor(0, 100);         // update sensor value
       sensorValue2 = analogRead(1);
 
-      if (!start){
+      //C connected
+       if (!start){
        //Opdracht C
       int duration, distance;
       digitalWrite(trigPin, HIGH);
@@ -149,10 +166,10 @@ void loop()
       duration = pulseIn(echoPin, HIGH);
       distance = (duration/2) / 29.1;
       if (distance > 10) {
-      //Serial.println("All clear");
+      Serial.println("All clear");
       myservo.write(180);}
       else {
-      //Serial.println("Unknown entity detected");
+      Serial.println("Unknown entity detected");
       myservo.write(90);}}
       
       // Activate pin based op pinState
