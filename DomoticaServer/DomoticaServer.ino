@@ -50,8 +50,10 @@ int ethPort = 3300;                                  // Take a free port (check 
 #define ledPin       8  // output, led used for "connect state": blinking = searching; continuously = connected
 #define infoPin      9  // output, more information
 #define analogPin    0  // sensor value
+#define trigPin      6  //Zender van ultrasone sensor
+#define echoPin      7  //Ontvanger van ultrasone sensor
 
-
+Servo myservo;
 EthernetServer server(ethPort);              // EthernetServer instance (listening on port <ethPort>).
 NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin> 
 
@@ -62,6 +64,7 @@ bool stop2 = false;
 bool pinChange = false;                  // Variable to store actual pin change
 int  sensorValue = 0;                    // Variable to store actual sensor value
 int  sensorValue2 = 0;
+bool start = false;
 
 void setup()
 {
@@ -77,6 +80,11 @@ void setup()
    pinMode(RFPin, OUTPUT);
    pinMode(ledPin, OUTPUT);
    pinMode(infoPin, OUTPUT);
+
+   //Ultrasone pins
+   pinMode(trigPin, OUTPUT);
+   pinMode(echoPin, INPUT);
+   myservo.attach(2);
    
    //Default states
    digitalWrite(switchPin, HIGH);        // Activate pullup resistors (needed for input pin)
@@ -138,7 +146,22 @@ void loop()
       checkEvent(switchPin, pinState);          // update pin state
       sensorValue = readSensor(0, 100);         // update sensor value
       sensorValue2 = analogRead(1);
-        
+
+      if (!start){
+       //Opdracht C
+      int duration, distance;
+      digitalWrite(trigPin, HIGH);
+      delayMicroseconds(1000);
+      digitalWrite(trigPin, LOW);
+      duration = pulseIn(echoPin, HIGH);
+      distance = (duration/2) / 29.1;
+      if (distance > 10) {
+      //Serial.println("All clear");
+      myservo.write(180);}
+      else {
+      //Serial.println("Unknown entity detected");
+      myservo.write(90);}}
+      
       // Activate pin based op pinState
       if (pinChange) {
          if (pinState) { digitalWrite(ledPin, HIGH); }
@@ -218,6 +241,9 @@ void executeCommand(char cmd)
             if (stop2){server.write(" ON\n");}
             else {server.write("OFF\n");}            
             break;
+         case 'g':
+            if (!start){start = true; myservo.write(90);}
+            else {start = false;}
          default:
             digitalWrite(infoPin, LOW);
          }
