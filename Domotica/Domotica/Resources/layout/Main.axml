@@ -217,4 +217,9 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/toggleButton1" />
     </RelativeLayout>
+    <Button
+        android:text="Lockdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cknop" />
 </LinearLayout>
