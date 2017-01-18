@@ -16,12 +16,13 @@ public final class R {
         public static final int test=0x7f020002;
     }
     public static final class id {
-        public static final int abort=0x7f07001c;
+        public static final int abort=0x7f07001d;
         public static final int buttonChangePinState=0x7f07000a;
         public static final int buttonConnect=0x7f070009;
+        public static final int cknop=0x7f07001b;
         public static final int editTextIPAddress=0x7f070007;
         public static final int editTextIPPort=0x7f070008;
-        public static final int exit=0x7f07001b;
+        public static final int exit=0x7f07001c;
         public static final int relativeLayout1=0x7f070000;
         public static final int relativeLayout2=0x7f070017;
         public static final int relativeLayout3=0x7f070013;
