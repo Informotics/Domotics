@@ -117,10 +117,10 @@ void setup()
       duration = pulseIn(echoPin, HIGH);
       distance = (duration/2) / 29.1;
       if (distance > 10) {
-      Serial.println("All clear");
+      //Serial.println("All clear");
       myservo.write(180);}
       else {
-      Serial.println("Unknown entity detected");
+      //Serial.println("Unknown entity detected");
       myservo.write(90);}}   // no point in carrying on, so do nothing forevermore; check your router
       }
    }
@@ -246,6 +246,7 @@ void executeCommand(char cmd)
             else { server.write("OFF\n"); Serial.println("Pin state is OFF"); }
             break;
          case 't': // Toggle state; If state is already ON then turn it OFF
+            photoCell(2, 050, stop2);
             break;
          case 'i':    
             digitalWrite(infoPin, HIGH);
@@ -285,10 +286,10 @@ void setSensor(int stopcontact, bool &state) {
 }
 
 //photocell
-void photoCell() {
+void photoCell(int stopcontact, int set_value, bool &state) {
   int value = readSensor(0, 100);
-  if(value < 050) { switchDefault(2, false); stop2 = false; }
-  else {  switchDefault(2, true); stop2 = true; }
+  if(value < set_value) { switchDefault(stopcontact, false); state = false; }
+  else {  switchDefault(stopcontact, true); state = true; }
 }
 
 // read value from pin pn, return value is mapped between 0 and mx-1
