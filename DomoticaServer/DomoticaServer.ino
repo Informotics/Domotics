@@ -94,6 +94,13 @@ void setup()
    digitalWrite(ledPin, LOW);
    digitalWrite(infoPin, LOW);
 
+   //Set all kaku's to default state(off)
+   Serial.println("KAKU default(off)");
+   for(int i = 0; i <= 2; i++) {
+    switchDefault(i, false);
+   }
+   
+
    //Try to get an IP address from the DHCP server.
    if (Ethernet.begin(mac) == 0)
    {
@@ -153,7 +160,7 @@ void loop()
    while (ethernetClient.connected()) 
    {
       checkEvent(switchPin, pinState);          // update pin state
-      sensorValue = readSensor(0, 100);         // update sensor value
+      sensorValue = analogRead(0);         // update sensor value
       sensorValue2 = analogRead(1);
 
       //C connected
@@ -239,9 +246,6 @@ void executeCommand(char cmd)
             else { server.write("OFF\n"); Serial.println("Pin state is OFF"); }
             break;
          case 't': // Toggle state; If state is already ON then turn it OFF
-            if (pinState) { pinState = false; Serial.println("Set pin state to \"OFF\""); }
-            else { pinState = true; Serial.println("Set pin state to \"ON\""); }  
-            pinChange = true; 
             break;
          case 'i':    
             digitalWrite(infoPin, HIGH);
@@ -275,11 +279,18 @@ void executeCommand(char cmd)
          }
 }
 // do something with kaku
-
 void setSensor(int stopcontact, bool &state) {
   if (state) { state = false; Serial.println("Set schakelaar state to \"OFF\""); switchDefault(stopcontact, false); }
   else { state = true; Serial.println("Set schakelaar state to \"ON\""); switchDefault(stopcontact, true);}
 }
+
+//photocell
+void photoCell() {
+  int value = readSensor(0, 100);
+  if(value < 050) { switchDefault(2, false); stop2 = false; }
+  else {  switchDefault(2, true); stop2 = true; }
+}
+
 // read value from pin pn, return value is mapped between 0 and mx-1
 int readSensor(int pn, int mx)
 {
