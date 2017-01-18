@@ -33,11 +33,9 @@ using System.Net.Sockets;
 using System.Timers;
 using Android.App;
 using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Content.PM;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Android.Graphics;
@@ -99,6 +97,30 @@ namespace Domotica
             //statusbar settings
             this.Title = "Domotica App";
             this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            RequestWindowFeature(WindowFeatures.ActionBar);
+            var actionBar = this.ActionBar;
+            actionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+
+            var tab1 = this.ActionBar.NewTab();
+            tab1.SetText("A");
+            tab1.TabSelected += (sender, e) => {
+                SetContentView(Resource.Layout.Main);
+            };
+            actionBar.AddTab(tab1);
+
+            var tab2 = this.ActionBar.NewTab();
+            tab2.SetText("B");
+            tab2.TabSelected += (sender, e) => {
+                SetContentView(Resource.Layout.B);
+            };
+            actionBar.AddTab(tab2);
+
+            var tab3 = this.ActionBar.NewTab();
+            tab3.SetText("C");
+            tab3.TabSelected += (sender, e) => {
+                SetContentView(Resource.Layout.C);
+            };
+            actionBar.AddTab(tab3);
 
             // Set our view from the "main" layout resource (strings are loaded from Recources -> values -> Strings.xml)
             SetContentView(Resource.Layout.Main);
@@ -353,29 +375,29 @@ namespace Domotica
         }
 
         //Prepare the Screen's standard options menu to be displayed.
-        public override bool OnPrepareOptionsMenu(IMenu menu)
-        {
-            //Prevent menu items from being duplicated.
-            menu.Clear();
+        //public override bool OnPrepareOptionsMenu(IMenu menu)
+        //{
+         //   //Prevent menu items from being duplicated.
+          //  menu.Clear();
 
-            MenuInflater.Inflate(Resource.Menu.menu, menu);
-            return base.OnPrepareOptionsMenu(menu);
-        }
+        //    MenuInflater.Inflate(Resource.Menu.menu, menu);
+        //    return base.OnPrepareOptionsMenu(menu);
+        //}
 
         //Executes an action when a menu button is pressed.
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Resource.Id.exit:
-                    //Force quit the application.
-                    System.Environment.Exit(0);
-                    return true;
-                case Resource.Id.abort:
-                    return true;
-            }
-            return base.OnOptionsItemSelected(item);
-        }
+        //public override bool OnOptionsItemSelected(IMenuItem item)
+        //{
+         //   switch (item.ItemId)
+         //   {
+          //      case Resource.Id.exit:
+          //          //Force quit the application.
+          //          System.Environment.Exit(0);
+         //           return true;
+          //      case Resource.Id.abort:
+         //           return true;
+         //   }
+       // //    return base.OnOptionsItemSelected(item);
+        //}
 
         //Check if the entered IP address is valid.
         private bool CheckValidIpAddress(string ip)

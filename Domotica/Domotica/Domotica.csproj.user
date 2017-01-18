@@ -3,7 +3,8 @@
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
     <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
-    <SelectedDevice>Samsung GT-I9195</SelectedDevice>
+    <SelectedDevice>5" KitKat %284.4%29 XXHDPI Phone</SelectedDevice>
     <AndroidDesignerPreferredTheme>Theme.Custom</AndroidDesignerPreferredTheme>
+    <DefaultDevice>5" KitKat %284.4%29 XXHDPI Phone</DefaultDevice>
   </PropertyGroup>
 </Project>
