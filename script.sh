@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in `seq 1 100`;
+for i in `seq 420 1337`;
 do
 	echo $i > hardaanhetwerk.txt
 	git add .
