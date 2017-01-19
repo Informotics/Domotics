@@ -146,13 +146,7 @@ void setup()
 }
 
 void loop()
-{ 
-  //Smart Mode
-    photoCell(0, 050, stop0);
-    photoCell(1, 050, stop1);
-    photoCell(2, 050, stop2);
-
-  
+{   
   // Listen for incomming connection (app)
    EthernetClient ethernetClient = server.available();
    if (!ethernetClient) {
@@ -169,6 +163,13 @@ void loop()
       checkEvent(switchPin, pinState);          // update pin state
       sensorValue = analogRead(0);         // update sensor value
       sensorValue2 = analogRead(1);
+
+      //Smart Mode
+    if(smart) {
+      photoCell(0, 050, stop0);
+      photoCell(1, 050, stop1);
+      photoCell(2, 050, stop2);
+    }
 
       //C connected
       if (!start){
