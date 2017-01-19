@@ -165,9 +165,11 @@ void loop()
       sensorValue2 = analogRead(1);
 
       //Smart Mode
-    photoCell(0, 050, stop0);
-    photoCell(1, 050, stop1);
-    photoCell(2, 050, stop2);
+    if(smart) {
+      photoCell(0, 050, stop0);
+      photoCell(1, 050, stop1);
+      photoCell(2, 050, stop2);
+    }
 
       //C connected
       if (!start){
