@@ -50,8 +50,10 @@ int ethPort = 3300;                                  // Take a free port (check 
 #define ledPin       8  // output, led used for "connect state": blinking = searching; continuously = connected
 #define infoPin      9  // output, more information
 #define analogPin    0  // sensor value
+#define trigPin      6  //Zender van ultrasone sensor
+#define echoPin      7  //Ontvanger van ultrasone sensor
 
-
+Servo myservo;
 EthernetServer server(ethPort);              // EthernetServer instance (listening on port <ethPort>).
 NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin> 
 
@@ -62,6 +64,8 @@ bool stop2 = false;
 bool pinChange = false;                  // Variable to store actual pin change
 int  sensorValue = 0;                    // Variable to store actual sensor value
 int  sensorValue2 = 0;
+bool start = false;
+bool smart = false;
 
 void setup()
 {
@@ -77,6 +81,11 @@ void setup()
    pinMode(RFPin, OUTPUT);
    pinMode(ledPin, OUTPUT);
    pinMode(infoPin, OUTPUT);
+
+   //Ultrasone pins
+   pinMode(trigPin, OUTPUT);
+   pinMode(echoPin, INPUT);
+   myservo.attach(2);
    
    //Default states
    digitalWrite(switchPin, HIGH);        // Activate pullup resistors (needed for input pin)
@@ -86,11 +95,34 @@ void setup()
    digitalWrite(ledPin, LOW);
    digitalWrite(infoPin, LOW);
 
+   //Set all kaku's to default state(off)
+   Serial.println("KAKU default(off)");
+   for(int i = 0; i <= 2; i++) {
+    switchDefault(i, false);
+   }
+   
+
    //Try to get an IP address from the DHCP server.
    if (Ethernet.begin(mac) == 0)
    {
       Serial.println("Could not obtain IP-address from DHCP -> do nothing");
-      while (true){     // no point in carrying on, so do nothing forevermore; check your router
+      while (true){         
+
+      //While not connected C
+      if (!start){
+       //Opdracht C
+      int duration, distance;
+      digitalWrite(trigPin, HIGH);
+      delayMicroseconds(1000);
+      digitalWrite(trigPin, LOW);
+      duration = pulseIn(echoPin, HIGH);
+      distance = (duration/2) / 29.1;
+      if (distance > 10) {
+      //Serial.println("All clear");
+      myservo.write(180);}
+      else {
+      //Serial.println("Unknown entity detected");
+      myservo.write(90);}}   // no point in carrying on, so do nothing forevermore; check your router
       }
    }
    
@@ -114,8 +146,8 @@ void setup()
 }
 
 void loop()
-{
-   // Listen for incomming connection (app)
+{   
+  // Listen for incomming connection (app)
    EthernetClient ethernetClient = server.available();
    if (!ethernetClient) {
       blink(ledPin);
@@ -129,9 +161,46 @@ void loop()
    while (ethernetClient.connected()) 
    {
       checkEvent(switchPin, pinState);          // update pin state
-      sensorValue = readSensor(0, 100);         // update sensor value
+      sensorValue = analogRead(0);         // update sensor value
       sensorValue2 = analogRead(1);
-        
+
+      //Smart Mode
+    if(smart) {
+      photoCell(0, 050, stop0);
+      photoCell(1, 050, stop1);
+      photoCell(2, 050, stop2);
+    }
+
+      //C connected
+      if (!start){
+        //Opdracht C
+        int duration, distance;
+        digitalWrite(trigPin, HIGH);
+        delayMicroseconds(1000);
+        digitalWrite(trigPin, LOW);
+        duration = pulseIn(echoPin, HIGH);
+        distance = (duration/2) / 29.1;
+          if (distance > 10) {
+          //Serial.println("All clear !start");
+          myservo.write(180);}
+          else {
+          //Serial.println("Unknown entity detected !start");
+          myservo.write(90);}}
+
+      else {
+        int duration, distance;
+        digitalWrite(trigPin, HIGH);
+        delayMicroseconds(1000);
+        digitalWrite(trigPin, LOW);
+        duration = pulseIn(echoPin, HIGH);
+        distance = (duration/2) / 29.1;
+          if (distance > 10) {
+          //Serial.println("All clear start");
+          myservo.write(90);}
+          else {
+          //Serial.println("Unknown entity detected start");
+          myservo.write(180);}}
+      
       // Activate pin based op pinState
       if (pinChange) {
          if (pinState) { digitalWrite(ledPin, HIGH); }
@@ -185,9 +254,8 @@ void executeCommand(char cmd)
             else { server.write("OFF\n"); Serial.println("Pin state is OFF"); }
             break;
          case 't': // Toggle state; If state is already ON then turn it OFF
-            if (pinState) { pinState = false; Serial.println("Set pin state to \"OFF\""); }
-            else { pinState = true; Serial.println("Set pin state to \"ON\""); }  
-            pinChange = true; 
+            if (smart) { smart = false; Serial.println("Set smart state to \"OFF\"");}
+            else { smart = true; Serial.println("Set smart state to \"ON\"");}
             break;
          case 'i':    
             digitalWrite(infoPin, HIGH);
@@ -213,16 +281,26 @@ void executeCommand(char cmd)
             if (stop2){server.write(" ON\n");}
             else {server.write("OFF\n");}            
             break;
+         case 'g':
+            if (!start){start = true; myservo.write(90);}
+            else {start = false;}
          default:
             digitalWrite(infoPin, LOW);
          }
 }
 // do something with kaku
-
 void setSensor(int stopcontact, bool &state) {
   if (state) { state = false; Serial.println("Set schakelaar state to \"OFF\""); switchDefault(stopcontact, false); }
   else { state = true; Serial.println("Set schakelaar state to \"ON\""); switchDefault(stopcontact, true);}
 }
+
+//photocell
+void photoCell(int stopcontact, int set_value, bool &state) {
+  int value = readSensor(0, 100);
+  if(value < set_value) { switchDefault(stopcontact, false); state = false; }
+  else {  switchDefault(stopcontact, true); state = true; }
+}
+
 // read value from pin pn, return value is mapped between 0 and mx-1
 int readSensor(int pn, int mx)
 {

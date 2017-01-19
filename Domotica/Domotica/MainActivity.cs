@@ -33,11 +33,9 @@ using System.Net.Sockets;
 using System.Timers;
 using Android.App;
 using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using Android.Content.PM;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Android.Graphics;
@@ -45,7 +43,35 @@ using System.Threading.Tasks;
 
 namespace Domotica
 {
-    [Activity(Label = "@string/application_name", MainLauncher = true, Icon = "@drawable/icon", Theme ="@style/Theme.Custom", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+    //BEGIN SPLASHSCREEN
+    [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
+    public class SplashActivity : Activity
+    {
+        static readonly string TAG = "X:" + typeof(SplashActivity).Name;
+
+        public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+        {
+            base.OnCreate(savedInstanceState, persistentState);
+            Window.RequestFeature(WindowFeatures.NoTitle);
+
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            Task startupWork = new Task(() => {
+                Task.Delay(5000);  // Simulate a bit of startup work.
+            });
+
+            startupWork.ContinueWith(t => {
+                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+
+            startupWork.Start();
+        }
+    }
+    //EIND SPLASHSCREEN
+    [Activity(Label = "@string/application_name", MainLauncher = false, Icon = "@drawable/icon", Theme ="@style/Theme.Custom", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
 
     public class MainActivity : Activity
     {
@@ -53,6 +79,7 @@ namespace Domotica
         // Controls on GUI
         Button toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
         Button buttonConnect;
+        Button cknop;
         Button buttonChangePinState;
         TextView textViewServerConnect, textViewTimerStateValue;
         public TextView textViewChangePinStateValue, textViewSensorValue, textViewSensorValue2;
@@ -70,6 +97,30 @@ namespace Domotica
             //statusbar settings
             this.Title = "Domotica App";
             this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            RequestWindowFeature(WindowFeatures.ActionBar);
+            var actionBar = this.ActionBar;
+            actionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+
+            var tab1 = this.ActionBar.NewTab();
+            tab1.SetText("A");
+            tab1.TabSelected += (sender, e) => {
+                SetContentView(Resource.Layout.Main);
+            };
+            actionBar.AddTab(tab1);
+
+            var tab2 = this.ActionBar.NewTab();
+            tab2.SetText("B");
+            tab2.TabSelected += (sender, e) => {
+                SetContentView(Resource.Layout.B);
+            };
+            actionBar.AddTab(tab2);
+
+            var tab3 = this.ActionBar.NewTab();
+            tab3.SetText("C");
+            tab3.TabSelected += (sender, e) => {
+                SetContentView(Resource.Layout.C);
+            };
+            actionBar.AddTab(tab3);
 
             // Set our view from the "main" layout resource (strings are loaded from Recources -> values -> Strings.xml)
             SetContentView(Resource.Layout.Main);
@@ -80,6 +131,7 @@ namespace Domotica
             toggleSchakelaar0 = FindViewById<Button>(Resource.Id.toggleButton0);
             toggleSchakelaar1 = FindViewById<Button>(Resource.Id.toggleButton1);
             toggleSchakelaar2 = FindViewById<Button>(Resource.Id.toggleButton2);
+            cknop = FindViewById<Button>(Resource.Id.cknop);
             textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
             textViewServerConnect = FindViewById<TextView>(Resource.Id.textViewServerConnect);
             textViewChangePinStateValue = FindViewById<TextView>(Resource.Id.textViewChangePinStateValue);
@@ -99,7 +151,7 @@ namespace Domotica
             commandList.Add(new Tuple<string, TextView>("f", toggleSchakelaar2));
 
             // timer object, running clock
-            timerClock = new System.Timers.Timer() { Interval = 2000, Enabled = true }; // Interval >= 1000
+            timerClock = new System.Timers.Timer() { Interval = 1000, Enabled = true }; // Interval >= 1000
             timerClock.Elapsed += (obj, args) =>
             {
                 RunOnUiThread(() => { textViewTimerStateValue.Text = DateTime.Now.ToString("HH:mm:ss"); }); 
@@ -167,6 +219,14 @@ namespace Domotica
                 toggleSchakelaar2.Click += (sender, e) =>
                 {
                     socket.Send(Encoding.ASCII.GetBytes("z"));
+                };
+            }
+
+            if (cknop != null)
+            {
+                cknop.Click += (sender, e) =>
+                {
+                    socket.Send(Encoding.ASCII.GetBytes("g"));
                 };
             }
         }
@@ -251,7 +311,7 @@ namespace Domotica
             {
                 if (result == "OFF") textview.SetTextColor(Color.Red);
                 else if (result == " ON") textview.SetTextColor(Color.Green);
-                else textview.SetTextColor(Color.White);  
+                else textview.SetTextColor(Color.Gray);  
                 textview.Text = result;
             });
         }
@@ -315,29 +375,29 @@ namespace Domotica
         }
 
         //Prepare the Screen's standard options menu to be displayed.
-        public override bool OnPrepareOptionsMenu(IMenu menu)
-        {
-            //Prevent menu items from being duplicated.
-            menu.Clear();
+        //public override bool OnPrepareOptionsMenu(IMenu menu)
+        //{
+         //   //Prevent menu items from being duplicated.
+          //  menu.Clear();
 
-            MenuInflater.Inflate(Resource.Menu.menu, menu);
-            return base.OnPrepareOptionsMenu(menu);
-        }
+        //    MenuInflater.Inflate(Resource.Menu.menu, menu);
+        //    return base.OnPrepareOptionsMenu(menu);
+        //}
 
         //Executes an action when a menu button is pressed.
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Resource.Id.exit:
-                    //Force quit the application.
-                    System.Environment.Exit(0);
-                    return true;
-                case Resource.Id.abort:
-                    return true;
-            }
-            return base.OnOptionsItemSelected(item);
-        }
+        //public override bool OnOptionsItemSelected(IMenuItem item)
+        //{
+         //   switch (item.ItemId)
+         //   {
+          //      case Resource.Id.exit:
+          //          //Force quit the application.
+          //          System.Environment.Exit(0);
+         //           return true;
+          //      case Resource.Id.abort:
+         //           return true;
+         //   }
+       // //    return base.OnOptionsItemSelected(item);
+        //}
 
         //Check if the entered IP address is valid.
         private bool CheckValidIpAddress(string ip)
