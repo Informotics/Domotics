@@ -65,6 +65,8 @@ bool pinChange = false;                  // Variable to store actual pin change
 int  sensorValue = 0;                    // Variable to store actual sensor value
 int  sensorValue2 = 0;
 bool start = false;
+bool smart = false;
+string stops[3];
 
 void setup()
 {
@@ -145,7 +147,14 @@ void setup()
 }
 
 void loop()
-{      
+{ 
+  //Smart Mode
+  string stops[] = {"stop0", "stop1", "stop2"};
+  for(int i = 0; i <=2; i++) {
+  photoCell(i, 050, stops[i])
+  }
+
+  
   // Listen for incomming connection (app)
    EthernetClient ethernetClient = server.available();
    if (!ethernetClient) {
@@ -246,7 +255,8 @@ void executeCommand(char cmd)
             else { server.write("OFF\n"); Serial.println("Pin state is OFF"); }
             break;
          case 't': // Toggle state; If state is already ON then turn it OFF
-            photoCell(2, 050, stop2);
+            if (smart) { smart = false; Serial.println("Set smart state to \"OFF\"");}
+            else { smart = true; Serial.println("Set smart state to \"ON\"");}
             break;
          case 'i':    
             digitalWrite(infoPin, HIGH);
