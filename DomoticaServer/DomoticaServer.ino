@@ -66,7 +66,6 @@ int  sensorValue = 0;                    // Variable to store actual sensor valu
 int  sensorValue2 = 0;
 bool start = false;
 bool smart = false;
-string stops[3];
 
 void setup()
 {
@@ -149,10 +148,9 @@ void setup()
 void loop()
 { 
   //Smart Mode
-  string stops[] = {"stop0", "stop1", "stop2"};
-  for(int i = 0; i <=2; i++) {
-  photoCell(i, 050, stops[i])
-  }
+    photoCell(0, 050, stop0);
+    photoCell(1, 050, stop1);
+    photoCell(2, 050, stop2);
 
   
   // Listen for incomming connection (app)
