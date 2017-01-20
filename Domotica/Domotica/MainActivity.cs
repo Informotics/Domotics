@@ -81,6 +81,7 @@ namespace Domotica
         Button buttonConnect;
         Button cknop;
         Button buttonChangePinState;
+        TimePicker timePicker1;
         TextView textViewServerConnect, textViewTimerStateValue;
         public TextView textViewChangePinStateValue, textViewSensorValue, textViewSensorValue2;
         EditText editTextIPAddress, editTextIPPort;
@@ -139,6 +140,9 @@ namespace Domotica
             textViewSensorValue2 = FindViewById<TextView>(Resource.Id.textViewSensorValue2);
             editTextIPAddress = FindViewById<EditText>(Resource.Id.editTextIPAddress);
             editTextIPPort = FindViewById<EditText>(Resource.Id.editTextIPPort);
+            timePicker1 = FindViewById<TimePicker>(Resource.Id.timePicker1);
+            var btnChange = FindViewById<Button>(Resource.Id.btnChange);
+            var txtDisplay = FindViewById<TextView>(Resource.Id.txtDisplay);
 
             UpdateConnectionState(4, "Disconnected");
 
@@ -154,8 +158,13 @@ namespace Domotica
             timerClock = new System.Timers.Timer() { Interval = 1000, Enabled = true }; // Interval >= 1000
             timerClock.Elapsed += (obj, args) =>
             {
-                RunOnUiThread(() => { textViewTimerStateValue.Text = DateTime.Now.ToString("HH:mm:ss"); }); 
+                RunOnUiThread(() => {
+                    textViewTimerStateValue.Text = DateTime.Now.ToString("HH:mm:ss");
+                    //if (textViewTimerStateValue.Text == (getTime() + ":00"))
+                    //{ popup(); }
+                });
             };
+
 
             // timer object, check Arduino state
             // Only one command can be serviced in an timer tick, schedule from list
@@ -218,7 +227,9 @@ namespace Domotica
             {
                 toggleSchakelaar2.Click += (sender, e) =>
                 {
-                    socket.Send(Encoding.ASCII.GetBytes("z"));
+                    //socket.Send(Encoding.ASCII.GetBytes("z"));
+                    SetContentView(Resource.Layout.Klok);
+
                 };
             }
 
@@ -231,6 +242,42 @@ namespace Domotica
             }
         }
 
+        //Functie om tijd op te vragen van user
+        //private string getTime()
+        //{
+        //    StringBuilder strTime = new StringBuilder();
+        //    int uur = Convert.ToInt32(timePicker1.CurrentHour);
+        //    int minuut = Convert.ToInt32(timePicker1.CurrentMinute);
+        //    if (uur < 10)
+        //    {
+        //        if (minuut < 10)
+        //        {
+        //            strTime.Append("0" + timePicker1.CurrentHour + ":0" + timePicker1.CurrentMinute);
+        //        }
+        //        else
+        //        {
+        //            strTime.Append("0" + timePicker1.CurrentHour + ":" + timePicker1.CurrentMinute);
+        //        }
+
+        //    }
+        //    else if (minuut < 10)
+        //    {
+        //        strTime.Append(timePicker1.CurrentHour + ":0" + timePicker1.CurrentMinute);
+
+        //    }
+        //    else
+        //    {
+        //        strTime.Append(timePicker1.CurrentHour + ":" + timePicker1.CurrentMinute);
+        //    }
+        //    return strTime.ToString();
+        //}
+
+        //Pop-up voor timer
+        //void popup()
+        //{
+        //    Toast showtime = Toast.MakeText(this, "BIEP BIEP ALARM", ToastLength.Long);
+        //    showtime.Show();
+        //}
 
         //Send command to server and wait for response (blocking)
         //Method should only be called when socket existst
