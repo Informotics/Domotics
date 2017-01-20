@@ -39,7 +39,6 @@ C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\S
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\splash_screen.xml
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\test.png
-C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
 D:\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll
 D:\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.pdb
 D:\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.Domotica.apk
@@ -91,4 +90,16 @@ D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.ServiceModel.I
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.dll.mdb
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
-D:\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.Support.Animated.Vector.Drawable.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.Support.Design.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.Support.v4.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.Support.v7.AppCompat.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.Support.v7.CardView.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.Support.v7.MediaRouter.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\layout\b.xml
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\layout\c.xml
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\layout\klok.xml
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
