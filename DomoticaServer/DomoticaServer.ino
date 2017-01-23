@@ -46,7 +46,6 @@ int ethPort = 3300;                                  // Take a free port (check 
 #define RFPin        3  // output, pin to control the RF-sender (and Click-On Click-Off-device)
 #define lowPin       5  // output, always LOW
 #define highPin      6  // output, always HIGH
-#define switchPin    7  // input, connected to some kind of inputswitch
 #define infoPin      9  // output, more information
 #define analogPin    0  // sensor value
 #define trigPin      6  //Zender van ultrasone sensor
@@ -74,7 +73,6 @@ void setup()
   Serial.println("Domotica project, Arduino Domotica Server\n");
 
   //Init I/O-pins
-  pinMode(switchPin, INPUT);            // hardware switch, for changing pin state
   pinMode(lowPin, OUTPUT);
   pinMode(highPin, OUTPUT);
   pinMode(RFPin, OUTPUT);
@@ -86,7 +84,6 @@ void setup()
   myservo.attach(2);
 
   //Default states
-  digitalWrite(switchPin, HIGH);        // Activate pullup resistors (needed for input pin)
   digitalWrite(lowPin, LOW);
   digitalWrite(highPin, HIGH);
   digitalWrite(RFPin, LOW);
@@ -126,7 +123,6 @@ void setup()
     }
   }
 
-  Serial.print("Input switch on pin "); Serial.println(switchPin);
   Serial.println("Ethernetboard connected (pins 10, 11, 12, 13 and SPI)");
   Serial.println("Connect to DHCP source in local network (blinking led -> waiting for connection)");
 
@@ -140,17 +136,16 @@ void setup()
   // for hardware debug: LED indication of server state: blinking = waiting for connection
   int IPnr = getIPComputerNumber(Ethernet.localIP());   // Get computernumber in local network 192.168.1.3 -> 3)
   Serial.print(" ["); Serial.print(IPnr); Serial.print("] ");
-  Serial.print("  [Testcase: telnet "); Serial.print(Ethernet.localIP()); Serial.print(" "); Serial.print(ethPort); Serial.println("]");
+  Serial.print("  [Testcase: ssh: root@" + IPAddressToString(Ethernet.localIP())); Serial.print(" "); Serial.print(ethPort); Serial.println("]");
 }
 
 void loop()
 {
   // Listen for incomming connection (app)
   EthernetClient ethernetClient = server.available();
-  //   if (!ethernetClient) {
-  //      blink(ledPin);
-  //      return; // wait for connection and blink LED
-  //   }
+  if (!ethernetClient) {
+    return; // wait for connection and blink LED
+  }
 
   Serial.println("Application connected");
 
