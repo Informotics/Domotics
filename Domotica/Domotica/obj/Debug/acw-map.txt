@@ -10,6 +10,10 @@ Domotica.Opdrachtb, Domotica;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtb
 Domotica.Opdrachtb, Domotica, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtb
 Domotica.Opdrachtb;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtb
 domotica.Opdrachtb;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtb
+Domotica.Opdrachtsettings, Domotica;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtsettings
+Domotica.Opdrachtsettings, Domotica, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtsettings
+Domotica.Opdrachtsettings;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtsettings
+domotica.Opdrachtsettings;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtsettings
 Domotica.Opdrachtc, Domotica;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtc
 Domotica.Opdrachtc, Domotica, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtc
 Domotica.Opdrachtc;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtc

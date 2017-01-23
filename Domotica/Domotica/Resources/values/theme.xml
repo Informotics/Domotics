@@ -8,9 +8,60 @@
     <item name="android:titleTextColor">#FFFFFF</item>
     <item name="android:textColorPrimary">#ff000000</item>
     <item name="android:textColorSecondary">#ff000000</item>
+  <item name="android:colorAccent">#ff1976d2</item>
+    <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
   </style>
+  
+  
+  
+  
   <style name="MyTheme.Splash" parent="@android:style/Theme.Black.NoTitleBar.Fullscreen">
     <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>
+  </style>
+
+
+
+  <style name="Theme.Red" parent="@android:style/Theme.Material.Light">
+    <item name="android:colorPrimary">#ffd32f2f</item>
+    <item name="android:colorPrimaryDark">#ffc62828</item>
+    <item name="android:colorControlNormal">#ffc62828</item>
+    <item name="android:colorControlActivated">#ff2e7d32</item>
+    <item name="android:titleTextColor">#FFFFFF</item>
+    <item name="android:textColorPrimary">#ff000000</item>
+    <item name="android:textColorSecondary">#ff000000</item>
+    <item name="android:colorAccent">#ffd32f2f</item>
+    <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
+  </style>
+
+
+
+  <style name="Theme.Yellow" parent="@android:style/Theme.Material.Light">
+    <item name="android:colorPrimary">#ffffc107</item>
+    <item name="android:colorPrimaryDark">#ffffb300</item>
+    <item name="android:colorControlNormal">#ffc62828</item>
+    <item name="android:colorControlActivated">#ff2e7d32</item>
+    <item name="android:titleTextColor">#FFFFFF</item>
+    <item name="android:textColorPrimary">#ff000000</item>
+    <item name="android:textColorSecondary">#ff000000</item>
+    <item name="android:colorAccent">#ffffa000</item>
+    <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
+  </style>
+
+  <style name="OverFlow">
+    <item name="android:src">@drawable/gear</item>
+  </style>
+
+
+  <style name="Theme.Green" parent="@android:style/Theme.Material.Light">
+    <item name="android:colorPrimary">#ff388e3c</item>
+    <item name="android:colorPrimaryDark">#ff2e7d32</item>
+    <item name="android:colorControlNormal">#ffc62828</item>
+    <item name="android:colorControlActivated">#ff2e7d32</item>
+    <item name="android:titleTextColor">#FFFFFF</item>
+    <item name="android:textColorPrimary">#ff000000</item>
+    <item name="android:textColorSecondary">#ff000000</item>
+    <item name="android:colorAccent">#ff388e3c</item>
+    <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
   </style>
 </resources>

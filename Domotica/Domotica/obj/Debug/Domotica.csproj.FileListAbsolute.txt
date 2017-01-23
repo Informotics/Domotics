@@ -48,7 +48,6 @@ D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Runtime.Serial
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.dll.mdb
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
-D:\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.pdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.Domotica.apk
@@ -101,4 +100,17 @@ C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\S
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.csprojResolveAssemblyReference.cache
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
-C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.csprojResolveAssemblyReference.cache
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\a.png
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\b.png
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\c.png
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\fadein.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\fadeout.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\leftin.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\leftout.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\rightin.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\rightout.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\layout\settings.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\gear.png
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
+D:\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb

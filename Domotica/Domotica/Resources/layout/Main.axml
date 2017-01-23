@@ -7,50 +7,63 @@
     android:minHeight="25px"
     android:padding="8dp">
     <TextView
-        android:text="@string/timer_state_text"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:id="@+id/textViewTimerState"
-        android:layout_alignParentLeft="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="Tijd"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:gravity="center_horizontal" />
     <TextView
         android:text="@string/timer_state_value"
-        android:layout_width="200dp"
         android:layout_height="30dp"
         android:id="@+id/textViewTimerStateValue"
         android:layout_alignParentRight="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@android:color/holo_orange_dark" />
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_width="match_parent"
+        android:gravity="center" />
+    <Toolbar
+        android:minHeight="1px"
+        android:background="?android:attr/colorPrimary"
+        android:minWidth="1px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar2" />
     <TextView
-        android:text="@string/sensor_text"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:id="@+id/textViewSensor"
-        android:layout_alignParentLeft="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    <TextView
-        android:text="@string/sensor_value"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:id="@+id/textViewSensorValue"
-        android:layout_alignParentRight="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    <TextView
-        android:text="@string/Sensor2_text"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:id="@+id/textViewDebug"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/textViewSensor"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    <TextView
-        android:text="@string/Sensor2_value"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:id="@+id/textViewSensorValue2"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/textViewSensorValue"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="Sensor waarden"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:gravity="center_horizontal" />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gridLayout1"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:useDefaultMargins="true">
+        <TextView
+            android:text="@string/sensor_text"
+            android:id="@+id/textViewSensor"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:text="@string/sensor_value"
+            android:id="@+id/textViewSensorValue"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_gravity="right"
+            android:layout_marginRight="190dp" />
+        <TextView
+            android:text="@string/Sensor2_text"
+            android:id="@+id/textViewDebug"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:text="@string/Sensor2_value"
+            android:id="@+id/textViewSensorValue2"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_gravity="right"
+            android:layout_marginRight="190dp" />
+    </GridLayout>
     <Toolbar
         android:minHeight="1px"
         android:background="?android:attr/colorPrimary"
@@ -68,69 +81,64 @@
         android:gravity="center_horizontal"
         android:layout_marginTop="20px"
         android:layout_marginBottom="10px" />
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <GridLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout3"
-        android:gravity="center_horizontal">
+        android:id="@+id/gridLayout2"
+        android:columnCount="1"
+        android:rowCount="2"
+        android:layout_gravity="center_horizontal">
         <TextView
             android:text="@string/schk1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_gravity="center" />
+        <Button
+            android:text="LOADING"
+            android:id="@+id/toggleButton0"
+            android:layout_gravity="center" />
+    </GridLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gridLayout3"
+        android:columnCount="1"
+        android:rowCount="2"
+        android:layout_gravity="center_horizontal">
         <TextView
             android:text="@string/schk2"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/textView1"
-            android:layout_marginLeft="30px"
-            android:layout_marginRight="30px" />
+            android:layout_gravity="center" />
+        <Button
+            android:text="Set Time"
+            android:id="@+id/toggleButton1"
+            android:layout_gravity="center" />
+    </GridLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gridLayout4"
+        android:rowCount="4"
+        android:columnCount="1"
+        android:layout_gravity="center_horizontal">
         <TextView
             android:text="@string/schk3"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/textView2" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout2"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal">
-        <Button
-            android:text="LOADING"
-            android:id="@+id/toggleButton0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="Set Time"
-            android:id="@+id/toggleButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/toggleButton0"
-            android:layout_marginLeft="60px"
-            android:layout_marginRight="60px" />
+            android:layout_gravity="center" />
         <Button
             android:text="Smart"
             android:id="@+id/toggleButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/toggleButton1" />
-    </RelativeLayout>
-    <TextView
-        android:text="Gekozen tijd"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView5" />
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/kloktijd" />
+            android:layout_gravity="center" />
+        <TextView
+            android:text="Gekozen tijd"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView5"
+            android:layout_gravity="center" />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/kloktijd"
+            android:layout_gravity="center" />
+    </GridLayout>
 </LinearLayout>
