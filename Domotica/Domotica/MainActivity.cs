@@ -54,7 +54,7 @@ namespace Domotica
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
             base.OnCreate(savedInstanceState, persistentState);
-            Window.RequestFeature(WindowFeatures.NoTitle);
+            Window.RequestFeature(WindowFeatures.NoTitle);      //Verberg de statusbar en de titel
 
         }
         protected override void OnResume()
@@ -62,11 +62,11 @@ namespace Domotica
             base.OnResume();
 
             Task startupWork = new Task(() => {
-                Task.Delay(2500);  // Simulate a bit of startup work.
+                Task.Delay(1000);  // Laat het splashscreen nog wel even zien als je te snel laad.
             });
 
             startupWork.ContinueWith(t => {
-                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                StartActivity(new Intent(Application.Context, typeof(MainActivity)));   //Als je klaar bent met laden, start mainactivity
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
             startupWork.Start();
@@ -75,17 +75,57 @@ namespace Domotica
     //EIND SPLASHSCREEN
     [Activity(Label = "@string/application_name", MainLauncher = false, Icon = "@drawable/icon", Theme ="@style/Theme.Custom", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
 
-    public class MainActivity : Activity
+    public class MainActivity : Activity, GestureDetector.IOnGestureListener
     {
+
+        public bool OnDown(MotionEvent e)
+        {
+            return true;
+        }
+        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+        {
+            int velocity = (int)Math.Ceiling(velocityX);
+            if (velocity < 0)
+            {
+                Intent intent = new Intent(this, typeof(Opdrachtb));
+                this.StartActivity(intent);
+                OverridePendingTransition(Resource.Animation.Rightin, Resource.Animation.Leftout);
+
+            }
+            else if (velocity > 0)
+            { }
+           else { }
+            return true;
+        }
+        public void OnLongPress(MotionEvent e) { }
+        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
+        {
+            return true;
+        }
+        public void OnShowPress(MotionEvent e) { }
+        public bool OnSingleTapUp(MotionEvent e)
+        {
+            return false;
+        }
+        public override bool OnTouchEvent(MotionEvent e)
+        {
+            _gestureDetector.OnTouchEvent(e);
+            return false;
+        }
+
+
         // Variables (components/controls)
         // Controls on GUI
         Button toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
         TextView textViewTimerStateValue;
         TextView textViewSensorValue, textViewSensorValue2, kloktijd;
         Timer timerClock, timerSockets;             // Timers   
-        public static Socket socket = null;                       // Socket   
+        public static Socket socket = null;   
+                            // Socket   
         List<Tuple<string, TextView>> commandList = new List<Tuple<string, TextView>>();  // List for commands and response places on UI
         int listIndex = 0;
+        private GestureDetector _gestureDetector;
+
 
         //Initalisatie van variabelen voor klok
         const int timedialog = 0;
@@ -97,6 +137,7 @@ namespace Domotica
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            _gestureDetector = new GestureDetector(this);
 
             //statusbar settings
             this.Title = "Domotica App";
@@ -106,21 +147,21 @@ namespace Domotica
             actionBar.NavigationMode = ActionBarNavigationMode.Tabs;
 
             var tab1 = this.ActionBar.NewTab();
-            tab1.SetText("A");
+            tab1.SetIcon(Resource.Drawable.a);
             tab1.TabSelected += (sender, e) => { };
 
             var tab2 = this.ActionBar.NewTab();
-            tab2.SetText("B");
+            tab2.SetIcon(Resource.Drawable.b);
             tab2.TabSelected += btnB_Click;
 
             var tab3 = this.ActionBar.NewTab();
-            tab3.SetText("C");
+            tab3.SetIcon(Resource.Drawable.c);
             tab3.TabSelected += btnC_Click;
 
             actionBar.AddTab(tab1);
             actionBar.AddTab(tab2);
             actionBar.AddTab(tab3);
-            actionBar.SetSelectedNavigationItem(0);
+
 
             // Set our view from the "main" layout resource (strings are loaded from Recources -> values -> Strings.xml)
             SetContentView(Resource.Layout.Main);
@@ -249,6 +290,7 @@ namespace Domotica
         {
             Intent intent = new Intent(this, typeof(Opdrachtb));
             this.StartActivity(intent);
+            OverridePendingTransition(Resource.Animation.Rightin, Resource.Animation.Leftout);
         }
 
         //Ga naar opdracht C
@@ -256,6 +298,7 @@ namespace Domotica
         {
             Intent intent = new Intent(this, typeof(Opdrachtc));
             this.StartActivity(intent);
+            OverridePendingTransition(Resource.Animation.Rightin, Resource.Animation.Leftout);
         }
 
         //Send command to server and wait for response (blocking)

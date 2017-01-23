@@ -16,14 +16,50 @@ using Android.Graphics;
 
 namespace Domotica
 {
-    [Activity(Label = "@string/application_name", MainLauncher = false, Theme = "@style/Theme.Custom",  Icon = "@drawable/icon")]
-    public class Opdrachtc : Activity
+    [Activity(Label = "@string/application_name", MainLauncher = false, Theme = "@style/Theme.Red",  Icon = "@drawable/icon")]
+    public class Opdrachtc : Activity, GestureDetector.IOnGestureListener
     {
+
+        public bool OnDown(MotionEvent e)
+        {
+            return true;
+        }
+        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+        {
+            if (velocityX < 0)
+            { }
+            else if (velocityX > 0)
+            {
+                Intent intent = new Intent(this, typeof(Opdrachtb));
+                this.StartActivity(intent);
+                OverridePendingTransition(Resource.Animation.Leftin, Resource.Animation.Rightout);
+            }
+            else { }
+            return true;
+        }
+        public void OnLongPress(MotionEvent e) { }
+        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
+        {
+            return true;
+        }
+        public void OnShowPress(MotionEvent e) { }
+        public bool OnSingleTapUp(MotionEvent e)
+        {
+            return false;
+        }
+        public override bool OnTouchEvent(MotionEvent e)
+        {
+            _gestureDetector.OnTouchEvent(e);
+            return false;
+        }
+        private GestureDetector _gestureDetector;
+    
         Button cknop;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            _gestureDetector = new GestureDetector(this);
             //statusbar settings
             this.Title = "Domotica App";
             this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
@@ -32,23 +68,24 @@ namespace Domotica
             actionBar.NavigationMode = ActionBarNavigationMode.Tabs;
 
             var tab1 = this.ActionBar.NewTab();
-            tab1.SetText("A");
+            tab1.SetIcon(Resource.Drawable.a);
             tab1.TabSelected += btnA_Click;
 
             var tab2 = this.ActionBar.NewTab();
-            tab2.SetText("B");
+            tab2.SetIcon(Resource.Drawable.b);
             tab2.TabSelected += btnB_Click;
 
             var tab3 = this.ActionBar.NewTab();
-            tab3.SetText("C");
+            tab3.SetIcon(Resource.Drawable.c);
             tab3.TabSelected += (sender, e) => { };
 
             actionBar.AddTab(tab3);
             actionBar.AddTab(tab1, 0, false);
             actionBar.AddTab(tab2, 1, false);
-            actionBar.SetSelectedNavigationItem(2);
+
 
             SetContentView(Resource.Layout.C);
+
 
             cknop = FindViewById<Button>(Resource.Id.cknop);
 
@@ -66,12 +103,14 @@ namespace Domotica
         {
             Intent intent = new Intent(this, typeof(Opdrachtb));
             this.StartActivity(intent);
+            OverridePendingTransition(Resource.Animation.Leftin, Resource.Animation.Rightout);
         }
 
         public void btnA_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(MainActivity));
             this.StartActivity(intent);
+            OverridePendingTransition(Resource.Animation.Leftin, Resource.Animation.Rightout);
         }
     }
 }
