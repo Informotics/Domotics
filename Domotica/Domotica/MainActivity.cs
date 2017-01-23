@@ -40,6 +40,8 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Android.Graphics;
 using System.Threading.Tasks;
+using Domotica.BroadCast;
+
 
 namespace Domotica
 {
@@ -60,7 +62,7 @@ namespace Domotica
             base.OnResume();
 
             Task startupWork = new Task(() => {
-                Task.Delay(5000);  // Simulate a bit of startup work.
+                Task.Delay(2500);  // Simulate a bit of startup work.
             });
 
             startupWork.ContinueWith(t => {
@@ -78,17 +80,19 @@ namespace Domotica
         // Variables (components/controls)
         // Controls on GUI
         Button toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
-        Button buttonConnect;
-        Button buttonChangePinState;
-        TextView textViewServerConnect, textViewTimerStateValue;
-        public TextView textViewChangePinStateValue, textViewSensorValue, textViewSensorValue2;
-        EditText editTextIPAddress, editTextIPPort;
-
-
+        TextView textViewTimerStateValue;
+        TextView textViewSensorValue, textViewSensorValue2, kloktijd;
         Timer timerClock, timerSockets;             // Timers   
-        Socket socket = null;                       // Socket   
+        public static Socket socket = null;                       // Socket   
         List<Tuple<string, TextView>> commandList = new List<Tuple<string, TextView>>();  // List for commands and response places on UI
         int listIndex = 0;
+
+        //Initalisatie van variabelen voor klok
+        const int timedialog = 0;
+        private int hour;
+        private int minute;
+        private int hour1;
+        private int minute1;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -122,20 +126,13 @@ namespace Domotica
             SetContentView(Resource.Layout.Main);
 
             // find and set the controls, so it can be used in the code
-            buttonConnect = FindViewById<Button>(Resource.Id.buttonConnect);
-            buttonChangePinState = FindViewById<Button>(Resource.Id.buttonChangePinState);
             toggleSchakelaar0 = FindViewById<Button>(Resource.Id.toggleButton0);
             toggleSchakelaar1 = FindViewById<Button>(Resource.Id.toggleButton1);
             toggleSchakelaar2 = FindViewById<Button>(Resource.Id.toggleButton2);
             textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
-            textViewServerConnect = FindViewById<TextView>(Resource.Id.textViewServerConnect);
-            textViewChangePinStateValue = FindViewById<TextView>(Resource.Id.textViewChangePinStateValue);
             textViewSensorValue = FindViewById<TextView>(Resource.Id.textViewSensorValue);
             textViewSensorValue2 = FindViewById<TextView>(Resource.Id.textViewSensorValue2);
-            editTextIPAddress = FindViewById<EditText>(Resource.Id.editTextIPAddress);
-            editTextIPPort = FindViewById<EditText>(Resource.Id.editTextIPPort);
-
-            //UpdateConnectionState(4, "Disconnected");
+            kloktijd = FindViewById<TextView>(Resource.Id.kloktijd);
 
             // Init commandlist, scheduled by socket timer
             commandList.Add(new Tuple<string, TextView>("a", textViewSensorValue));
@@ -173,17 +170,8 @@ namespace Domotica
             //Connect met de arduino
             ConnectSocket();
 
-            //Add the "Change pin state" button handler.
-            if (buttonChangePinState != null)
-            {
-                buttonChangePinState.Click += (sender, e) =>
-                {
-                    socket.Send(Encoding.ASCII.GetBytes("t"));                 // Send toggle-command to the Arduino
-                };
-            }
-
             //Code voor schakelaar 1
-            if(toggleSchakelaar0 != null)
+            if (toggleSchakelaar0 != null)
             {
                 toggleSchakelaar0.Click += (sender, e) =>
                 {
@@ -193,28 +181,77 @@ namespace Domotica
 
             if (toggleSchakelaar1 != null)
             {
-                toggleSchakelaar1.Click += (sender, e) =>
-                {
-                    socket.Send(Encoding.ASCII.GetBytes("y"));
-                };
+                toggleSchakelaar1.Click += (o, e) => ShowDialog(timedialog);
             }
 
             if (toggleSchakelaar2 != null)
             {
                 toggleSchakelaar2.Click += (sender, e) =>
                 {
-                    socket.Send(Encoding.ASCII.GetBytes("z"));
-                    //SetContentView(Resource.Layout.Klok);
+                    socket.Send(Encoding.ASCII.GetBytes("t"));
                 };
             }
         }
 
+        // Code voor timer opdracht A
+        private void UpdateDisplay()
+        {
+            string time = string.Format("{0}:{1}", hour, minute.ToString().PadLeft(2, '0'));
+            kloktijd.Text = time;
+
+            hour1 = hour - DateTime.Now.Hour;
+
+            if (hour1 < 0)
+            {
+                hour1 = hour1 + 24;
+            }
+
+            minute1 = minute - DateTime.Now.Minute;
+
+            if (minute1 < 0)
+            {
+                minute1 = minute1 + 60;
+                hour1 = hour1 - 1;
+            }
+        }
+
+        //Update de textview naar de gekozen tijd
+        private void TimePickerCallback(object sender, TimePickerDialog.TimeSetEventArgs e)
+        {
+            hour = e.HourOfDay;
+            minute = e.Minute;
+
+            UpdateDisplay();
+        }
+
+        //Pop-up voor tijd kiezen
+        protected override Dialog OnCreateDialog(int id)
+        {
+            if (id == timedialog)
+                return new TimePickerDialog(this, TimePickerCallback, hour, minute, true);
+
+            return null;
+        }
+
+        private void StartAlarm()
+        {
+            AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
+            Intent myIntent;
+            PendingIntent pendingIntent;
+            myIntent = new Intent(this, typeof(kloka));
+            pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
+            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000)), pendingIntent);
+            Toast.MakeText(this, "Alarm set", ToastLength.Long).Show();
+        }
+
+        //Ga naar opdracht B
         public void btnB_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(Opdrachtb));
             this.StartActivity(intent);
         }
 
+        //Ga naar opdracht C
         public void btnC_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(Opdrachtc));
@@ -250,48 +287,10 @@ namespace Domotica
                         socket.Close();
                         socket = null;
                     }
-                    //UpdateConnectionState(3, result);
                 }
             }
             return result;
         }
-
-        ////Update connection state label (GUI).
-        //public void UpdateConnectionState(int state, string text)
-        //{
-        //    // connectButton
-        //    string butConText = "Connect";  // default text
-        //    bool butConEnabled = true;      // default state
-        //    Color color = Color.Red;        // default color
-        //    // pinButton
-        //    bool butPinEnabled = false;     // default state 
-
-        //    //Set "Connect" button label according to connection state.
-        //    if (state == 1)
-        //    {
-        //        butConText = "Please wait";
-        //        color = Color.Orange;
-        //        butConEnabled = false;
-        //    } else
-        //    if (state == 2)
-        //    {
-        //        butConText = "Disconnect";
-        //        color = Color.Green;
-        //        butPinEnabled = true;
-        //    }
-        //    //Edit the control's properties on the UI thread
-        //    RunOnUiThread(() =>
-        //    {
-        //        textViewServerConnect.Text = text;
-        //        if (butConText != null)  // text existst
-        //        {
-        //            buttonConnect.Text = butConText;
-        //            textViewServerConnect.SetTextColor(color);
-        //            buttonConnect.Enabled = butConEnabled;
-        //        }
-        //        buttonChangePinState.Enabled = butPinEnabled;
-        //    });
-        //}
 
         //Update GUI based on Arduino response
         public void UpdateGUI(string result, TextView textview)
@@ -310,7 +309,6 @@ namespace Domotica
             RunOnUiThread(() =>
                 {
                     if (incoming == 'x') toggleSchakelaar0.PerformClick();
-                    else if (incoming == 'y') toggleSchakelaar1.PerformClick();
                     else if (incoming == 'z') toggleSchakelaar2.PerformClick();
                 });
         }
@@ -322,14 +320,12 @@ namespace Domotica
             {
                 if (socket == null)                                       // create new socket
                 {
-                    //UpdateConnectionState(1, "Connecting...");
                     try  // to connect to the server (Arduino).
                     {
                         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                         socket.Connect(new IPEndPoint(IPAddress.Parse("192.168.0.103"), Convert.ToInt32("3300")));
                         if (socket.Connected)
                         {
-                            //UpdateConnectionState(2, "Connected");
                             timerSockets.Enabled = true;                //Activate timer for communication with Arduino     
                         }
                     } catch (Exception exception) {
@@ -339,14 +335,12 @@ namespace Domotica
                             socket.Close();
                             socket = null;
                         }
-                        //UpdateConnectionState(4, exception.Message);
                     }
 	            }
                 else // disconnect socket
                 {
                     socket.Close(); socket = null;
                     timerSockets.Enabled = false;
-                    //UpdateConnectionState(4, "Disconnected");
                 }
             });
         }
@@ -386,39 +380,6 @@ namespace Domotica
         //           return true;
         //   }
         // //    return base.OnOptionsItemSelected(item);
-        //}
-
-        //Check if the entered IP address is valid.
-        //private bool CheckValidIpAddress(string ip)
-        //{
-        //    if (ip != "")
-        //    {
-        //        //Check user input against regex (check if IP address is not empty).
-        //        Regex regex = new Regex("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b");
-        //        Match match = regex.Match(ip);
-        //        return match.Success;
-        //    }
-        //    else return false;
-        //}
-
-        ////Check if the entered port is valid.
-        //private bool CheckValidPort(string port)
-        //{
-        //    //Check if a value is entered.
-        //    if (port != "")
-        //    {
-        //        Regex regex = new Regex("[0-9]+");
-        //        Match match = regex.Match(port);
-
-        //        if (match.Success)
-        //        {
-        //            int portAsInteger = Int32.Parse(port);
-        //            //Check if port is in range.
-        //            return ((portAsInteger >= 0) && (portAsInteger <= 65535));
-        //        }
-        //        else return false;
-        //    }
-        //    else return false;
         //}
     }
 }

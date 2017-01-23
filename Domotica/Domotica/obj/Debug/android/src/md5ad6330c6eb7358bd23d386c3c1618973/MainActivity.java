@@ -11,6 +11,7 @@ public class MainActivity
 	static {
 		__md_methods = 
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
+			"n_onCreateDialog:(I)Landroid/app/Dialog;:GetOnCreateDialog_IHandler\n" +
 			"n_onStop:()V:GetOnStopHandler\n" +
 			"n_onDestroy:()V:GetOnDestroyHandler\n" +
 			"";
@@ -32,6 +33,14 @@ public class MainActivity
 	}
 
 	private native void n_onCreate (android.os.Bundle p0);
+
+
+	public android.app.Dialog onCreateDialog (int p0)
+	{
+		return n_onCreateDialog (p0);
+	}
+
+	private native android.app.Dialog n_onCreateDialog (int p0);
 
 
 	public void onStop ()

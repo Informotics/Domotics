@@ -277,14 +277,14 @@ void executeCommand(char cmd)
         server.write("OFF\n");
       }
       break;
-    case 'f':
-      if (stop2) {
-        server.write(" ON\n");
-      }
-      else {
-        server.write("OFF\n");
-      }
-      break;
+    //case 'f':
+    //  if (stop2) {
+    //    server.write(" ON\n");
+    //  }
+    //  else {
+    //    server.write("OFF\n");
+    //  }
+    //  break;
     case 'g':
       if (!start) {
         start = true;
@@ -293,6 +293,10 @@ void executeCommand(char cmd)
       else {
         start = false;
       }
+    case 'h':
+      break;
+    case 'i':
+      break;
     default:
       digitalWrite(infoPin, LOW);
   }
