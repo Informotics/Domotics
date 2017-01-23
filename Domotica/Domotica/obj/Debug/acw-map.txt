@@ -6,6 +6,18 @@ Domotica.MainActivity, Domotica;md5ad6330c6eb7358bd23d386c3c1618973.MainActivity
 Domotica.MainActivity, Domotica, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5ad6330c6eb7358bd23d386c3c1618973.MainActivity
 Domotica.MainActivity;md5ad6330c6eb7358bd23d386c3c1618973.MainActivity
 domotica.MainActivity;md5ad6330c6eb7358bd23d386c3c1618973.MainActivity
+Domotica.Opdrachtb, Domotica;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtb
+Domotica.Opdrachtb, Domotica, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtb
+Domotica.Opdrachtb;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtb
+domotica.Opdrachtb;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtb
+Domotica.Opdrachtc, Domotica;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtc
+Domotica.Opdrachtc, Domotica, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtc
+Domotica.Opdrachtc;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtc
+domotica.Opdrachtc;md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtc
+Domotica.BroadCast.AlarmNotificationReceiver, Domotica;md5401f8b369c1a8b72836ba5ca09ba8a2c.AlarmNotificationReceiver
+Domotica.BroadCast.AlarmNotificationReceiver, Domotica, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5401f8b369c1a8b72836ba5ca09ba8a2c.AlarmNotificationReceiver
+Domotica.BroadCast.AlarmNotificationReceiver;md5401f8b369c1a8b72836ba5ca09ba8a2c.AlarmNotificationReceiver
+domotica.broadcast.AlarmNotificationReceiver;md5401f8b369c1a8b72836ba5ca09ba8a2c.AlarmNotificationReceiver
 Android.Support.Design.Widget.Snackbar/SnackbarActionClickImplementor, Xamarin.Android.Support.Design;android.support.design.widget.Snackbar_SnackbarActionClickImplementor
 Android.Support.Design.Widget.Snackbar+SnackbarActionClickImplementor, Xamarin.Android.Support.Design, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;android.support.design.widget.Snackbar_SnackbarActionClickImplementor
 Android.Support.Design.Widget.Snackbar.SnackbarActionClickImplementor;android.support.design.widget.Snackbar_SnackbarActionClickImplementor
