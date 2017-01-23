@@ -81,7 +81,6 @@ namespace Domotica
         Button buttonConnect;
         Button cknop;
         Button buttonChangePinState;
-        TimePicker timePicker1;
         TextView textViewServerConnect, textViewTimerStateValue;
         public TextView textViewChangePinStateValue, textViewSensorValue, textViewSensorValue2;
         EditText editTextIPAddress, editTextIPPort;
@@ -140,9 +139,6 @@ namespace Domotica
             textViewSensorValue2 = FindViewById<TextView>(Resource.Id.textViewSensorValue2);
             editTextIPAddress = FindViewById<EditText>(Resource.Id.editTextIPAddress);
             editTextIPPort = FindViewById<EditText>(Resource.Id.editTextIPPort);
-            timePicker1 = FindViewById<TimePicker>(Resource.Id.timePicker1);
-            var btnChange = FindViewById<Button>(Resource.Id.btnChange);
-            var txtDisplay = FindViewById<TextView>(Resource.Id.txtDisplay);
 
             UpdateConnectionState(4, "Disconnected");
 
@@ -160,11 +156,8 @@ namespace Domotica
             {
                 RunOnUiThread(() => {
                     textViewTimerStateValue.Text = DateTime.Now.ToString("HH:mm:ss");
-                    //if (textViewTimerStateValue.Text == (getTime() + ":00"))
-                    //{ popup(); }
                 });
             };
-
 
             // timer object, check Arduino state
             // Only one command can be serviced in an timer tick, schedule from list
@@ -183,19 +176,8 @@ namespace Domotica
                 //});
             };
 
-            //Add the "Connect" button handler.
-            if (buttonConnect != null)  // if button exists
-            {
-                buttonConnect.Click += (sender, e) =>
-                {
-                    //Validate the user input (IP address and port)
-                    if (CheckValidIpAddress(editTextIPAddress.Text) && CheckValidPort(editTextIPPort.Text))
-                    {
-                        ConnectSocket(editTextIPAddress.Text, editTextIPPort.Text);
-                    }
-                    else UpdateConnectionState(3, "Please check IP");
-                };
-            }
+            //Connect met de arduino
+            ConnectSocket();
 
             //Add the "Change pin state" button handler.
             if (buttonChangePinState != null)
@@ -227,9 +209,8 @@ namespace Domotica
             {
                 toggleSchakelaar2.Click += (sender, e) =>
                 {
-                    //socket.Send(Encoding.ASCII.GetBytes("z"));
-                    SetContentView(Resource.Layout.Klok);
-
+                    socket.Send(Encoding.ASCII.GetBytes("z"));
+                    //SetContentView(Resource.Layout.Klok);
                 };
             }
 
@@ -242,42 +223,6 @@ namespace Domotica
             }
         }
 
-        //Functie om tijd op te vragen van user
-        //private string getTime()
-        //{
-        //    StringBuilder strTime = new StringBuilder();
-        //    int uur = Convert.ToInt32(timePicker1.CurrentHour);
-        //    int minuut = Convert.ToInt32(timePicker1.CurrentMinute);
-        //    if (uur < 10)
-        //    {
-        //        if (minuut < 10)
-        //        {
-        //            strTime.Append("0" + timePicker1.CurrentHour + ":0" + timePicker1.CurrentMinute);
-        //        }
-        //        else
-        //        {
-        //            strTime.Append("0" + timePicker1.CurrentHour + ":" + timePicker1.CurrentMinute);
-        //        }
-
-        //    }
-        //    else if (minuut < 10)
-        //    {
-        //        strTime.Append(timePicker1.CurrentHour + ":0" + timePicker1.CurrentMinute);
-
-        //    }
-        //    else
-        //    {
-        //        strTime.Append(timePicker1.CurrentHour + ":" + timePicker1.CurrentMinute);
-        //    }
-        //    return strTime.ToString();
-        //}
-
-        //Pop-up voor timer
-        //void popup()
-        //{
-        //    Toast showtime = Toast.MakeText(this, "BIEP BIEP ALARM", ToastLength.Long);
-        //    showtime.Show();
-        //}
 
         //Send command to server and wait for response (blocking)
         //Method should only be called when socket existst
@@ -374,7 +319,7 @@ namespace Domotica
         }
 
         // Connect to socket ip/prt (simple sockets)
-        public void ConnectSocket(string ip, string prt)
+        public void ConnectSocket()
         {
             RunOnUiThread(() =>
             {
@@ -384,7 +329,7 @@ namespace Domotica
                     try  // to connect to the server (Arduino).
                     {
                         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                        socket.Connect(new IPEndPoint(IPAddress.Parse(ip), Convert.ToInt32(prt)));
+                        socket.Connect(new IPEndPoint(IPAddress.Parse("192.168.0.103"), Convert.ToInt32("3300")));
                         if (socket.Connected)
                         {
                             UpdateConnectionState(2, "Connected");
@@ -424,8 +369,8 @@ namespace Domotica
         //Prepare the Screen's standard options menu to be displayed.
         //public override bool OnPrepareOptionsMenu(IMenu menu)
         //{
-         //   //Prevent menu items from being duplicated.
-          //  menu.Clear();
+        //   //Prevent menu items from being duplicated.
+        //  menu.Clear();
 
         //    MenuInflater.Inflate(Resource.Menu.menu, menu);
         //    return base.OnPrepareOptionsMenu(menu);
@@ -434,27 +379,29 @@ namespace Domotica
         //Executes an action when a menu button is pressed.
         //public override bool OnOptionsItemSelected(IMenuItem item)
         //{
-         //   switch (item.ItemId)
-         //   {
-          //      case Resource.Id.exit:
-          //          //Force quit the application.
-          //          System.Environment.Exit(0);
-         //           return true;
-          //      case Resource.Id.abort:
-         //           return true;
-         //   }
-       // //    return base.OnOptionsItemSelected(item);
+        //   switch (item.ItemId)
+        //   {
+        //      case Resource.Id.exit:
+        //          //Force quit the application.
+        //          System.Environment.Exit(0);
+        //           return true;
+        //      case Resource.Id.abort:
+        //           return true;
+        //   }
+        // //    return base.OnOptionsItemSelected(item);
         //}
 
         //Check if the entered IP address is valid.
         private bool CheckValidIpAddress(string ip)
         {
-            if (ip != "") {
+            if (ip != "")
+            {
                 //Check user input against regex (check if IP address is not empty).
                 Regex regex = new Regex("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b");
                 Match match = regex.Match(ip);
                 return match.Success;
-            } else return false;
+            }
+            else return false;
         }
 
         //Check if the entered port is valid.
@@ -473,7 +420,8 @@ namespace Domotica
                     return ((portAsInteger >= 0) && (portAsInteger <= 65535));
                 }
                 else return false;
-            } else return false;
+            }
+            else return false;
         }
     }
 }

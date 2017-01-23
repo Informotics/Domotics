@@ -100,6 +100,5 @@ C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\layout\b.xml
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\layout\c.xml
-C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\layout\klok.xml
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
