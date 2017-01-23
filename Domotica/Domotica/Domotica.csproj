@@ -83,7 +83,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BroadCast\AlarmNotificationReceiver.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Opdrachtb.cs" />
+    <Compile Include="Opdrachtc.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
