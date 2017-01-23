@@ -114,6 +114,11 @@
             android:text="Set Time"
             android:id="@+id/toggleButton1"
             android:layout_gravity="center" />
+        <TextView
+            android:text="Gekozen tijd"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView5"
+            android:layout_gravity="center" />
     </GridLayout>
     <GridLayout
         android:layout_width="wrap_content"
@@ -130,11 +135,6 @@
         <Button
             android:text="Smart"
             android:id="@+id/toggleButton2"
-            android:layout_gravity="center" />
-        <TextView
-            android:text="Gekozen tijd"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/textView5"
             android:layout_gravity="center" />
         <TextView
             android:textAppearance="?android:attr/textAppearanceMedium"

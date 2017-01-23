@@ -70,6 +70,7 @@ namespace Domotica
         {
             base.OnCreate(bundle);
             _gestureDetector = new GestureDetector(this);
+
             //statusbar settings
             this.Title = "Domotica App";
             this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);

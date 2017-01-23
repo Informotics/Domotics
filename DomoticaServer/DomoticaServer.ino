@@ -269,22 +269,22 @@ void executeCommand(char cmd)
         server.write("OFF\n");
       }
       break;
-    case 'e':
-      if (stop1) {
+    //case 'e':
+    //  if (stop1) {
+    //    server.write(" ON\n");
+    //  }
+    //  else {
+   //     server.write("OFF\n");
+    //  }
+      break;
+    case 'f':
+      if (smart) {
         server.write(" ON\n");
-      }
+     }
       else {
         server.write("OFF\n");
       }
       break;
-    //case 'f':
-    //  if (stop2) {
-    //    server.write(" ON\n");
-    //  }
-    //  else {
-    //    server.write("OFF\n");
-    //  }
-    //  break;
     case 'g':
       if (!start) {
         start = true;
@@ -293,10 +293,10 @@ void executeCommand(char cmd)
       else {
         start = false;
       }
-    case 'h':
-      break;
-    case 'i':
-      break;
+    //case 'h':
+    //  break;
+    //case 'i':
+    //  break;
     default:
       digitalWrite(infoPin, LOW);
   }

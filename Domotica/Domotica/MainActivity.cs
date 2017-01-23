@@ -139,9 +139,8 @@ namespace Domotica
         Button toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
         TextView textViewTimerStateValue;
         TextView textViewSensorValue, textViewSensorValue2, kloktijd;
-        Timer timerClock, timerSockets;             // Timers   
-        public static Socket socket = null;   
-                            // Socket   
+        Timer timerClock, timerSockets;  
+        public static Socket socket = null;    
         List<Tuple<string, TextView>> commandList = new List<Tuple<string, TextView>>();  // List for commands and response places on UI
         int listIndex = 0;
         private GestureDetector _gestureDetector;
@@ -158,10 +157,6 @@ namespace Domotica
         {
             base.OnCreate(bundle);
             _gestureDetector = new GestureDetector(this);
-
-
-
-
 
             //statusbar settings
             this.Title = "Domotica App";
@@ -203,7 +198,6 @@ namespace Domotica
             commandList.Add(new Tuple<string, TextView>("a", textViewSensorValue));
             commandList.Add(new Tuple<string, TextView>("b", textViewSensorValue2));
             commandList.Add(new Tuple<string, TextView>("d", toggleSchakelaar0));
-            commandList.Add(new Tuple<string, TextView>("e", toggleSchakelaar1));
             commandList.Add(new Tuple<string, TextView>("f", toggleSchakelaar2));
 
             // timer object, running clock

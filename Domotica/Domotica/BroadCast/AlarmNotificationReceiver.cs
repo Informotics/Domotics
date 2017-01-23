@@ -26,9 +26,9 @@ namespace Domotica.BroadCast
             builder.SetAutoCancel(true)
                 .SetDefaults((int)NotificationDefaults.All)
                 .SetSmallIcon(Resource.Drawable.Icon)
-                .SetContentTitle("Alarm Activated!")
-                .SetContentText("This is my alarm")
-                .SetContentInfo("Info");
+                .SetContentTitle("Wekker")
+                .SetContentText("Wakker worden!")
+                .SetContentInfo("Uw koffie wordt gezet");
 
             NotificationManager manager = (NotificationManager)context.GetSystemService(Context.NotificationService);
             manager.Notify(1, builder.Build());
