@@ -79,11 +79,11 @@ namespace Domotica
         // Controls on GUI
         Button toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
         Button buttonConnect;
-        Button cknop;
         Button buttonChangePinState;
         TextView textViewServerConnect, textViewTimerStateValue;
         public TextView textViewChangePinStateValue, textViewSensorValue, textViewSensorValue2;
         EditText editTextIPAddress, editTextIPPort;
+
 
         Timer timerClock, timerSockets;             // Timers   
         Socket socket = null;                       // Socket   
@@ -103,24 +103,20 @@ namespace Domotica
 
             var tab1 = this.ActionBar.NewTab();
             tab1.SetText("A");
-            tab1.TabSelected += (sender, e) => {
-                SetContentView(Resource.Layout.Main);
-            };
-            actionBar.AddTab(tab1);
+            tab1.TabSelected += (sender, e) => { };
 
             var tab2 = this.ActionBar.NewTab();
             tab2.SetText("B");
-            tab2.TabSelected += (sender, e) => {
-                SetContentView(Resource.Layout.B);
-            };
-            actionBar.AddTab(tab2);
+            tab2.TabSelected += btnB_Click;
 
             var tab3 = this.ActionBar.NewTab();
             tab3.SetText("C");
-            tab3.TabSelected += (sender, e) => {
-                SetContentView(Resource.Layout.C);
-            };
+            tab3.TabSelected += btnC_Click;
+
+            actionBar.AddTab(tab1);
+            actionBar.AddTab(tab2);
             actionBar.AddTab(tab3);
+            actionBar.SetSelectedNavigationItem(0);
 
             // Set our view from the "main" layout resource (strings are loaded from Recources -> values -> Strings.xml)
             SetContentView(Resource.Layout.Main);
@@ -131,7 +127,6 @@ namespace Domotica
             toggleSchakelaar0 = FindViewById<Button>(Resource.Id.toggleButton0);
             toggleSchakelaar1 = FindViewById<Button>(Resource.Id.toggleButton1);
             toggleSchakelaar2 = FindViewById<Button>(Resource.Id.toggleButton2);
-            cknop = FindViewById<Button>(Resource.Id.cknop);
             textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
             textViewServerConnect = FindViewById<TextView>(Resource.Id.textViewServerConnect);
             textViewChangePinStateValue = FindViewById<TextView>(Resource.Id.textViewChangePinStateValue);
@@ -140,10 +135,9 @@ namespace Domotica
             editTextIPAddress = FindViewById<EditText>(Resource.Id.editTextIPAddress);
             editTextIPPort = FindViewById<EditText>(Resource.Id.editTextIPPort);
 
-            UpdateConnectionState(4, "Disconnected");
+            //UpdateConnectionState(4, "Disconnected");
 
             // Init commandlist, scheduled by socket timer
-            commandList.Add(new Tuple<string, TextView>("s", textViewChangePinStateValue));
             commandList.Add(new Tuple<string, TextView>("a", textViewSensorValue));
             commandList.Add(new Tuple<string, TextView>("b", textViewSensorValue2));
             commandList.Add(new Tuple<string, TextView>("d", toggleSchakelaar0));
@@ -213,16 +207,19 @@ namespace Domotica
                     //SetContentView(Resource.Layout.Klok);
                 };
             }
-
-            if (cknop != null)
-            {
-                cknop.Click += (sender, e) =>
-                {
-                    socket.Send(Encoding.ASCII.GetBytes("g"));
-                };
-            }
         }
 
+        public void btnB_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(Opdrachtb));
+            this.StartActivity(intent);
+        }
+
+        public void btnC_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(Opdrachtc));
+            this.StartActivity(intent);
+        }
 
         //Send command to server and wait for response (blocking)
         //Method should only be called when socket existst
@@ -253,48 +250,48 @@ namespace Domotica
                         socket.Close();
                         socket = null;
                     }
-                    UpdateConnectionState(3, result);
+                    //UpdateConnectionState(3, result);
                 }
             }
             return result;
         }
 
-        //Update connection state label (GUI).
-        public void UpdateConnectionState(int state, string text)
-        {
-            // connectButton
-            string butConText = "Connect";  // default text
-            bool butConEnabled = true;      // default state
-            Color color = Color.Red;        // default color
-            // pinButton
-            bool butPinEnabled = false;     // default state 
+        ////Update connection state label (GUI).
+        //public void UpdateConnectionState(int state, string text)
+        //{
+        //    // connectButton
+        //    string butConText = "Connect";  // default text
+        //    bool butConEnabled = true;      // default state
+        //    Color color = Color.Red;        // default color
+        //    // pinButton
+        //    bool butPinEnabled = false;     // default state 
 
-            //Set "Connect" button label according to connection state.
-            if (state == 1)
-            {
-                butConText = "Please wait";
-                color = Color.Orange;
-                butConEnabled = false;
-            } else
-            if (state == 2)
-            {
-                butConText = "Disconnect";
-                color = Color.Green;
-                butPinEnabled = true;
-            }
-            //Edit the control's properties on the UI thread
-            RunOnUiThread(() =>
-            {
-                textViewServerConnect.Text = text;
-                if (butConText != null)  // text existst
-                {
-                    buttonConnect.Text = butConText;
-                    textViewServerConnect.SetTextColor(color);
-                    buttonConnect.Enabled = butConEnabled;
-                }
-                buttonChangePinState.Enabled = butPinEnabled;
-            });
-        }
+        //    //Set "Connect" button label according to connection state.
+        //    if (state == 1)
+        //    {
+        //        butConText = "Please wait";
+        //        color = Color.Orange;
+        //        butConEnabled = false;
+        //    } else
+        //    if (state == 2)
+        //    {
+        //        butConText = "Disconnect";
+        //        color = Color.Green;
+        //        butPinEnabled = true;
+        //    }
+        //    //Edit the control's properties on the UI thread
+        //    RunOnUiThread(() =>
+        //    {
+        //        textViewServerConnect.Text = text;
+        //        if (butConText != null)  // text existst
+        //        {
+        //            buttonConnect.Text = butConText;
+        //            textViewServerConnect.SetTextColor(color);
+        //            buttonConnect.Enabled = butConEnabled;
+        //        }
+        //        buttonChangePinState.Enabled = butPinEnabled;
+        //    });
+        //}
 
         //Update GUI based on Arduino response
         public void UpdateGUI(string result, TextView textview)
@@ -325,14 +322,14 @@ namespace Domotica
             {
                 if (socket == null)                                       // create new socket
                 {
-                    UpdateConnectionState(1, "Connecting...");
+                    //UpdateConnectionState(1, "Connecting...");
                     try  // to connect to the server (Arduino).
                     {
                         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                         socket.Connect(new IPEndPoint(IPAddress.Parse("192.168.0.103"), Convert.ToInt32("3300")));
                         if (socket.Connected)
                         {
-                            UpdateConnectionState(2, "Connected");
+                            //UpdateConnectionState(2, "Connected");
                             timerSockets.Enabled = true;                //Activate timer for communication with Arduino     
                         }
                     } catch (Exception exception) {
@@ -342,14 +339,14 @@ namespace Domotica
                             socket.Close();
                             socket = null;
                         }
-                        UpdateConnectionState(4, exception.Message);
+                        //UpdateConnectionState(4, exception.Message);
                     }
 	            }
                 else // disconnect socket
                 {
                     socket.Close(); socket = null;
                     timerSockets.Enabled = false;
-                    UpdateConnectionState(4, "Disconnected");
+                    //UpdateConnectionState(4, "Disconnected");
                 }
             });
         }
@@ -392,36 +389,36 @@ namespace Domotica
         //}
 
         //Check if the entered IP address is valid.
-        private bool CheckValidIpAddress(string ip)
-        {
-            if (ip != "")
-            {
-                //Check user input against regex (check if IP address is not empty).
-                Regex regex = new Regex("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b");
-                Match match = regex.Match(ip);
-                return match.Success;
-            }
-            else return false;
-        }
+        //private bool CheckValidIpAddress(string ip)
+        //{
+        //    if (ip != "")
+        //    {
+        //        //Check user input against regex (check if IP address is not empty).
+        //        Regex regex = new Regex("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b");
+        //        Match match = regex.Match(ip);
+        //        return match.Success;
+        //    }
+        //    else return false;
+        //}
 
-        //Check if the entered port is valid.
-        private bool CheckValidPort(string port)
-        {
-            //Check if a value is entered.
-            if (port != "")
-            {
-                Regex regex = new Regex("[0-9]+");
-                Match match = regex.Match(port);
+        ////Check if the entered port is valid.
+        //private bool CheckValidPort(string port)
+        //{
+        //    //Check if a value is entered.
+        //    if (port != "")
+        //    {
+        //        Regex regex = new Regex("[0-9]+");
+        //        Match match = regex.Match(port);
 
-                if (match.Success)
-                {
-                    int portAsInteger = Int32.Parse(port);
-                    //Check if port is in range.
-                    return ((portAsInteger >= 0) && (portAsInteger <= 65535));
-                }
-                else return false;
-            }
-            else return false;
-        }
+        //        if (match.Success)
+        //        {
+        //            int portAsInteger = Int32.Parse(port);
+        //            //Check if port is in range.
+        //            return ((portAsInteger >= 0) && (portAsInteger <= 65535));
+        //        }
+        //        else return false;
+        //    }
+        //    else return false;
+        //}
     }
 }
