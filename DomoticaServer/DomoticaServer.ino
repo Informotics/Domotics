@@ -157,8 +157,8 @@ void loop()
 
     //Smart Mode
     if (smart) {
-      photoCell(0, 050, stop0);
-      photoCell(1, 050, stop1);
+      //photoCell(0, 050, stop0);
+      //photoCell(1, 050, stop1);
       photoCell(2, 050, stop2);
     }
 
