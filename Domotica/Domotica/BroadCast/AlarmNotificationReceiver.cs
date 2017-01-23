@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Support.V7.App;
+using System.Net.Sockets;
 
 namespace Domotica.BroadCast
 {
@@ -19,6 +20,8 @@ namespace Domotica.BroadCast
         public override void OnReceive(Context context, Intent intent)
         {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+
+            MainActivity.socket.Send(Encoding.ASCII.GetBytes("i"));
 
             builder.SetAutoCancel(true)
                 .SetDefaults((int)NotificationDefaults.All)

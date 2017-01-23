@@ -4,6 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+        android:text="Tijd"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewTimerStateValue" />
+    <TextView
+        android:text="Alarmtijd"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3" />
+    <TextView
         android:text="Time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

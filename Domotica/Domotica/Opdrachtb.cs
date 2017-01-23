@@ -5,14 +5,18 @@ using System;
 using Android.Content;
 using Domotica.BroadCast;
 using Android.Views;
+using System.Timers;
 
 namespace Domotica
 {
     [Activity(Label = "@string/application_name", MainLauncher = false, Theme = "@style/Theme.Custom", Icon = "@drawable/icon")]
     public class Opdrachtb : Activity
     {
-        private TextView time_display;
-        private Button pickt_button;
+        TextView time_display, textViewTimerStateValue;
+        Button pickt_button;
+        Button btnRepeating;
+        Button btnCancel;
+        Timer timerClock;
 
         private int hour;
         private int minute;
@@ -53,9 +57,19 @@ namespace Domotica
 
             time_display = FindViewById<TextView>(Resource.Id.timeDisplay);
             pickt_button = FindViewById<Button>(Resource.Id.pickTime);
+            textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
 
-            var btnRepeating = FindViewById<Button>(Resource.Id.btnRepeating);
-            var btnCancel = FindViewById<Button>(Resource.Id.btnCancel);
+            btnRepeating = FindViewById<Button>(Resource.Id.btnRepeating);
+            btnCancel = FindViewById<Button>(Resource.Id.btnCancel);
+
+            // timer object, running clock
+            timerClock = new System.Timers.Timer() { Interval = 1000, Enabled = true }; // Interval >= 1000
+            timerClock.Elapsed += (obj, args) =>
+            {
+                RunOnUiThread(() => {
+                    textViewTimerStateValue.Text = DateTime.Now.ToString("HH:mm:ss");
+                });
+            };
 
             btnRepeating.Click += delegate
             {
