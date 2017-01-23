@@ -140,7 +140,7 @@ namespace Domotica
             editTextIPAddress = FindViewById<EditText>(Resource.Id.editTextIPAddress);
             editTextIPPort = FindViewById<EditText>(Resource.Id.editTextIPPort);
 
-            UpdateConnectionState(4, "Disconnected");
+            //UpdateConnectionState(4, "Disconnected");
 
             // Init commandlist, scheduled by socket timer
             commandList.Add(new Tuple<string, TextView>("s", textViewChangePinStateValue));
@@ -253,48 +253,48 @@ namespace Domotica
                         socket.Close();
                         socket = null;
                     }
-                    UpdateConnectionState(3, result);
+                    //UpdateConnectionState(3, result);
                 }
             }
             return result;
         }
 
-        //Update connection state label (GUI).
-        public void UpdateConnectionState(int state, string text)
-        {
-            // connectButton
-            string butConText = "Connect";  // default text
-            bool butConEnabled = true;      // default state
-            Color color = Color.Red;        // default color
-            // pinButton
-            bool butPinEnabled = false;     // default state 
+        ////Update connection state label (GUI).
+        //public void UpdateConnectionState(int state, string text)
+        //{
+        //    // connectButton
+        //    string butConText = "Connect";  // default text
+        //    bool butConEnabled = true;      // default state
+        //    Color color = Color.Red;        // default color
+        //    // pinButton
+        //    bool butPinEnabled = false;     // default state 
 
-            //Set "Connect" button label according to connection state.
-            if (state == 1)
-            {
-                butConText = "Please wait";
-                color = Color.Orange;
-                butConEnabled = false;
-            } else
-            if (state == 2)
-            {
-                butConText = "Disconnect";
-                color = Color.Green;
-                butPinEnabled = true;
-            }
-            //Edit the control's properties on the UI thread
-            RunOnUiThread(() =>
-            {
-                textViewServerConnect.Text = text;
-                if (butConText != null)  // text existst
-                {
-                    buttonConnect.Text = butConText;
-                    textViewServerConnect.SetTextColor(color);
-                    buttonConnect.Enabled = butConEnabled;
-                }
-                buttonChangePinState.Enabled = butPinEnabled;
-            });
-        }
+        //    //Set "Connect" button label according to connection state.
+        //    if (state == 1)
+        //    {
+        //        butConText = "Please wait";
+        //        color = Color.Orange;
+        //        butConEnabled = false;
+        //    } else
+        //    if (state == 2)
+        //    {
+        //        butConText = "Disconnect";
+        //        color = Color.Green;
+        //        butPinEnabled = true;
+        //    }
+        //    //Edit the control's properties on the UI thread
+        //    RunOnUiThread(() =>
+        //    {
+        //        textViewServerConnect.Text = text;
+        //        if (butConText != null)  // text existst
+        //        {
+        //            buttonConnect.Text = butConText;
+        //            textViewServerConnect.SetTextColor(color);
+        //            buttonConnect.Enabled = butConEnabled;
+        //        }
+        //        buttonChangePinState.Enabled = butPinEnabled;
+        //    });
+        //}
 
         //Update GUI based on Arduino response
         public void UpdateGUI(string result, TextView textview)
@@ -325,14 +325,14 @@ namespace Domotica
             {
                 if (socket == null)                                       // create new socket
                 {
-                    UpdateConnectionState(1, "Connecting...");
+                    //UpdateConnectionState(1, "Connecting...");
                     try  // to connect to the server (Arduino).
                     {
                         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                         socket.Connect(new IPEndPoint(IPAddress.Parse("192.168.0.103"), Convert.ToInt32("3300")));
                         if (socket.Connected)
                         {
-                            UpdateConnectionState(2, "Connected");
+                            //UpdateConnectionState(2, "Connected");
                             timerSockets.Enabled = true;                //Activate timer for communication with Arduino     
                         }
                     } catch (Exception exception) {
@@ -342,14 +342,14 @@ namespace Domotica
                             socket.Close();
                             socket = null;
                         }
-                        UpdateConnectionState(4, exception.Message);
+                        //UpdateConnectionState(4, exception.Message);
                     }
 	            }
                 else // disconnect socket
                 {
                     socket.Close(); socket = null;
                     timerSockets.Enabled = false;
-                    UpdateConnectionState(4, "Disconnected");
+                    //UpdateConnectionState(4, "Disconnected");
                 }
             });
         }
@@ -392,36 +392,36 @@ namespace Domotica
         //}
 
         //Check if the entered IP address is valid.
-        private bool CheckValidIpAddress(string ip)
-        {
-            if (ip != "")
-            {
-                //Check user input against regex (check if IP address is not empty).
-                Regex regex = new Regex("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b");
-                Match match = regex.Match(ip);
-                return match.Success;
-            }
-            else return false;
-        }
+        //private bool CheckValidIpAddress(string ip)
+        //{
+        //    if (ip != "")
+        //    {
+        //        //Check user input against regex (check if IP address is not empty).
+        //        Regex regex = new Regex("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b");
+        //        Match match = regex.Match(ip);
+        //        return match.Success;
+        //    }
+        //    else return false;
+        //}
 
-        //Check if the entered port is valid.
-        private bool CheckValidPort(string port)
-        {
-            //Check if a value is entered.
-            if (port != "")
-            {
-                Regex regex = new Regex("[0-9]+");
-                Match match = regex.Match(port);
+        ////Check if the entered port is valid.
+        //private bool CheckValidPort(string port)
+        //{
+        //    //Check if a value is entered.
+        //    if (port != "")
+        //    {
+        //        Regex regex = new Regex("[0-9]+");
+        //        Match match = regex.Match(port);
 
-                if (match.Success)
-                {
-                    int portAsInteger = Int32.Parse(port);
-                    //Check if port is in range.
-                    return ((portAsInteger >= 0) && (portAsInteger <= 65535));
-                }
-                else return false;
-            }
-            else return false;
-        }
+        //        if (match.Success)
+        //        {
+        //            int portAsInteger = Int32.Parse(port);
+        //            //Check if port is in range.
+        //            return ((portAsInteger >= 0) && (portAsInteger <= 65535));
+        //        }
+        //        else return false;
+        //    }
+        //    else return false;
+        //}
     }
 }
