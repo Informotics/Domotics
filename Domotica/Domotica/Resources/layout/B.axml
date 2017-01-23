@@ -5,34 +5,41 @@
     android:layout_height="match_parent">
     <TextView
         android:text="Tijd"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:id="@+id/textView4"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
     <TextView
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewTimerStateValue" />
+        android:id="@+id/textViewTimerStateValue"
+        android:gravity="center_horizontal" />
     <TextView
-        android:text="Alarmtijd"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Alarm tijd"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView5"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
     <TextView
         android:text="Time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/timeDisplay"
         android:layout_gravity="center"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_marginTop="5dp" />
     <Button
         android:id="@+id/pickTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change the time"
-        android:layout_gravity="center" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
     <Button
         android:text="  Set the Alarm  "
         android:layout_width="wrap_content"

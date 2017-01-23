@@ -3,8 +3,8 @@
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
     <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
-    <SelectedDevice>Motorola Moto G 2014</SelectedDevice>
-    <AndroidDesignerPreferredTheme>Theme.Red</AndroidDesignerPreferredTheme>
+    <SelectedDevice>5" KitKat %284.4%29 XXHDPI Phone</SelectedDevice>
+    <AndroidDesignerPreferredTheme>Theme.Green</AndroidDesignerPreferredTheme>
     <DefaultDevice>5" KitKat %284.4%29 XXHDPI Phone</DefaultDevice>
   </PropertyGroup>
 </Project>

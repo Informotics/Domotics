@@ -110,5 +110,7 @@ D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\leftin.xml
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\leftout.xml
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\rightin.xml
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\rightout.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\layout\settings.xml
+D:\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\gear.png
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
 D:\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb

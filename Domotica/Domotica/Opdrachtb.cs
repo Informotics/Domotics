@@ -94,7 +94,7 @@ namespace Domotica
             actionBar.AddTab(tab3, 2, false);
 
             // Set our view from the "main" layout resource
-            SetContentView (Resource.Layout.B);
+            SetContentView(Resource.Layout.B);
 
             time_display = FindViewById<TextView>(Resource.Id.timeDisplay);
             pickt_button = FindViewById<Button>(Resource.Id.pickTime);
@@ -107,7 +107,8 @@ namespace Domotica
             timerClock = new System.Timers.Timer() { Interval = 1000, Enabled = true }; // Interval >= 1000
             timerClock.Elapsed += (obj, args) =>
             {
-                RunOnUiThread(() => {
+                RunOnUiThread(() =>
+                {
                     textViewTimerStateValue.Text = DateTime.Now.ToString("HH:mm:ss");
                 });
             };
@@ -207,6 +208,28 @@ namespace Domotica
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
             manager.Cancel(pendingIntent);
             Toast.MakeText(this, "Alarm canceled", ToastLength.Long).Show();
+        }
+        public override bool OnPrepareOptionsMenu(IMenu menu)
+        {
+            //Prevent menu items from being duplicated.
+            menu.Clear();
+
+            MenuInflater.Inflate(Resource.Menu.menu, menu);
+            return base.OnPrepareOptionsMenu(menu);
+        }
+
+        //Executes an action when a menu button is pressed.
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.exit:
+                    Intent intent = new Intent(this, typeof(Opdrachtsettings));
+                    this.StartActivity(intent);
+                    OverridePendingTransition(Resource.Animation.Rightin, Resource.Animation.Leftout);
+                    return true;
+                default: return true;
+            }
         }
     }
 }

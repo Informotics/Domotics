@@ -65,9 +65,29 @@ namespace Domotica
                 Task.Delay(1000);  // Laat het splashscreen nog wel even zien als je te snel laad.
             });
 
-            startupWork.ContinueWith(t => {
-                StartActivity(new Intent(Application.Context, typeof(MainActivity)));   //Als je klaar bent met laden, start mainactivity
-            }, TaskScheduler.FromCurrentSynchronizationContext());
+            ISharedPreferences prefs = Application.Context.GetSharedPreferences("PREF_NAME", FileCreationMode.Private);
+
+            var pagina = prefs.GetInt("pagina", 0);
+            switch (pagina)
+            {
+                case 2:
+                    startupWork.ContinueWith(t => {
+                        StartActivity(new Intent(Application.Context, typeof(Opdrachtb)));
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                    break;
+                case 3:
+                    startupWork.ContinueWith(t => {
+                        StartActivity(new Intent(Application.Context, typeof(Opdrachtc)));
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                    break;
+                default:
+                    startupWork.ContinueWith(t => {
+                        StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                    break;
+            }
+
+
 
             startupWork.Start();
         }
@@ -138,6 +158,10 @@ namespace Domotica
         {
             base.OnCreate(bundle);
             _gestureDetector = new GestureDetector(this);
+
+
+
+
 
             //statusbar settings
             this.Title = "Domotica App";
@@ -401,28 +425,28 @@ namespace Domotica
         }
 
         //Prepare the Screen's standard options menu to be displayed.
-        //public override bool OnPrepareOptionsMenu(IMenu menu)
-        //{
-        //   //Prevent menu items from being duplicated.
-        //  menu.Clear();
-
-        //    MenuInflater.Inflate(Resource.Menu.menu, menu);
-        //    return base.OnPrepareOptionsMenu(menu);
-        //}
+        public override bool OnPrepareOptionsMenu(IMenu menu)
+        {
+            //Prevent menu items from being duplicated.
+            menu.Clear();
+            
+            MenuInflater.Inflate(Resource.Menu.menu, menu);
+            return base.OnPrepareOptionsMenu(menu);
+        }
 
         //Executes an action when a menu button is pressed.
-        //public override bool OnOptionsItemSelected(IMenuItem item)
-        //{
-        //   switch (item.ItemId)
-        //   {
-        //      case Resource.Id.exit:
-        //          //Force quit the application.
-        //          System.Environment.Exit(0);
-        //           return true;
-        //      case Resource.Id.abort:
-        //           return true;
-        //   }
-        // //    return base.OnOptionsItemSelected(item);
-        //}
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.exit:
+                    Intent intent = new Intent(this, typeof(Opdrachtsettings));
+                    this.StartActivity(intent);
+                    OverridePendingTransition(Resource.Animation.Rightin, Resource.Animation.Leftout);
+                    return true;
+                default: return true;
+            }
+            //    return base.OnOptionsItemSelected(item);
+        }
     }
 }

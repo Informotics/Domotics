@@ -16,7 +16,7 @@ using Android.Graphics;
 
 namespace Domotica
 {
-    [Activity(Label = "@string/application_name", MainLauncher = false, Theme = "@style/Theme.Red",  Icon = "@drawable/icon")]
+    [Activity(Label = "@string/application_name", MainLauncher = false, Theme = "@style/Theme.Red", Icon = "@drawable/icon")]
     public class Opdrachtc : Activity, GestureDetector.IOnGestureListener
     {
 
@@ -53,7 +53,7 @@ namespace Domotica
             return false;
         }
         private GestureDetector _gestureDetector;
-    
+
         Button cknop;
 
         protected override void OnCreate(Bundle bundle)
@@ -111,6 +111,28 @@ namespace Domotica
             Intent intent = new Intent(this, typeof(MainActivity));
             this.StartActivity(intent);
             OverridePendingTransition(Resource.Animation.Leftin, Resource.Animation.Rightout);
+        }
+        public override bool OnPrepareOptionsMenu(IMenu menu)
+        {
+            //Prevent menu items from being duplicated.
+            menu.Clear();
+
+            MenuInflater.Inflate(Resource.Menu.menu, menu);
+            return base.OnPrepareOptionsMenu(menu);
+        }
+
+        //Executes an action when a menu button is pressed.
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.exit:
+                    Intent intent = new Intent(this, typeof(Opdrachtsettings));
+                    this.StartActivity(intent);
+                    OverridePendingTransition(Resource.Animation.Rightin, Resource.Animation.Leftout);
+                    return true;
+                default: return true;
+            }
         }
     }
 }
