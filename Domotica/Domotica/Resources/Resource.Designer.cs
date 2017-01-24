@@ -2431,8 +2431,8 @@ namespace Domotica
 			// aapt resource value: 0x7f070086
 			public const int gridLayout3 = 2131165318;
 			
-			// aapt resource value: 0x7f070089
-			public const int gridLayout4 = 2131165321;
+			// aapt resource value: 0x7f07008a
+			public const int gridLayout4 = 2131165322;
 			
 			// aapt resource value: 0x7f070005
 			public const int home = 2131165189;
@@ -2455,8 +2455,8 @@ namespace Domotica
 			// aapt resource value: 0x7f070000
 			public const int item_touch_helper_previous_elevation = 2131165184;
 			
-			// aapt resource value: 0x7f07008c
-			public const int kloktijd = 2131165324;
+			// aapt resource value: 0x7f070089
+			public const int kloktijd = 2131165321;
 			
 			// aapt resource value: 0x7f07002f
 			public const int left = 2131165231;
@@ -2719,8 +2719,8 @@ namespace Domotica
 			// aapt resource value: 0x7f070087
 			public const int textView2 = 2131165319;
 			
-			// aapt resource value: 0x7f07008a
-			public const int textView3 = 2131165322;
+			// aapt resource value: 0x7f07008b
+			public const int textView3 = 2131165323;
 			
 			// aapt resource value: 0x7f070069
 			public const int textView4 = 2131165289;
@@ -2767,8 +2767,8 @@ namespace Domotica
 			// aapt resource value: 0x7f070088
 			public const int toggleButton1 = 2131165320;
 			
-			// aapt resource value: 0x7f07008b
-			public const int toggleButton2 = 2131165323;
+			// aapt resource value: 0x7f07008c
+			public const int toggleButton2 = 2131165324;
 			
 			// aapt resource value: 0x7f070082
 			public const int toolbar1 = 2131165314;

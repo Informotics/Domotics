@@ -19,7 +19,7 @@ namespace Domotica.BroadCast
     {
         public override void OnReceive(Context context, Intent intent)
         {
-            MainActivity.socket.Send(Encoding.ASCII.GetBytes("h"));
+            MainActivity.socket.Send(Encoding.ASCII.GetBytes("y"));
             Toast.MakeText(context, "Received intent!", ToastLength.Short).Show();
         }
     }
