@@ -50,6 +50,7 @@ namespace Domotica
     public class SplashActivity : Activity
     {
         static readonly string TAG = "X:" + typeof(SplashActivity).Name;
+        public static bool startupdone = false;
 
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
@@ -60,7 +61,7 @@ namespace Domotica
         protected override void OnResume()
         {
             base.OnResume();
-
+            
             Task startupWork = new Task(() => {
                 Task.Delay(1000);  // Laat het splashscreen nog wel even zien als je te snel laad.
             });
@@ -207,28 +208,33 @@ namespace Domotica
                 //});
             };
 
-            //Connect met de arduino
-            ConnectSocket();
-
-
             //Kies de goeie pagina
 
             ISharedPreferences prefs = Application.Context.GetSharedPreferences("PREF_NAME", FileCreationMode.Private);
 
-            var pagina = prefs.GetInt("pagina", 0);
-            switch (pagina)
+            if (SplashActivity.startupdone == false)
             {
-                case 2:
-                    Intent intent = new Intent(this, typeof(Opdrachtb));
-                    this.StartActivity(intent);
-                    break;
-                case 3:
-                    Intent intent2 = new Intent(this, typeof(Opdrachtc));
-                    this.StartActivity(intent2);
-                    break;
-                default:
-                    break;
+                //Connect met de arduino
+                ConnectSocket();
 
+                var pagina = prefs.GetInt("pagina", 0);
+                switch (pagina)
+                {
+                    case 2:
+                        Intent intent = new Intent(this, typeof(Opdrachtb));
+                        this.StartActivity(intent);
+                        SplashActivity.startupdone = true;
+                        break;
+                    case 3:
+                        Intent intent2 = new Intent(this, typeof(Opdrachtc));
+                        this.StartActivity(intent2);
+                        SplashActivity.startupdone = true;
+                        break;
+                    default:
+                        SplashActivity.startupdone = true;
+                        break;
+
+                }
             }
 
 
