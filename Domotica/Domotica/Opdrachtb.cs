@@ -118,6 +118,7 @@ namespace Domotica
             {
                 UpdateDisplay();
                 StartAlarm();
+                StartAlarm2();
             };
 
             btnCancel.Click += delegate
@@ -196,8 +197,18 @@ namespace Domotica
             PendingIntent pendingIntent;
             myIntent = new Intent(this, typeof(AlarmNotificationReceiver));
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
-            manager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000)), 60 * 1000, pendingIntent);
+            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000)), pendingIntent);
             Toast.MakeText(this, "Alarm set", ToastLength.Long).Show();
+        }
+
+        private void StartAlarm2()
+        {
+            AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
+            Intent myIntent;
+            PendingIntent pendingIntent;
+            myIntent = new Intent(this, typeof(Receiver2));
+            pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
+            manager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000) + 60 * 1000), 60 * 1000, pendingIntent);
         }
 
         private void CancelAlarm()
@@ -205,8 +216,9 @@ namespace Domotica
             AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
             Intent myIntent;
             PendingIntent pendingIntent;
-            myIntent = new Intent(this, typeof(AlarmNotificationReceiver));
+            myIntent = new Intent(this, typeof(Receiver2));
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
+            manager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000) + 60 * 1000), 60 * 1000, pendingIntent);
             manager.Cancel(pendingIntent);
             Toast.MakeText(this, "Alarm canceled", ToastLength.Long).Show();
         }

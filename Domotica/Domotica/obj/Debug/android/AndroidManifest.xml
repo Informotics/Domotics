@@ -17,6 +17,7 @@
     <activity android:icon="@drawable/icon" android:label="@string/application_name" android:theme="@style/Theme.Red" android:name="md5ad6330c6eb7358bd23d386c3c1618973.Opdrachtc" />
     <receiver android:enabled="true" android:name="md5401f8b369c1a8b72836ba5ca09ba8a2c.AlarmNotificationReceiver" />
     <receiver android:name="md5401f8b369c1a8b72836ba5ca09ba8a2c.kloka" />
+    <receiver android:enabled="true" android:name="md5401f8b369c1a8b72836ba5ca09ba8a2c.Receiver2" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="Domotica.Domotica.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

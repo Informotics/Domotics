@@ -26,6 +26,10 @@ Domotica.BroadCast.kloka, Domotica;md5401f8b369c1a8b72836ba5ca09ba8a2c.kloka
 Domotica.BroadCast.kloka, Domotica, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5401f8b369c1a8b72836ba5ca09ba8a2c.kloka
 Domotica.BroadCast.kloka;md5401f8b369c1a8b72836ba5ca09ba8a2c.kloka
 domotica.broadcast.kloka;md5401f8b369c1a8b72836ba5ca09ba8a2c.kloka
+Domotica.BroadCast.Receiver2, Domotica;md5401f8b369c1a8b72836ba5ca09ba8a2c.Receiver2
+Domotica.BroadCast.Receiver2, Domotica, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5401f8b369c1a8b72836ba5ca09ba8a2c.Receiver2
+Domotica.BroadCast.Receiver2;md5401f8b369c1a8b72836ba5ca09ba8a2c.Receiver2
+domotica.broadcast.Receiver2;md5401f8b369c1a8b72836ba5ca09ba8a2c.Receiver2
 Android.Support.Design.Widget.Snackbar/SnackbarActionClickImplementor, Xamarin.Android.Support.Design;android.support.design.widget.Snackbar_SnackbarActionClickImplementor
 Android.Support.Design.Widget.Snackbar+SnackbarActionClickImplementor, Xamarin.Android.Support.Design, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;android.support.design.widget.Snackbar_SnackbarActionClickImplementor
 Android.Support.Design.Widget.Snackbar.SnackbarActionClickImplementor;android.support.design.widget.Snackbar_SnackbarActionClickImplementor
