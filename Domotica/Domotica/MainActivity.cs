@@ -209,7 +209,6 @@ namespace Domotica
             };
 
             //Kies de goeie pagina
-
             ISharedPreferences prefs = Application.Context.GetSharedPreferences("PREF_NAME", FileCreationMode.Private);
 
             if (SplashActivity.startupdone == false)
@@ -220,9 +219,14 @@ namespace Domotica
                 var pagina = prefs.GetInt("pagina", 0);
                 switch (pagina)
                 {
-                    case 2:
-                        Intent intent = new Intent(this, typeof(Opdrachtb));
+                    case 1:
+                        Intent intent = new Intent(this, typeof(MainActivity));
                         this.StartActivity(intent);
+                        SplashActivity.startupdone = true;
+                        break;
+                    case 2:
+                        Intent intent1 = new Intent(this, typeof(Opdrachtb));
+                        this.StartActivity(intent1);
                         SplashActivity.startupdone = true;
                         break;
                     case 3:
@@ -236,8 +240,6 @@ namespace Domotica
 
                 }
             }
-
-
 
             //Stuur byte met waarde x naar arduino
             if (toggleSchakelaar0 != null)
@@ -459,7 +461,6 @@ namespace Domotica
                     return true;
                 default: return true;
             }
-            //    return base.OnOptionsItemSelected(item);
         }
     }
 }
