@@ -115,7 +115,7 @@ void loop()
   // Do what needs to be done while the socket is connected.
   while (ethernetClient.connected())
   {
-    sensorValue = analogRead(0);
+    sensorValue = readSensor(0, 100);
     sensorValue2 = analogRead(1);
 
     //Smart Mode
@@ -270,8 +270,7 @@ void setSensor(int stopcontact, bool &state) {
 
 //Code die kijkt of de waarde van de lichtsensor boven of onder een bepaalt punt zit en dan de stekker aan of uit zet
 void photoCell(int stopcontact, int set_value, bool &state) {
-  int value = readSensor(0, 100);
-  if (value < set_value) {
+  if (sensorValue < set_value) {
     switchDefault(stopcontact, false);
     state = false;
   }
