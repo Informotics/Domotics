@@ -12,7 +12,6 @@ namespace Domotica
     [Activity(Label = "@string/application_name", MainLauncher = false, Theme = "@style/Theme.Green", Icon = "@drawable/icon")]
     public class Opdrachtb : Activity, GestureDetector.IOnGestureListener
     {
-
         public bool OnDown(MotionEvent e)
         {
             return true;
@@ -68,8 +67,12 @@ namespace Domotica
 
         protected override void OnCreate(Bundle bundle)
         {
+
+            //MainActivity.ConnectSocket();
+
             base.OnCreate(bundle);
             _gestureDetector = new GestureDetector(this);
+
             //statusbar settings
             this.Title = "Domotica App";
             this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
@@ -209,6 +212,7 @@ namespace Domotica
             manager.Cancel(pendingIntent);
             Toast.MakeText(this, "Alarm canceled", ToastLength.Long).Show();
         }
+
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
             //Prevent menu items from being duplicated.

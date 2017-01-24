@@ -136,12 +136,11 @@ namespace Domotica
 
         // Variables (components/controls)
         // Controls on GUI
-        Button toggleSchakelaar0, toggleSchakelaar1, toggleSchakelaar2;
-        TextView textViewTimerStateValue;
-        TextView textViewSensorValue, textViewSensorValue2, kloktijd;
-        Timer timerClock, timerSockets;             // Timers   
-        public static Socket socket = null;   
-                            // Socket   
+        Button toggleSchakelaar0, settime1, smartmode, btnCancel;
+        TextView textViewSensorValue, textViewSensorValue2, kloktijd, textViewTimerStateValue;
+        Timer timerClock;
+        public static Timer timerSockets;  
+        public static Socket socket = null;    
         List<Tuple<string, TextView>> commandList = new List<Tuple<string, TextView>>();  // List for commands and response places on UI
         int listIndex = 0;
         private GestureDetector _gestureDetector;
@@ -158,10 +157,6 @@ namespace Domotica
         {
             base.OnCreate(bundle);
             _gestureDetector = new GestureDetector(this);
-
-
-
-
 
             //statusbar settings
             this.Title = "Domotica App";
@@ -192,19 +187,19 @@ namespace Domotica
 
             // find and set the controls, so it can be used in the code
             toggleSchakelaar0 = FindViewById<Button>(Resource.Id.toggleButton0);
-            toggleSchakelaar1 = FindViewById<Button>(Resource.Id.toggleButton1);
-            toggleSchakelaar2 = FindViewById<Button>(Resource.Id.toggleButton2);
+            settime1 = FindViewById<Button>(Resource.Id.toggleButton1);
+            smartmode = FindViewById<Button>(Resource.Id.toggleButton2);
             textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
             textViewSensorValue = FindViewById<TextView>(Resource.Id.textViewSensorValue);
             textViewSensorValue2 = FindViewById<TextView>(Resource.Id.textViewSensorValue2);
             kloktijd = FindViewById<TextView>(Resource.Id.kloktijd);
+            btnCancel = FindViewById<Button>(Resource.Id.btnCancel);
 
             // Init commandlist, scheduled by socket timer
             commandList.Add(new Tuple<string, TextView>("a", textViewSensorValue));
             commandList.Add(new Tuple<string, TextView>("b", textViewSensorValue2));
             commandList.Add(new Tuple<string, TextView>("d", toggleSchakelaar0));
-            commandList.Add(new Tuple<string, TextView>("e", toggleSchakelaar1));
-            commandList.Add(new Tuple<string, TextView>("f", toggleSchakelaar2));
+            commandList.Add(new Tuple<string, TextView>("f", smartmode));
 
             // timer object, running clock
             timerClock = new System.Timers.Timer() { Interval = 1000, Enabled = true }; // Interval >= 1000
@@ -235,7 +230,7 @@ namespace Domotica
             //Connect met de arduino
             ConnectSocket();
 
-            //Code voor schakelaar 1
+            //Stuur byte met waarde x naar arduino
             if (toggleSchakelaar0 != null)
             {
                 toggleSchakelaar0.Click += (sender, e) =>
@@ -244,14 +239,21 @@ namespace Domotica
                 };
             }
 
-            if (toggleSchakelaar1 != null)
+            //Laat een pop up klok zien waarmee je de tijd voor de wekker kan zetten
+            if (settime1 != null)
             {
-                toggleSchakelaar1.Click += (o, e) => ShowDialog(timedialog);
+                settime1.Click += (o, e) => ShowDialog(timedialog);
             }
-
-            if (toggleSchakelaar2 != null)
+            btnCancel.Click += delegate
             {
-                toggleSchakelaar2.Click += (sender, e) =>
+                CancelAlarm();
+                StartAlarm();
+            };
+
+            //smart mode aan of uit
+            if (smartmode != null)
+            {
+                smartmode.Click += (sender, e) =>
                 {
                     socket.Send(Encoding.ASCII.GetBytes("t"));
                 };
@@ -307,6 +309,17 @@ namespace Domotica
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
             manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000)), pendingIntent);
             Toast.MakeText(this, "Alarm set", ToastLength.Long).Show();
+        }
+
+        private void CancelAlarm()
+        {
+            AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
+            Intent myIntent;
+            PendingIntent pendingIntent;
+            myIntent = new Intent(this, typeof(AlarmNotificationReceiver));
+            pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
+            manager.Cancel(pendingIntent);
+            Toast.MakeText(this, "Alarm canceled", ToastLength.Long).Show();
         }
 
         //Ga naar opdracht B
@@ -371,15 +384,6 @@ namespace Domotica
             });
         }
 
-        public void UpdateStop(char incoming)
-        {
-            RunOnUiThread(() =>
-                {
-                    if (incoming == 'x') toggleSchakelaar0.PerformClick();
-                    else if (incoming == 'z') toggleSchakelaar2.PerformClick();
-                });
-        }
-
         // Connect to socket ip/prt (simple sockets)
         public void ConnectSocket()
         {
@@ -409,7 +413,7 @@ namespace Domotica
                     socket.Close(); socket = null;
                     timerSockets.Enabled = false;
                 }
-            });
+           });
         }
 
         //Close the connection (stop the threads) if the application stops.

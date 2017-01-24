@@ -2634,7 +2634,7 @@ containing a value of this type.
         public static final int gridLayout1=0x7f07007d;
         public static final int gridLayout2=0x7f070083;
         public static final int gridLayout3=0x7f070086;
-        public static final int gridLayout4=0x7f070089;
+        public static final int gridLayout4=0x7f07008a;
         public static final int home=0x7f070005;
         public static final int homeAsUp=0x7f07000f;
         public static final int icon=0x7f070042;
@@ -2642,7 +2642,7 @@ containing a value of this type.
         public static final int image=0x7f07003f;
         public static final int info=0x7f0700b1;
         public static final int item_touch_helper_previous_elevation=0x7f070000;
-        public static final int kloktijd=0x7f07008c;
+        public static final int kloktijd=0x7f070089;
         public static final int left=0x7f07002f;
         public static final int line1=0x7f0700ab;
         public static final int line3=0x7f0700af;
@@ -2730,7 +2730,7 @@ containing a value of this type.
         public static final int textSpacerNoButtons=0x7f07004d;
         public static final int textView1=0x7f070084;
         public static final int textView2=0x7f070087;
-        public static final int textView3=0x7f07008a;
+        public static final int textView3=0x7f07008b;
         public static final int textView4=0x7f070069;
         public static final int textView5=0x7f07006b;
         public static final int textView6=0x7f07007a;
@@ -2746,7 +2746,7 @@ containing a value of this type.
         public static final int title_template=0x7f070048;
         public static final int toggleButton0=0x7f070085;
         public static final int toggleButton1=0x7f070088;
-        public static final int toggleButton2=0x7f07008b;
+        public static final int toggleButton2=0x7f07008c;
         public static final int toolbar1=0x7f070082;
         public static final int toolbar2=0x7f07007b;
         public static final int top=0x7f070032;
