@@ -23,7 +23,7 @@ int ethPort = 3300;                                  // Take a free port (check 
 #define trigPin      6  //Zender van ultrasone sensor
 #define echoPin      7  //Ontvanger van ultrasone sensor
 
-Servo myservo;
+Servo myservo, myservo2;
 EthernetServer server(ethPort);              // EthernetServer instance (listening on port <ethPort>).
 NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin>
 
@@ -56,6 +56,7 @@ void setup()
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   myservo.attach(2);
+  myservo2.attach(4);
 
   //Default states
   digitalWrite(lowPin, LOW);
@@ -69,7 +70,6 @@ void setup()
     switchDefault(i, false);
   }
 
-
   //Try to get an IP address from the DHCP server.
   if (Ethernet.begin(mac) == 0)
   {
@@ -80,7 +80,6 @@ void setup()
       if (!start) {
         getdistance();
         if (distance > 10) {
-          //Serial.println("All clear");
           myservo.write(180);
         }
         else {
@@ -127,22 +126,18 @@ void loop()
     if (!start) {
       getdistance();
       if (distance > 10) {
-        //Serial.println("All clear !start");
         myservo.write(180);
       }
       else {
-        //Serial.println("Unknown entity detected !start");
         myservo.write(90);
       }
     }
     else {
       getdistance();
       if (distance > 10) {
-        //Serial.println("All clear start");
         myservo.write(90);
       }
       else {
-        //Serial.println("Unknown entity detected start");
         myservo.write(180);
       }
     }
@@ -227,7 +222,6 @@ void executeCommand(char cmd)
         server.write("OFF\n");
       }
       break;
-      break;
     case 'f':
       if (smart) {
         server.write(" ON\n");
@@ -246,11 +240,19 @@ void executeCommand(char cmd)
       }
 
     //Zet lamp en koffieapparaat aan en zet koffie
-    //case 'i':
-    //  break;
-    
-    default:
-      digitalWrite(infoPin, LOW);
+    case 'i':
+      smart = true;
+      switchDefault(1, true);
+      Serial.println("Set schakelaar to in")
+      stop1 = true;
+      for (int i = 0; i < 6; i++){
+        myservo2.write(180);
+        delay(50);
+        myservo2.write(0);
+        }
+      myservo2.write(90);
+      break;
+      ;
   }
 }
 
@@ -305,15 +307,6 @@ void intToCharBuf(int val, char buf[], int len)
   s = s + "\n";                           // add newline
   s.toCharArray(buf, len);                // convert string to char-buffer
 }
-
-//// blink led on pin <pn>
-//void blink(int pn)
-//{
-//  digitalWrite(pn, HIGH);
-//  delay(100);
-//  digitalWrite(pn, LOW);
-//  delay(100);
-//}
 
 // Convert IPAddress tot String (e.g. "192.168.1.105")
 String IPAddressToString(IPAddress address)

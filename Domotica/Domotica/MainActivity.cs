@@ -87,6 +87,9 @@ namespace Domotica
                     }, TaskScheduler.FromCurrentSynchronizationContext());
                     break;
                 default:
+                    startupWork.ContinueWith(t => {
+                        StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
                     break;
             }
             startupWork.Start();
