@@ -148,10 +148,11 @@ namespace Domotica
 
         //Initalisatie van variabelen voor klok
         const int timedialog = 0;
-        private int hour;
-        private int minute;
-        private int hour1;
-        private int minute1;
+        int hour;
+        int minute;
+        int hour1;
+        int minute1;
+        bool alarmset = false;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -309,10 +310,16 @@ namespace Domotica
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
             manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000)), pendingIntent);
             Toast.MakeText(this, "Alarm set", ToastLength.Long).Show();
+            alarmset = true;
         }
 
         private void CancelAlarm()
         {
+            if (alarmset)
+            {
+                MainActivity.socket.Send(Encoding.ASCII.GetBytes("y"));
+                alarmset = false;
+            }
             AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
             Intent myIntent;
             PendingIntent pendingIntent;
