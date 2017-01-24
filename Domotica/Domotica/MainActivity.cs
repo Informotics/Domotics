@@ -65,30 +65,10 @@ namespace Domotica
                 Task.Delay(1000);  // Laat het splashscreen nog wel even zien als je te snel laad.
             });
 
-            ISharedPreferences prefs = Application.Context.GetSharedPreferences("PREF_NAME", FileCreationMode.Private);
-
-            var pagina = prefs.GetInt("pagina", 0);
-            switch (pagina)
-            {
-                case 2:
-                    startupWork.ContinueWith(t => {
-                        StartActivity(new Intent(Application.Context, typeof(Opdrachtb)));
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
-                    break;
-                case 3:
-                    startupWork.ContinueWith(t => {
-                        StartActivity(new Intent(Application.Context, typeof(Opdrachtc)));
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
-                    break;
-                default:
-                    startupWork.ContinueWith(t => {
-                        StartActivity(new Intent(Application.Context, typeof(MainActivity)));
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
-                    break;
-            }
-
-
-
+            startupWork.ContinueWith(t => {
+                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+            
             startupWork.Start();
         }
     }
@@ -229,6 +209,29 @@ namespace Domotica
 
             //Connect met de arduino
             ConnectSocket();
+
+
+            //Kies de goeie pagina
+
+            ISharedPreferences prefs = Application.Context.GetSharedPreferences("PREF_NAME", FileCreationMode.Private);
+
+            var pagina = prefs.GetInt("pagina", 0);
+            switch (pagina)
+            {
+                case 2:
+                    Intent intent = new Intent(this, typeof(Opdrachtb));
+                    this.StartActivity(intent);
+                    break;
+                case 3:
+                    Intent intent2 = new Intent(this, typeof(Opdrachtc));
+                    this.StartActivity(intent2);
+                    break;
+                default:
+                    break;
+
+            }
+
+
 
             //Stuur byte met waarde x naar arduino
             if (toggleSchakelaar0 != null)
