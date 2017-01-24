@@ -122,6 +122,6 @@ C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\leftout
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\rightin.xml
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\rightout.xml
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\gear.png
-C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
-D:\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
