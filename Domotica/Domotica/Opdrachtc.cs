@@ -58,8 +58,6 @@ namespace Domotica
 
         protected override void OnCreate(Bundle bundle)
         {
-            //MainActivity.ConnectSocket();
-
             base.OnCreate(bundle);
 
             _gestureDetector = new GestureDetector(this);
