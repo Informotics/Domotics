@@ -66,10 +66,29 @@ namespace Domotica
                 Task.Delay(1000);  // Laat het splashscreen nog wel even zien als je te snel laad.
             });
 
-            startupWork.ContinueWith(t => {
-                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
-            }, TaskScheduler.FromCurrentSynchronizationContext());
-            
+            //Kies de gekozen pagina
+            ISharedPreferences prefs = Application.Context.GetSharedPreferences("PREF_NAME", FileCreationMode.Private);
+            var pagina = prefs.GetInt("pagina", 0);
+            switch (pagina)
+            {
+                case 1:
+                    startupWork.ContinueWith(t => {
+                        StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                    break;
+                case 2:
+                    startupWork.ContinueWith(t => {
+                        StartActivity(new Intent(Application.Context, typeof(Opdrachtb)));
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                    break;
+                case 3:
+                    startupWork.ContinueWith(t => {
+                        StartActivity(new Intent(Application.Context, typeof(Opdrachtc)));
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                    break;
+                default:
+                    break;
+            }
             startupWork.Start();
         }
     }
@@ -208,38 +227,8 @@ namespace Domotica
                 //});
             };
 
-            //Kies de goeie pagina
-            ISharedPreferences prefs = Application.Context.GetSharedPreferences("PREF_NAME", FileCreationMode.Private);
-
-            if (SplashActivity.startupdone == false)
-            {
-                //Connect met de arduino
-                ConnectSocket();
-
-                var pagina = prefs.GetInt("pagina", 0);
-                switch (pagina)
-                {
-                    case 1:
-                        Intent intent = new Intent(this, typeof(MainActivity));
-                        this.StartActivity(intent);
-                        SplashActivity.startupdone = true;
-                        break;
-                    case 2:
-                        Intent intent1 = new Intent(this, typeof(Opdrachtb));
-                        this.StartActivity(intent1);
-                        SplashActivity.startupdone = true;
-                        break;
-                    case 3:
-                        Intent intent2 = new Intent(this, typeof(Opdrachtc));
-                        this.StartActivity(intent2);
-                        SplashActivity.startupdone = true;
-                        break;
-                    default:
-                        SplashActivity.startupdone = true;
-                        break;
-
-                }
-            }
+            //Connect met de arduino
+            ConnectSocket();
 
             //Stuur byte met waarde x naar arduino
             if (toggleSchakelaar0 != null)
