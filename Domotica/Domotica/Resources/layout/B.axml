@@ -41,4 +41,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnCancel"
         android:layout_gravity="center" />
+    <Button
+        android:text="Zet Koffie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/koffie" />
 </LinearLayout>

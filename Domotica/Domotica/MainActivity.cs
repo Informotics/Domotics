@@ -36,7 +36,6 @@ using Android.Content;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Android.Graphics;
 using System.Threading.Tasks;

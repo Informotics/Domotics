@@ -19,12 +19,7 @@ namespace Domotica.BroadCast
     {
         public override void OnReceive(Context context, Intent intent)
         {
-            //NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-
             MainActivity.socket.Send(Encoding.ASCII.GetBytes("y"));
-
-            //NotificationManager manager = (NotificationManager)context.GetSystemService(Context.NotificationService);
-            //manager.Notify(1, builder.Build());
         }
     }
 }

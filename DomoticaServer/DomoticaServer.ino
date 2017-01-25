@@ -221,6 +221,16 @@ void executeCommand(char cmd)
     case 'z':
       setSensor(1, stop1);
       break;
+
+   //Zet alleen koffieapparaat aan
+   case 'k':
+      setSensor(2, stop2);
+      break;
+   case 'h':
+      myservo2.write(25);
+      delay(1000);
+      myservo2.write(90);
+      break;
       
     //Stuur naar server of schakelaar 1 aan of uit is
     case 'd':
@@ -251,16 +261,12 @@ void executeCommand(char cmd)
     //Zet lamp aan en zet koffie
     case 'i':
       //Servo slaat je hoofd
-      myservo.write(180);
-      delay(200);
-      myservo.write(0);
-      myservo.write(180);
-      delay(200);
-      myservo.write(0);
-      myservo.write(180);
-      delay(200);
-      myservo.write(0);
-        
+      for (int i = 0; i < 4; i++){
+        myservo.write(180);
+        delay(500);
+        myservo.write(0);
+        delay(500);
+        }
       myservo2.write(25);
       delay(1000);
       myservo2.write(90);
