@@ -23,7 +23,7 @@ int ethPort = 3300;                                  // Take a free port (check 
 #define trigPin      6  //Zender van ultrasone sensor
 #define echoPin      7  //Ontvanger van ultrasone sensor
 
-Servo myservo;
+Servo myservo, myservo2;
 EthernetServer server(ethPort);              // EthernetServer instance (listening on port <ethPort>).
 NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin>
 
@@ -56,6 +56,7 @@ void setup()
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   myservo.attach(2);
+  myservo2.attach(4);
 
   //Default states
   digitalWrite(lowPin, LOW);
@@ -69,7 +70,6 @@ void setup()
     switchDefault(i, false);
   }
 
-
   //Try to get an IP address from the DHCP server.
   if (Ethernet.begin(mac) == 0)
   {
@@ -80,7 +80,6 @@ void setup()
       if (!start) {
         getdistance();
         if (distance > 10) {
-          //Serial.println("All clear");
           myservo.write(180);
         }
         else {
@@ -123,26 +122,22 @@ void loop()
       photoCell(2, 050, stop2);
     }
 
-    //C connected
+      //C connected
     if (!start) {
       getdistance();
       if (distance > 10) {
-        //Serial.println("All clear !start");
         myservo.write(180);
       }
       else {
-        //Serial.println("Unknown entity detected !start");
         myservo.write(90);
       }
     }
     else {
       getdistance();
       if (distance > 10) {
-        //Serial.println("All clear start");
         myservo.write(90);
       }
       else {
-        //Serial.println("Unknown entity detected start");
         myservo.write(180);
       }
     }
@@ -211,9 +206,13 @@ void executeCommand(char cmd)
     case 'x':
       setSensor(0, stop0);
       break;
+
+    //Zet koffieapparaat voor B aan of uit
     case 'y':
       setSensor(1, stop1);
+      setSensor(2, stop2);
       break;
+      
     case 'z':
       setSensor(2, stop2);
       break;
@@ -226,7 +225,6 @@ void executeCommand(char cmd)
       else {
         server.write("OFF\n");
       }
-      break;
       break;
     case 'f':
       if (smart) {
@@ -245,12 +243,25 @@ void executeCommand(char cmd)
         start = false;
       }
 
-    //Zet lamp en koffieapparaat aan en zet koffie
-    //case 'i':
-    //  break;
-    
-    default:
-      digitalWrite(infoPin, LOW);
+    //Zet lamp aan en zet koffie
+    case 'i':
+      //Servo slaat je hoofd
+      myservo.write(180);
+      delay(200);
+      myservo.write(0);
+      myservo.write(180);
+      delay(200);
+      myservo.write(0);
+      myservo.write(180);
+      delay(200);
+      myservo.write(0);
+        
+      myservo2.write(25);
+      delay(1000);
+      myservo2.write(90);
+      myservo.write(90);
+      break;
+      ;
   }
 }
 
@@ -305,15 +316,6 @@ void intToCharBuf(int val, char buf[], int len)
   s = s + "\n";                           // add newline
   s.toCharArray(buf, len);                // convert string to char-buffer
 }
-
-//// blink led on pin <pn>
-//void blink(int pn)
-//{
-//  digitalWrite(pn, HIGH);
-//  delay(100);
-//  digitalWrite(pn, LOW);
-//  delay(100);
-//}
 
 // Convert IPAddress tot String (e.g. "192.168.1.105")
 String IPAddressToString(IPAddress address)

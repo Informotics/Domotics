@@ -123,7 +123,6 @@ C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\rightin
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\anim\rightout.xml
 C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\res\drawable\gear.png
 D:\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
-C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
 C:\Users\gerbe\GIT\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll
 C:\Users\gerbe\GIT\Domotics\Domotica\Domotica\bin\Debug\Domotica.pdb
 C:\Users\gerbe\GIT\Domotics\Domotica\Domotica\bin\Debug\Domotica.Domotica.apk
@@ -187,4 +186,5 @@ C:\Users\gerbe\GIT\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Se
 C:\Users\gerbe\GIT\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\gerbe\GIT\Domotics\Domotica\Domotica\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\gerbe\GIT\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
-C:\Users\gerbe\GIT\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\obj\Debug\Domotica.dll.mdb
+C:\Users\renda\Desktop\Git\Domotics\Domotica\Domotica\bin\Debug\Domotica.dll.mdb

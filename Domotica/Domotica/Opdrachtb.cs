@@ -119,11 +119,16 @@ namespace Domotica
                 UpdateDisplay();
                 StartAlarm();
                 StartAlarm2();
+                StartAlarm3();
+                StartAlarm4();
             };
 
             btnCancel.Click += delegate
             {
+                CancelAlarm0();
                 CancelAlarm();
+                CancelAlarm3();
+                CancelAlarm4();
             };
 
             pickt_button.Click += (o, e) => ShowDialog(TIME_DIALOG_ID);
@@ -189,7 +194,6 @@ namespace Domotica
         }
 
         //wekker
-
         private void StartAlarm()
         {
             AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
@@ -209,6 +213,63 @@ namespace Domotica
             myIntent = new Intent(this, typeof(Receiver2));
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
             manager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000) + 60 * 1000), 60 * 1000, pendingIntent);
+        }
+
+        private void StartAlarm3()
+        {
+            AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
+            Intent myIntent;
+            PendingIntent pendingIntent;
+            myIntent = new Intent(this, typeof(Receiver3));
+            pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
+            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + ((minute1 - 1) * 60 * 1000)), pendingIntent);
+        }
+
+        private void StartAlarm4()
+        {
+            AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
+            Intent myIntent;
+            PendingIntent pendingIntent;
+            myIntent = new Intent(this, typeof(Receiver4));
+            pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
+            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + ((minute1 + 1) * 60 * 1000)), pendingIntent);
+        }
+
+        private void CancelAlarm0()
+        {
+            AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
+            Intent myIntent;
+            PendingIntent pendingIntent;
+            myIntent = new Intent(this, typeof(AlarmNotificationReceiver));
+            pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
+            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000)), pendingIntent);
+            Toast.MakeText(this, "Alarm set", ToastLength.Long).Show();
+            manager.Cancel(pendingIntent);
+
+        }
+
+        private void CancelAlarm3()
+        {
+            AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
+            Intent myIntent;
+            PendingIntent pendingIntent;
+            myIntent = new Intent(this, typeof(Receiver3));
+            pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
+            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + ((minute1 - 1) * 60 * 1000)), pendingIntent);
+            manager.Cancel(pendingIntent);
+
+        }
+
+        private void CancelAlarm4()
+        {
+            AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
+            Intent myIntent;
+            PendingIntent pendingIntent;
+            myIntent = new Intent(this, typeof(Receiver4));
+            pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
+            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + ((minute1 + 1) * 60 * 1000)), pendingIntent);
+            manager.Cancel(pendingIntent);
+
         }
 
         private void CancelAlarm()
