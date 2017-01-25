@@ -23,7 +23,7 @@ int ethPort = 3300;                                  // Take a free port (check 
 #define trigPin      6  //Zender van ultrasone sensor
 #define echoPin      7  //Ontvanger van ultrasone sensor
 
-Servo myservo, myservo2, myservo3;
+Servo cservo, koffiezet, koffieaan;
 EthernetServer server(ethPort);              // EthernetServer instance (listening on port <ethPort>).
 NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin>
 
@@ -56,9 +56,9 @@ void setup()
   //Ultrasone pins
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  myservo.attach(2);
-  myservo2.attach(4);
-  myservo3.attach(0)
+  cservo.attach(2);
+  koffiezet.attach(4);
+  koffieaan.attach(0)
 
   //Default states
   digitalWrite(lowPin, LOW);
@@ -82,10 +82,10 @@ void setup()
       if (!start) {
         getdistance();
         if (distance > 10) {
-          myservo.write(180);
+          cservo.write(180);
         }
         else {
-          myservo.write(90);
+          cservo.write(90);
         }
       }   // no point in carrying on, so do nothing forevermore; check your router
     }
@@ -129,19 +129,19 @@ void loop()
     if (!start) {
       getdistance();
       if (distance > 10) {
-        myservo.write(180);
+        cservo.write(180);
       }
       else {
-        myservo.write(90);
+        cservo.write(90);
       }
     }
     else {
       getdistance();
       if (distance > 10) {
-        myservo.write(90);
+        cservo.write(90);
       }
       else {
-        myservo.write(180);
+        cservo.write(180);
       }
     }
     }
@@ -218,9 +218,9 @@ void executeCommand(char cmd)
       setSensor(1, stop1);
       setSensor(2, stop2);
       delay(100);
-      myservo3.write(25);
+      koffieaan.write(25);
       delay(1000);
-      myservo3.write(90);
+      koffieaan.write(90);
       break;
       
     case 'z':
@@ -231,14 +231,14 @@ void executeCommand(char cmd)
    case 'k':
       setSensor(2, stop2);
       delay(100);
-      myservo3.write(25);
+      koffieaan.write(25);
       delay(1000);
-      myservo3.write(90);
+      koffieaan.write(90);
       break;
    case 'h':
-      myservo2.write(25);
+      koffiezet.write(25);
       delay(1000);
-      myservo2.write(90);
+      koffiezet.write(90);
       break;
       
     //Stuur naar server of schakelaar 1 aan of uit is
@@ -271,15 +271,15 @@ void executeCommand(char cmd)
     case 'i':
       //Servo slaat je hoofd
       for (int i = 0; i < 4; i++){
-        myservo.write(180);
+        cservo.write(180);
         delay(500);
-        myservo.write(0);
+        cservo.write(0);
         delay(500);
         }
-      myservo2.write(25);
+      koffiezet.write(25);
       delay(1000);
-      myservo2.write(90);
-      myservo.write(90);
+      koffiezet.write(90);
+      cservo.write(90);
       break;
       ;
   }
