@@ -54,8 +54,8 @@
 
 
   <style name="Theme.Green" parent="@android:style/Theme.Material.Light">
-    <item name="android:colorPrimary">#ff388e3c</item>
-    <item name="android:colorPrimaryDark">#ff2e7d32</item>
+    <item name="android:colorPrimary">#6F4E37</item>
+    <item name="android:colorPrimaryDark">#593C1F</item>
     <item name="android:colorControlNormal">#ffc62828</item>
     <item name="android:colorControlActivated">#ff2e7d32</item>
     <item name="android:titleTextColor">#FFFFFF</item>

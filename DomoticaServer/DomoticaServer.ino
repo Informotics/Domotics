@@ -23,7 +23,7 @@ int ethPort = 3300;                                  // Take a free port (check 
 #define trigPin      6  //Zender van ultrasone sensor
 #define echoPin      7  //Ontvanger van ultrasone sensor
 
-Servo myservo, myservo2;
+Servo myservo, myservo2, myservo3;
 EthernetServer server(ethPort);              // EthernetServer instance (listening on port <ethPort>).
 NewRemoteTransmitter apa3Transmitter(unitCodeApa3, RFPin, 260, 3);  // APA3 (Gamma) remote, use pin <RFPin>
 
@@ -58,6 +58,7 @@ void setup()
   pinMode(echoPin, INPUT);
   myservo.attach(2);
   myservo2.attach(4);
+  myservo3.attach(0)
 
   //Default states
   digitalWrite(lowPin, LOW);
@@ -216,6 +217,10 @@ void executeCommand(char cmd)
     else {b = true;}
       setSensor(1, stop1);
       setSensor(2, stop2);
+      delay(100);
+      myservo3.write(25);
+      delay(1000);
+      myservo3.write(90);
       break;
       
     case 'z':
@@ -225,6 +230,10 @@ void executeCommand(char cmd)
    //Zet alleen koffieapparaat aan
    case 'k':
       setSensor(2, stop2);
+      delay(100);
+      myservo3.write(25);
+      delay(1000);
+      myservo3.write(90);
       break;
    case 'h':
       myservo2.write(25);

@@ -9,8 +9,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V7.App;
-using System.Net.Sockets;
 
 namespace Domotica.BroadCast
 {

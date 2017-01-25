@@ -7,6 +7,8 @@ using Domotica.BroadCast;
 using Android.Views;
 using System.Timers;
 using System.Text;
+using Android.Support.V7.App;
+
 
 namespace Domotica
 {
@@ -78,7 +80,7 @@ namespace Domotica
             _gestureDetector = new GestureDetector(this);
 
             //statusbar settings
-            this.Title = "Domotica App";
+            this.Title = "Koffie Mobiel";
             this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
             RequestWindowFeature(WindowFeatures.ActionBar);
             var actionBar = this.ActionBar;
@@ -229,13 +231,6 @@ namespace Domotica
             return null;
         }
 
-        //Koffie zetten
-        private void koffieKLAAR()
-        {
-            koffiezetten = false;
-            //MainActivity.socket.Send(Encoding.ASCII.GetBytes("k"));
-        }
-
         //Wekker
         private void StartAlarm()
         {
@@ -286,7 +281,6 @@ namespace Domotica
             myIntent = new Intent(this, typeof(AlarmNotificationReceiver));
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
             manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000)), pendingIntent);
-            Toast.MakeText(this, "Alarm set", ToastLength.Long).Show();
             manager.Cancel(pendingIntent);
 
         }
