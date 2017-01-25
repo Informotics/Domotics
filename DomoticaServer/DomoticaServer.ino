@@ -122,6 +122,26 @@ void loop()
       photoCell(2, 050, stop2);
     }
 
+      //C connected
+    if (!start) {
+      getdistance();
+      if (distance > 10) {
+        myservo.write(180);
+      }
+      else {
+        myservo.write(90);
+      }
+    }
+    else {
+      getdistance();
+      if (distance > 10) {
+        myservo.write(90);
+      }
+      else {
+        myservo.write(180);
+      }
+    }
+
     // Execute when byte is received.
     while (ethernetClient.available())
     {
