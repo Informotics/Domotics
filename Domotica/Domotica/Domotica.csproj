@@ -85,6 +85,8 @@
   <ItemGroup>
     <Compile Include="BroadCast\AlarmNotificationReceiver.cs" />
     <Compile Include="BroadCast\kloka.cs" />
+    <Compile Include="BroadCast\Receiver4.cs" />
+    <Compile Include="BroadCast\Receiver3.cs" />
     <Compile Include="BroadCast\Receiver2.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Opdrachtb.cs" />

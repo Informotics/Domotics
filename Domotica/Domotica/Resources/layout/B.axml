@@ -4,27 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="Tijd"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="10dp" />
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewTimerStateValue"
-        android:gravity="center_horizontal" />
-    <TextView
         android:text="Alarm tijd"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
         android:gravity="center_horizontal"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="170dp" />
     <TextView
         android:text="Time"
         android:layout_width="match_parent"

@@ -122,26 +122,6 @@ void loop()
       photoCell(2, 050, stop2);
     }
 
-    //C connected
-    if (!start) {
-      getdistance();
-      if (distance > 10) {
-        myservo.write(180);
-      }
-      else {
-        myservo.write(90);
-      }
-    }
-    else {
-      getdistance();
-      if (distance > 10) {
-        myservo.write(90);
-      }
-      else {
-        myservo.write(180);
-      }
-    }
-
     // Execute when byte is received.
     while (ethernetClient.available())
     {
@@ -206,9 +186,13 @@ void executeCommand(char cmd)
     case 'x':
       setSensor(0, stop0);
       break;
+
+    //Zet koffieapparaat voor B aan of uit
     case 'y':
       setSensor(1, stop1);
+      setSensor(2, stop2);
       break;
+      
     case 'z':
       setSensor(2, stop2);
       break;
@@ -239,18 +223,23 @@ void executeCommand(char cmd)
         start = false;
       }
 
-    //Zet lamp en koffieapparaat aan en zet koffie
+    //Zet lamp aan en zet koffie
     case 'i':
-      smart = true;
-      switchDefault(1, true);
-      Serial.println("Set schakelaar to in")
-      stop1 = true;
-      for (int i = 0; i < 6; i++){
-        myservo2.write(180);
-        delay(50);
-        myservo2.write(0);
-        }
+      //Servo slaat je hoofd
+      myservo.write(180);
+      delay(200);
+      myservo.write(0);
+      myservo.write(180);
+      delay(200);
+      myservo.write(0);
+      myservo.write(180);
+      delay(200);
+      myservo.write(0);
+        
+      myservo2.write(25);
+      delay(1000);
       myservo2.write(90);
+      myservo.write(90);
       break;
       ;
   }
