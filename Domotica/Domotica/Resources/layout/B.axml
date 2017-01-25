@@ -10,14 +10,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
         android:gravity="center_horizontal"
-        android:layout_marginTop="170dp" />
+        android:layout_marginTop="140dp" />
     <TextView
-        android:text="Time"
+        android:text="Alarm Time"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/darker_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/timeDisplay"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textSize="50px"
         android:layout_marginTop="5dp" />
     <Button
         android:id="@+id/pickTime"

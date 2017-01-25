@@ -38,6 +38,7 @@ bool start = false;
 bool smart = false;
 int duration;
 int distance;
+bool b = false;
 
 void setup()
 {
@@ -122,6 +123,7 @@ void loop()
       photoCell(2, 050, stop2);
     }
 
+    if (b = false){
       //C connected
     if (!start) {
       getdistance();
@@ -140,6 +142,7 @@ void loop()
       else {
         myservo.write(180);
       }
+    }
     }
 
     // Execute when byte is received.
@@ -209,12 +212,14 @@ void executeCommand(char cmd)
 
     //Zet koffieapparaat voor B aan of uit
     case 'y':
+    if (b){b = false;}
+    else {b = true;}
       setSensor(1, stop1);
       setSensor(2, stop2);
       break;
       
     case 'z':
-      setSensor(2, stop2);
+      setSensor(1, stop1);
       break;
       
     //Stuur naar server of schakelaar 1 aan of uit is
