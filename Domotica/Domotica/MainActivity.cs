@@ -72,22 +72,26 @@ namespace Domotica
             switch (pagina)
             {
                 case 1:
-                    startupWork.ContinueWith(t => {
+                    startupWork.ContinueWith(t =>
+                    {
                         StartActivity(new Intent(Application.Context, typeof(MainActivity)));
                     }, TaskScheduler.FromCurrentSynchronizationContext());
                     break;
                 case 2:
-                    startupWork.ContinueWith(t => {
+                    startupWork.ContinueWith(t =>
+                    {
                         StartActivity(new Intent(Application.Context, typeof(Opdrachtb)));
                     }, TaskScheduler.FromCurrentSynchronizationContext());
                     break;
                 case 3:
-                    startupWork.ContinueWith(t => {
+                    startupWork.ContinueWith(t =>
+                    {
                         StartActivity(new Intent(Application.Context, typeof(Opdrachtc)));
                     }, TaskScheduler.FromCurrentSynchronizationContext());
                     break;
                 default:
-                    startupWork.ContinueWith(t => {
+                    startupWork.ContinueWith(t =>
+                    {
                         StartActivity(new Intent(Application.Context, typeof(MainActivity)));
                     }, TaskScheduler.FromCurrentSynchronizationContext());
                     break;
@@ -248,11 +252,14 @@ namespace Domotica
             {
                 settime1.Click += (o, e) => ShowDialog(timedialog);
             }
-            btnCancel.Click += delegate
+
+            if (btnCancel != null)
             {
-                CancelAlarm();
-                StartAlarm();
-            };
+                btnCancel.Click += delegate
+                {
+                    CancelAlarm();
+                };
+            }
 
             //smart mode aan of uit
             if (smartmode != null)
@@ -284,6 +291,7 @@ namespace Domotica
                 minute1 = minute1 + 60;
                 hour1 = hour1 - 1;
             }
+            StartAlarm();
         }
 
         //Update de textview naar de gekozen tijd
@@ -320,7 +328,7 @@ namespace Domotica
         {
             if (alarmset)
             {
-                MainActivity.socket.Send(Encoding.ASCII.GetBytes("y"));
+                MainActivity.socket.Send(Encoding.ASCII.GetBytes("z"));
                 alarmset = false;
             }
             AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);

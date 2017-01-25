@@ -51,7 +51,7 @@ namespace Domotica
         }
         private GestureDetector _gestureDetector;
 
-        TextView time_display, textViewTimerStateValue;
+        TextView time_display;
         Button pickt_button;
         Button btnRepeating;
         Button btnCancel;
@@ -99,20 +99,9 @@ namespace Domotica
 
             time_display = FindViewById<TextView>(Resource.Id.timeDisplay);
             pickt_button = FindViewById<Button>(Resource.Id.pickTime);
-            textViewTimerStateValue = FindViewById<TextView>(Resource.Id.textViewTimerStateValue);
 
             btnRepeating = FindViewById<Button>(Resource.Id.btnRepeating);
             btnCancel = FindViewById<Button>(Resource.Id.btnCancel);
-
-            // timer object, running clock
-            timerClock = new System.Timers.Timer() { Interval = 1000, Enabled = true }; // Interval >= 1000
-            timerClock.Elapsed += (obj, args) =>
-            {
-                RunOnUiThread(() =>
-                {
-                    textViewTimerStateValue.Text = DateTime.Now.ToString("HH:mm:ss");
-                });
-            };
 
             btnRepeating.Click += delegate
             {
@@ -232,7 +221,7 @@ namespace Domotica
             PendingIntent pendingIntent;
             myIntent = new Intent(this, typeof(Receiver4));
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
-            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + ((minute1 + 1) * 60 * 1000)), pendingIntent);
+            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + ((minute1 + 4) * 60 * 1000)), pendingIntent);
         }
 
         private void CancelAlarm0()
