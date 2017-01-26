@@ -6,6 +6,9 @@ using Android.Content;
 using Domotica.BroadCast;
 using Android.Views;
 using System.Timers;
+using System.Text;
+using Android.Support.V7.App;
+
 
 namespace Domotica
 {
@@ -56,12 +59,17 @@ namespace Domotica
         Button btnRepeating;
         Button btnCancel;
         Timer timerClock;
-
+        Button koffie;
+        string currenttime;
         private int hour;
         private int minute;
         private int hour1;
         private int minute1;
-
+        string coffee;
+        string minutes;
+        string hours;
+        int min;
+        bool koffiezetten;
 
         const int TIME_DIALOG_ID = 0;
 
@@ -72,7 +80,7 @@ namespace Domotica
             _gestureDetector = new GestureDetector(this);
 
             //statusbar settings
-            this.Title = "Domotica App";
+            this.Title = "Koffie Mobiel";
             this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
             RequestWindowFeature(WindowFeatures.ActionBar);
             var actionBar = this.ActionBar;
@@ -99,9 +107,43 @@ namespace Domotica
 
             time_display = FindViewById<TextView>(Resource.Id.timeDisplay);
             pickt_button = FindViewById<Button>(Resource.Id.pickTime);
-
+            koffie = FindViewById<Button>(Resource.Id.koffie);
             btnRepeating = FindViewById<Button>(Resource.Id.btnRepeating);
             btnCancel = FindViewById<Button>(Resource.Id.btnCancel);
+
+            //Code die de timer zet voor de koffie
+            hours = DateTime.Now.Hour.ToString();
+            if (hours.Length < 2)
+            {
+                hours = "0" + hours;
+            }
+            minutes = DateTime.Now.Minute.ToString();
+            min = Convert.ToInt32(minutes);
+            //min += 3;
+            min += 2;
+            minutes = Convert.ToString(min);
+            if (minutes.Length < 2)
+            {
+                minutes = "0" + minutes;
+            }
+            coffee = hours + ":" + minutes + ":" + "00";
+
+            // timer object, running clock
+            timerClock = new System.Timers.Timer() { Interval = 1000, Enabled = true }; // Interval >= 1000
+            timerClock.Elapsed += (obj, args) =>
+            {
+                RunOnUiThread(() => {
+                    currenttime = DateTime.Now.ToString("HH:mm:ss");
+                    if (koffiezetten == true)
+                    {
+                        if (coffee == currenttime)
+                        {
+                            koffiezetten = false;
+                            MainActivity.socket.Send(Encoding.ASCII.GetBytes("h"));
+                        }
+                    }
+                });
+            };
 
             btnRepeating.Click += delegate
             {
@@ -118,6 +160,13 @@ namespace Domotica
                 CancelAlarm();
                 CancelAlarm3();
                 CancelAlarm4();
+            };
+
+            koffie.Click += delegate
+            {
+                koffiezetten = true;
+                MainActivity.socket.Send(Encoding.ASCII.GetBytes("k"));
+                Toast.MakeText(this, "Koffie over 3 minuten", ToastLength.Long).Show();
             };
 
             pickt_button.Click += (o, e) => ShowDialog(TIME_DIALOG_ID);
@@ -182,7 +231,7 @@ namespace Domotica
             return null;
         }
 
-        //wekker
+        //Wekker
         private void StartAlarm()
         {
             AlarmManager manager = (AlarmManager)GetSystemService(Context.AlarmService);
@@ -211,7 +260,7 @@ namespace Domotica
             PendingIntent pendingIntent;
             myIntent = new Intent(this, typeof(Receiver3));
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
-            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + ((minute1 - 1) * 60 * 1000)), pendingIntent);
+            manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + ((minute1 - (10/4)) * 60 * 1000)), pendingIntent);
         }
 
         private void StartAlarm4()
@@ -232,7 +281,6 @@ namespace Domotica
             myIntent = new Intent(this, typeof(AlarmNotificationReceiver));
             pendingIntent = PendingIntent.GetBroadcast(this, 0, myIntent, 0);
             manager.Set(AlarmType.ElapsedRealtimeWakeup, (SystemClock.ElapsedRealtime() + (hour1 * 3600 * 1000) + (minute1 * 60 * 1000)), pendingIntent);
-            Toast.MakeText(this, "Alarm set", ToastLength.Long).Show();
             manager.Cancel(pendingIntent);
 
         }
